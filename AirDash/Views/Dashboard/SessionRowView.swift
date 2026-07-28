@@ -1,0 +1,113 @@
+import SwiftUI
+
+struct SessionRowView: View {
+    let session: AirVPNSession
+    let onDisconnect: () async -> Void
+    @State private var isDisconnecting = false
+
+    var durationText: String {
+        guard let unix = session.connectedSinceUnix else { return "" }
+        let interval = Date().timeIntervalSince1970 - Double(unix)
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute]
+        formatter.unitsStyle = .abbreviated
+        return formatter.string(from: interval) ?? ""
+    }
+
+    var speedText: String {
+        let down = formatBytes(session.speedRead)
+        let up = formatBytes(session.speedWrite)
+        return "↓ \(down) ↑ \(up)"
+    }
+
+    var body: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack(spacing: 8) {
+                            if let code = session.serverCountryCode {
+                                FlagBadge(countryCode: code, size: 24)
+                            }
+                            Text(session.serverName ?? "Unknown")
+                                .font(.headline)
+                        }
+                        if let location = session.serverLocation {
+                            Text(location)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+
+                    Spacer()
+
+                    VStack(alignment: .trailing, spacing: 4) {
+                        if let device = session.deviceName {
+                            Label(device, systemImage: "iphone")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        if !durationText.isEmpty {
+                            Text(durationText)
+                                .font(.caption.monospacedDigit())
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
+
+                Divider()
+
+                HStack {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("session.vpn_ip")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                        Text(session.vpnIP ?? "-")
+                            .font(.caption.monospaced())
+                    }
+
+                    Spacer()
+
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text("session.speed")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                        Text(speedText)
+                            .font(.caption.monospacedDigit())
+                    }
+                }
+
+                Button(role: .destructive) {
+                    Task {
+                        isDisconnecting = true
+                        await onDisconnect()
+                        isDisconnecting = false
+                    }
+                } label: {
+                    Group {
+                        if isDisconnecting {
+                            ProgressView()
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 8)
+                        } else {
+                            Label("session.disconnect", systemImage: "xmark.shield")
+                                .font(.subheadline)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 8)
+                        }
+                    }
+                }
+                .glassEffect(in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .foregroundStyle(.red)
+                .disabled(isDisconnecting)
+            }
+        }
+    }
+
+    private func formatBytes(_ bytes: Int?) -> String {
+        guard let b = bytes else { return "0 B/s" }
+        if b < 1024 { return "\(b) B/s" }
+        if b < 1_048_576 { return String(format: "%.1f KB/s", Double(b) / 1024) }
+        return String(format: "%.1f MB/s", Double(b) / 1_048_576)
+    }
+}

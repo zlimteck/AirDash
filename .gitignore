@@ -1,0 +1,48 @@
+# Xcode
+*.xcodeproj/xcuserdata/
+*.xcodeproj/**/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods (non utilisé mais au cas où)
+Pods/
+Podfile.lock
+
+# Carthage (non utilisé mais au cas où)
+Carthage/Build/
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output/
+
+# Claude / AI context
+CLAUDE.md
+memory-bank/
+
+# Fichiers système
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Secrets (ne jamais committer)
+*.pem
+*.p12
+*.mobileprovision
+Config.xcconfig
+Secrets.swift
