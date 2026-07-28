@@ -49,9 +49,25 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 
 ---
 
+## Installation — Pre-built IPA
+
+A pre-built unsigned IPA is available on the [Releases](https://github.com/zlimteck/AirDash-iOS/releases) page. Install it with one of the following tools:
+
+| Tool | Widget support |
+|---|---|
+| [AltStore](https://altstore.io) | ✅ Full support |
+| [Sideloadly](https://sideloadly.io) | ✅ Full support |
+| [LiveContainer](https://github.com/LiveContainerApp/LiveContainer) | ⚠️ App works, widget not supported |
+
+> The widget requires a proper system installation to access the shared App Group. LiveContainer sandboxing prevents this.
+
+---
+
+## Build from Source
+
 ## Requirements
 
-- Xcode 26 beta or later
+- Xcode 26 or later
 - iOS 26 minimum (simulator or device)
 - [XcodeGen](https://github.com/yonaskolb/XcodeGen) installed
 - An AirVPN API key (account → *Client Area* → *API*)
@@ -141,6 +157,7 @@ The app exclusively uses the public AirVPN API:
 ## Known Limitations
 
 - Disconnecting a session via the app does not kill the active VPN tunnel on the device (this would require the *Personal VPN* entitlement and `NETunnelProviderManager`, which require a paid developer account)
+- Widget is not supported when installed via LiveContainer
 - Compatible with iPhone and iPad
 
 ---
