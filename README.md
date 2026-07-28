@@ -1,10 +1,25 @@
 # AirDash iOS
 
+<img src="assets/icon.png" width="120" alt="AirDash icon" />
+
+[![Build](https://github.com/zlimteck/AirDash-iOS/actions/workflows/build.yml/badge.svg)](https://github.com/zlimteck/AirDash-iOS/actions/workflows/build.yml)
+
 Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with SwiftUI and the iOS 26 Liquid Glass design.
 
 > ⭐ If you find this project useful, a star on GitHub is greatly appreciated!
 
 > **Disclaimer** — This is an independent project with no affiliation to AirVPN. It uses the public AirVPN API with your personal API key.
+
+---
+
+## Screenshots
+
+<p float="left">
+  <img src="assets/screenshot-login.png" width="22%" alt="Login" />
+  <img src="assets/screenshot-dashboard.png" width="22%" alt="Dashboard" />
+  <img src="assets/screenshot-network.png" width="22%" alt="Network" />
+  <img src="assets/screenshot-server-detail.png" width="22%" alt="Server detail" />
+</p>
 
 ---
 
