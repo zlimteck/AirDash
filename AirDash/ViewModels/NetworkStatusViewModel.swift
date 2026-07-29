@@ -1,14 +1,14 @@
 import SwiftUI
 
 enum ServerSortOrder: String, CaseIterable {
-    case load, loadDesc, name, users
+    case load, loadDesc, name, ping
 
     var label: LocalizedStringKey {
         switch self {
         case .load:     "sort.load_asc"
         case .loadDesc: "sort.load_desc"
         case .name:     "sort.name"
-        case .users:    "sort.users"
+        case .ping:     "sort.ping"
         }
     }
 
@@ -17,7 +17,7 @@ enum ServerSortOrder: String, CaseIterable {
         case .load:     "arrow.up.circle"
         case .loadDesc: "arrow.down.circle"
         case .name:     "textformat.abc"
-        case .users:    "person.3"
+        case .ping:     "antenna.radiowaves.left.and.right"
         }
     }
 }
@@ -29,7 +29,43 @@ final class NetworkStatusViewModel: ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var searchText: String = ""
     @Published var selectedContinent: String? = nil
-    @Published var sortOrder: ServerSortOrder = .load
+    @Published var sortOrder: ServerSortOrder {
+        didSet { UserDefaults.standard.set(sortOrder.rawValue, forKey: "serverSortOrder") }
+    }
+    @Published var favoriteIds: Set<String> {
+        didSet { UserDefaults.standard.set(Array(favoriteIds), forKey: "favoriteServerIds") }
+    }
+    @Published var latencies: [String: Int] = [:]
+    @Published var measuredIds: Set<String> = []
+
+    init() {
+        let saved = UserDefaults.standard.string(forKey: "serverSortOrder") ?? ""
+        sortOrder = ServerSortOrder(rawValue: saved) ?? .load
+        let savedFavorites = UserDefaults.standard.stringArray(forKey: "favoriteServerIds") ?? []
+        favoriteIds = Set(savedFavorites)
+    }
+
+    var favoriteServers: [AirVPNServer] {
+        (statusResponse?.servers ?? []).filter { favoriteIds.contains($0.id) }
+    }
+
+    var isFavoritesSectionVisible: Bool {
+        !favoriteServers.isEmpty && searchText.isEmpty && selectedContinent == nil
+    }
+
+    var mainServers: [AirVPNServer] {
+        isFavoritesSectionVisible
+            ? filteredServers.filter { !favoriteIds.contains($0.id) }
+            : filteredServers
+    }
+
+    func toggleFavorite(_ id: String) {
+        if favoriteIds.contains(id) {
+            favoriteIds.remove(id)
+        } else {
+            favoriteIds.insert(id)
+        }
+    }
 
     var filteredServers: [AirVPNServer] {
         var servers = statusResponse?.servers ?? []
@@ -47,7 +83,14 @@ final class NetworkStatusViewModel: ObservableObject {
         case .load:     servers.sort { $0.currentLoad < $1.currentLoad }
         case .loadDesc: servers.sort { $0.currentLoad > $1.currentLoad }
         case .name:     servers.sort { $0.publicName < $1.publicName }
-        case .users:    servers.sort { $0.users > $1.users }
+        case .ping:
+            servers.sort {
+                switch (latencies[$0.id], latencies[$1.id]) {
+                case let (a?, b?): return a < b
+                case (_?, nil): return true
+                default: return false
+                }
+            }
         }
         return servers
     }
@@ -71,6 +114,7 @@ final class NetworkStatusViewModel: ObservableObject {
         errorMessage = nil
         do {
             statusResponse = try await AirVPNAPIClient.shared.getStatus(forceRefresh: forceRefresh)
+            Task { await measureLatencies() }
         } catch is CancellationError {
             // ignore
         } catch let error as AppError {
@@ -79,5 +123,27 @@ final class NetworkStatusViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
         isLoading = false
+    }
+
+    func measureLatencies() async {
+        guard let servers = statusResponse?.servers else { return }
+        latencies = [:]
+        measuredIds = []
+        await withTaskGroup(of: (String, Int?).self) { group in
+            for server in servers {
+                guard let ip = server.ipV4In1 else {
+                    measuredIds.insert(server.id)
+                    continue
+                }
+                group.addTask {
+                    let ms = await PingService.ping(host: ip)
+                    return (server.id, ms)
+                }
+            }
+            for await (id, ms) in group {
+                if let ms { latencies[id] = ms }
+                measuredIds.insert(id)
+            }
+        }
     }
 }

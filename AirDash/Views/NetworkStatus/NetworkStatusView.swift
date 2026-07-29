@@ -25,11 +25,10 @@ struct NetworkStatusView: View {
                             } label: {
                                 Label(order.label, systemImage: order.icon)
                             }
-                            .buttonStyle(.plain)
                         }
                     } label: {
-                        Label("sort", systemImage: vm.sortOrder == .load ? "arrow.up.arrow.down" : "arrow.up.arrow.down.circle.fill")
-                            .symbolRenderingMode(.hierarchical)
+                        Label("sort", systemImage: "arrow.up.arrow.down")
+                            .foregroundStyle(vm.sortOrder == .load ? AnyShapeStyle(.primary) : AnyShapeStyle(.tint))
                     }
                 }
             }
@@ -116,22 +115,73 @@ struct NetworkStatusView: View {
                     .padding(.bottom, 8)
                 }
 
-                // Server list header
-                Section {
-                    ForEach(vm.filteredServers) { server in
-                        NavigationLink(value: server) {
-                            ServerRowView(server: server)
+                // Favorites section
+                if vm.isFavoritesSectionVisible {
+                    Section {
+                        ForEach(vm.favoriteServers) { server in
+                            NavigationLink(value: server) {
+                                ServerRowView(
+                                    server: server,
+                                    latency: vm.latencies[server.id],
+                                    isMeasured: vm.measuredIds.contains(server.id)
+                                )
                                 .padding(.horizontal)
                                 .padding(.vertical, 10)
+                            }
+                            .buttonStyle(.plain)
+                            .contextMenu {
+                                Button(role: .destructive) {
+                                    vm.toggleFavorite(server.id)
+                                } label: {
+                                    Label("favorites.remove", systemImage: "star.slash")
+                                }
+                            }
+
+                            Divider()
+                                .padding(.leading, 66)
+                                .padding(.trailing, 16)
+                        }
+                    } header: {
+                        Text("favorites.section")
+                            .font(.footnote.weight(.semibold))
+                            .foregroundStyle(.secondary)
+                            .textCase(.uppercase)
+                            .padding(.horizontal)
+                            .padding(.vertical, 6)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+
+                // Server list
+                Section {
+                    ForEach(vm.mainServers) { server in
+                        NavigationLink(value: server) {
+                            ServerRowView(
+                                server: server,
+                                latency: vm.latencies[server.id],
+                                isMeasured: vm.measuredIds.contains(server.id)
+                            )
+                            .padding(.horizontal)
+                            .padding(.vertical, 10)
                         }
                         .buttonStyle(.plain)
+                        .contextMenu {
+                            Button {
+                                vm.toggleFavorite(server.id)
+                            } label: {
+                                Label(
+                                    vm.favoriteIds.contains(server.id) ? "favorites.remove" : "favorites.add",
+                                    systemImage: vm.favoriteIds.contains(server.id) ? "star.slash" : "star"
+                                )
+                            }
+                        }
 
                         Divider()
                             .padding(.leading, 66)
                             .padding(.trailing, 16)
                     }
                 } header: {
-                    Text(String(format: NSLocalizedString("network.servers %lld", comment: ""), vm.filteredServers.count))
+                    Text(String(format: NSLocalizedString("network.servers %lld", comment: ""), vm.mainServers.count))
                         .font(.footnote.weight(.semibold))
                         .foregroundStyle(.secondary)
                         .textCase(.uppercase)

@@ -25,5 +25,18 @@ struct MainTabView: View {
             }
         }
         .preferredColorScheme(colorScheme)
+        .onAppear {
+            // Lancement froid : shortcut stocké par configurationForConnecting
+            if let tab = UserDefaults.standard.value(forKey: "pendingShortcutTab") as? Int {
+                UserDefaults.standard.removeObject(forKey: "pendingShortcutTab")
+                DispatchQueue.main.async { appState.selectedTab = tab }
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .shortcutAction)) { notification in
+            // Lancement chaud : notification postée par SceneDelegate ou AppDelegate
+            if let tab = notification.object as? Int {
+                appState.selectedTab = tab
+            }
+        }
     }
 }

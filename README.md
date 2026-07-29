@@ -1,8 +1,8 @@
-# AirDash iOS
+# AirDash
 
 <img src="assets/icon.png" width="120" alt="AirDash icon" />
 
-[![Build](https://github.com/zlimteck/AirDash-iOS/actions/workflows/build.yml/badge.svg)](https://github.com/zlimteck/AirDash-iOS/actions/workflows/build.yml)
+[![Build](https://github.com/zlimteck/AirDash/actions/workflows/build.yml/badge.svg)](https://github.com/zlimteck/AirDash/actions/workflows/build.yml)
 
 Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with SwiftUI and the iOS 26 Liquid Glass design.
 
@@ -51,7 +51,7 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 
 ## Installation — Pre-built IPA
 
-A pre-built unsigned IPA is available on the [Releases](https://github.com/zlimteck/AirDash-iOS/releases) page. Install it with one of the following tools:
+A pre-built unsigned IPA is available on the [Releases](https://github.com/zlimteck/AirDash/releases) page. Install it with one of the following tools:
 
 | Tool | Widget support |
 |---|---|
@@ -87,8 +87,8 @@ brew install xcodegen
 The `.xcodeproj` is not versioned — generate it after cloning:
 
 ```bash
-git clone https://github.com/zlimteck/airdash-ios.git
-cd AirDash-iOS
+git clone https://github.com/zlimteck/AirDash.git
+cd AirDash
 xcodegen generate
 open AirDash.xcodeproj
 ```
@@ -115,7 +115,7 @@ After adding any `.swift` file outside of Xcode, run `xcodegen generate` before 
 ## Project Structure
 
 ```
-AirDash-iOS/
+AirDash/
 ├── AirDash/
 │   ├── App/                  # Entry point, AppState, AppDelegate, MainTabView
 │   ├── Models/               # AirVPNModels, AppError

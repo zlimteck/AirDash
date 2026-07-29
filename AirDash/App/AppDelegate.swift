@@ -1,7 +1,10 @@
 import UIKit
 
+extension Notification.Name {
+    static let shortcutAction = Notification.Name("com.airdash.shortcutAction")
+}
+
 final class AppDelegate: NSObject, UIApplicationDelegate {
-    var appState: AppState?
 
     func application(
         _ application: UIApplication,
@@ -11,25 +14,35 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
 
+    // Lancement froid depuis une Quick Action — shortcut dans les options de connexion
+    func application(
+        _ application: UIApplication,
+        configurationForConnecting connectingSceneSession: UISceneSession,
+        options: UIScene.ConnectionOptions
+    ) -> UISceneConfiguration {
+        if let shortcut = options.shortcutItem {
+            let tab: Int = shortcut.type == ShortcutType.network ? 0 : 1
+            UserDefaults.standard.set(tab, forKey: "pendingShortcutTab")
+        }
+        let config = UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
+        config.delegateClass = SceneDelegate.self
+        return config
+    }
+
+    // Fallback si le scene delegate ne traite pas l'action
     func application(
         _ application: UIApplication,
         performActionFor shortcutItem: UIApplicationShortcutItem,
         completionHandler: @escaping (Bool) -> Void
     ) {
-        completionHandler(handle(shortcutItem))
-    }
-
-    @discardableResult
-    func handle(_ item: UIApplicationShortcutItem) -> Bool {
-        switch item.type {
-        case ShortcutType.dashboard:
-            appState?.selectedTab = 1
-        case ShortcutType.network:
-            appState?.selectedTab = 0
-        default:
-            return false
+        let tab: Int
+        switch shortcutItem.type {
+        case ShortcutType.dashboard: tab = 1
+        case ShortcutType.network:   tab = 0
+        default: completionHandler(false); return
         }
-        return true
+        NotificationCenter.default.post(name: .shortcutAction, object: tab)
+        completionHandler(true)
     }
 
     static let staticShortcuts: [UIApplicationShortcutItem] = [

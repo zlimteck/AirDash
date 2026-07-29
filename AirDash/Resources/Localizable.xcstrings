@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "— ms" : {
+
+    },
     "%@" : {
 
     },
@@ -14,46 +17,14 @@
         }
       }
     },
+    "%@ ms" : {
+
+    },
     "%@%%" : {
 
     },
     "AirDash" : {
 
-    },
-    "sort" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sort" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Trier" } }
-      }
-    },
-    "sort.load_asc" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Load: Low to High" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Charge : croissante" } }
-      }
-    },
-    "sort.load_desc" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Load: High to Low" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Charge : décroissante" } }
-      }
-    },
-    "sort.name" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Name" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Nom" } }
-      }
-    },
-    "sort.users" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Most Users" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Plus d'utilisateurs" } }
-      }
     },
     "cancel" : {
       "extractionState" : "manual",
@@ -70,55 +41,6 @@
             "value" : "Annuler"
           }
         }
-      }
-    },
-    "dashboard.vpn_on" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "VPN ON" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "VPN ACTIF" } }
-      }
-    },
-    "dashboard.vpn_off" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "VPN OFF" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "VPN INACTIF" } }
-      }
-    },
-    "dashboard.member_since" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Member since" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Membre depuis" } }
-      }
-    },
-    "dashboard.sessions" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Sessions" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Sessions" } }
-      }
-    },
-    "dashboard.last_seen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Last seen" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Dernière connexion" } }
-      }
-    },
-    "dashboard.connected" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Connected" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Connecté" } }
-      }
-    },
-    "dashboard.disconnected" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Disconnected" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Déconnecté" } }
       }
     },
     "dashboard.active_sessions" : {
@@ -138,6 +60,23 @@
         }
       }
     },
+    "dashboard.connected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connecté"
+          }
+        }
+      }
+    },
     "dashboard.credits" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -151,6 +90,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Crédits"
+          }
+        }
+      }
+    },
+    "dashboard.disconnected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnected"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déconnecté"
           }
         }
       }
@@ -206,6 +162,23 @@
         }
       }
     },
+    "dashboard.last_seen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last seen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dernière connexion"
+          }
+        }
+      }
+    },
     "dashboard.loading" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -219,6 +192,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Chargement du compte…"
+          }
+        }
+      }
+    },
+    "dashboard.member_since" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Member since"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Membre depuis"
           }
         }
       }
@@ -257,6 +247,23 @@
         }
       }
     },
+    "dashboard.sessions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessions"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessions"
+          }
+        }
+      }
+    },
     "dashboard.standard" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -274,25 +281,38 @@
         }
       }
     },
-    "detail.device" : {
+    "dashboard.vpn_off" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Device" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Appareil" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN OFF"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN INACTIF"
+          }
+        }
       }
     },
-    "detail.no_device" : {
+    "dashboard.vpn_on" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "None" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun" } }
-      }
-    },
-    "detail.no_devices" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No devices" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun appareil" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN ON"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN ACTIF"
+          }
+        }
       }
     },
     "detail.bandwidth" : {
@@ -329,6 +349,23 @@
         }
       }
     },
+    "detail.device" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Device"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appareil"
+          }
+        }
+      }
+    },
     "detail.device_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -346,27 +383,6 @@
         }
       }
     },
-    "detail.import_vpn" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Import to VPN App" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Importer dans l'app VPN" } }
-      }
-    },
-    "detail.share" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Share File" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Partager le fichier" } }
-      }
-    },
-    "detail.generate_new" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Generate another profile" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Générer un autre profil" } }
-      }
-    },
     "detail.generate" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -380,6 +396,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Générer et partager"
+          }
+        }
+      }
+    },
+    "detail.generate_new" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generate another profile"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Générer un autre profil"
           }
         }
       }
@@ -401,6 +434,23 @@
         }
       }
     },
+    "detail.import_vpn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import to VPN App"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importer dans l'app VPN"
+          }
+        }
+      }
+    },
     "detail.load" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -414,6 +464,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Charge"
+          }
+        }
+      }
+    },
+    "detail.no_device" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "None"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun"
+          }
+        }
+      }
+    },
+    "detail.no_devices" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No devices"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun appareil"
           }
         }
       }
@@ -448,6 +532,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Protocole"
+          }
+        }
+      }
+    },
+    "detail.share" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share File"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partager le fichier"
           }
         }
       }
@@ -554,39 +655,21 @@
         }
       }
     },
-    "network.select_server" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Select a server" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Sélectionne un serveur" } }
-      }
-    },
-    "network.select_server_desc" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose a server from the list to see its details." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Choisis un serveur dans la liste pour voir ses détails." } }
-      }
-    },
-    "network.healthy_servers" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Healthy" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "En bonne santé" } }
-      }
-    },
     "network.avg_load" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Avg Load" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Charge moy." } }
-      }
-    },
-    "network.continents" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Continents" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Continents" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avg Load"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charge moy."
+          }
+        }
       }
     },
     "network.connected_users" : {
@@ -606,6 +689,23 @@
         }
       }
     },
+    "network.continents" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continents"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continents"
+          }
+        }
+      }
+    },
     "network.countries" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -619,6 +719,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pays"
+          }
+        }
+      }
+    },
+    "network.healthy_servers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Healthy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En bonne santé"
           }
         }
       }
@@ -653,6 +770,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rechercher des serveurs…"
+          }
+        }
+      }
+    },
+    "network.select_server" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select a server"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionne un serveur"
+          }
+        }
+      }
+    },
+    "network.select_server_desc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a server from the list to see its details."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisis un serveur dans la liste pour voir ses détails."
           }
         }
       }
@@ -895,23 +1046,6 @@
         }
       }
     },
-    "settings.github" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Support the project by starring it on GitHub"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Soutenez le projet en mettant une étoile sur GitHub"
-          }
-        }
-      }
-    },
     "settings.airvpn_website" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -959,6 +1093,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version"
+          }
+        }
+      }
+    },
+    "settings.disclaimer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirDash is an independent, unofficial app and is not affiliated with, endorsed by, or in any way officially connected to AirVPN."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirDash est une application indépendante et non officielle. Elle n'est pas affiliée à AirVPN, ni approuvée ou soutenue par celle-ci."
+          }
+        }
+      }
+    },
+    "settings.github" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Support the project by starring it on GitHub"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Soutenez le projet en mettant une étoile sur GitHub"
           }
         }
       }
@@ -1184,11 +1352,140 @@
         }
       }
     },
-    "settings.disclaimer" : {
+    "sort" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "AirDash is an independent, unofficial app and is not affiliated with, endorsed by, or in any way officially connected to AirVPN." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "AirDash est une application indépendante et non officielle. Elle n'est pas affiliée à AirVPN, ni approuvée ou soutenue par celle-ci." } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trier"
+          }
+        }
+      }
+    },
+    "sort.load_asc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Load: Low to High"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charge : croissante"
+          }
+        }
+      }
+    },
+    "sort.load_desc" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Load: High to Low"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charge : décroissante"
+          }
+        }
+      }
+    },
+    "sort.name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom"
+          }
+        }
+      }
+    },
+    "favorites.add" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to Favorites"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter aux favoris"
+          }
+        }
+      }
+    },
+    "favorites.remove" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from Favorites"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer des favoris"
+          }
+        }
+      }
+    },
+    "favorites.section" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoris"
+          }
+        }
+      }
+    },
+    "sort.ping" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ping (Low to High)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ping (croissant)"
+          }
+        }
       }
     },
     "tab.dashboard" : {

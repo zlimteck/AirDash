@@ -50,7 +50,7 @@ struct SettingsView: View {
                     Link(destination: URL(string: "https://airvpn.org")!) {
                         Label("settings.airvpn_website", systemImage: "safari")
                     }
-                    Link(destination: URL(string: "https://github.com/zlimteck/AirDash-iOS")!) {
+                    Link(destination: URL(string: "https://github.com/zlimteck/AirDash")!) {
                         Label {
                             Text("settings.github")
                         } icon: {

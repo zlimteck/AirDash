@@ -9,7 +9,6 @@ struct AirDashApp: App {
         WindowGroup {
             RootView()
                 .environmentObject(appState)
-                .onAppear { appDelegate.appState = appState }
         }
     }
 }
