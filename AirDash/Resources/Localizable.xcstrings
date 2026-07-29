@@ -4,6 +4,9 @@
     "— ms" : {
 
     },
+    "·" : {
+
+    },
     "%@" : {
 
     },
@@ -39,6 +42,150 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annuler"
+          }
+        }
+      }
+    },
+    "changelog.1_0_0.initial" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Initial release"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version initiale"
+          }
+        }
+      }
+    },
+    "changelog.1_0_1.favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites: long press a server to pin it"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoris: appui long pour épingler un serveur"
+          }
+        }
+      }
+    },
+    "changelog.1_0_2.changelog" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Changelog section in Settings" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Section Nouveautés dans les Réglages" } }
+      }
+    },
+    "changelog.1_0_2.ipv6" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "IPv6 badge on servers that support it" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Badge IPv6 sur les serveurs compatibles" } }
+      }
+    },
+    "changelog.1_0_2.notifications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications 7 and 1 day before subscription expiry" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Notifications 7j et 1j avant l'expiration de l'abonnement" } }
+      }
+    },
+    "changelog.1_0_2.ping_fallback" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Improved ping reliability with IP fallback" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ping plus fiable avec IP de secours" } }
+      }
+    },
+    "changelog.1_0_2.shortcuts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Siri Shortcuts: VPN Status, My IP, Open Server" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Raccourcis Siri: Statut VPN, Mon IP, Ouvrir un serveur" } }
+      }
+    },
+    "changelog.1_0_2.credits" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Credits section in Settings" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Section Crédits dans les Réglages" } }
+      }
+    },
+    "changelog.1_0_1.ping" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server ping: latency displayed for each server"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ping serveurs: latence affichée pour chaque serveur"
+          }
+        }
+      }
+    },
+    "changelog.1_0_1.quick_actions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Actions: long press the app icon to jump to a tab"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Actions: appui long sur l'icône pour accéder à un onglet"
+          }
+        }
+      }
+    },
+    "changelog.1_0_1.sort_persistent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort order is now remembered between sessions"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'ordre de tri est maintenant mémorisé entre les sessions"
+          }
+        }
+      }
+    },
+    "changelog.1_0_1.sort_ping" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New sort option: Ping (low to high)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau tri : Ping (croissant)"
           }
         }
       }
@@ -621,6 +768,60 @@
         }
       }
     },
+    "favorites.add" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add to Favorites"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter aux favoris"
+          }
+        }
+      }
+    },
+    "favorites.remove" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove from Favorites"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer des favoris"
+          }
+        }
+      }
+    },
+    "favorites.section" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoris"
+          }
+        }
+      }
+    },
+    "IPv6" : {
+
+    },
     "loading" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -859,6 +1060,74 @@
         }
       }
     },
+    "notification.expiry.1d.body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your AirVPN subscription expires tomorrow. Renew now to stay protected."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre abonnement AirVPN expire demain. Renouvelez maintenant pour rester protégé."
+          }
+        }
+      }
+    },
+    "notification.expiry.1d.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscription expires tomorrow"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abonnement expire demain"
+          }
+        }
+      }
+    },
+    "notification.expiry.7d.body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your AirVPN subscription expires in 7 days."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre abonnement AirVPN expire dans 7 jours."
+          }
+        }
+      }
+    },
+    "notification.expiry.7d.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscription expiring soon"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abonnement bientôt expiré"
+          }
+        }
+      }
+    },
     "onboarding.apikey.label" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1093,6 +1362,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Version"
+          }
+        }
+      }
+    },
+    "settings.changelog" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changelog"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveautés"
+          }
+        }
+      }
+    },
+    "credits.aerya.role" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gluetun Companion"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gluetun Companion"
+          }
+        }
+      }
+    },
+    "credits.section.contributors" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acknowledgements"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remerciements"
+          }
+        }
+      }
+    },
+    "settings.credits" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credits"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crédits"
           }
         }
       }
@@ -1420,57 +1757,6 @@
         }
       }
     },
-    "favorites.add" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add to Favorites"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajouter aux favoris"
-          }
-        }
-      }
-    },
-    "favorites.remove" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remove from Favorites"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Retirer des favoris"
-          }
-        }
-      }
-    },
-    "favorites.section" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Favorites"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Favoris"
-          }
-        }
-      }
-    },
     "sort.ping" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1538,6 +1824,9 @@
           }
         }
       }
+    },
+    "v%@" : {
+
     }
   },
   "version" : "1.0"

@@ -25,10 +25,12 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 
 ## Features
 
-- **Network** — full server list with load, connected users, health status, sort, continent filter and search
-- **Dashboard** — account info (current IP, device VPN status, expiration, credits, sessions, member since, last seen), session disconnect
-- **Server detail** — WireGuard or OpenVPN profile generation, direct import into the system VPN app, file sharing
-- **Settings** — API key rotation, light/dark/system theme
+- **Network** — full server list with load, users, health, ping latency, sort (load / name / ping), continent filter, search and favorites
+- **Dashboard** — account info (current IP, VPN status, expiration, credits, sessions, member since), session disconnect
+- **Server detail** — WireGuard or OpenVPN profile generation, direct import into the system VPN app, file sharing, IPv6 indicator
+- **Settings** — API key rotation, light/dark/system theme, changelog, credits
+- **Notifications** — subscription expiration alerts 7 days and 1 day in advance (delivered by the OS even when the app is closed)
+- **Siri Shortcuts** — VPN Status, My IP Address, Open Server (navigates directly to a specific server)
 - **Widget** — current IP, VPN status and active sessions directly on the home screen (Small and Medium sizes)
 - **Quick Actions** — long-press the app icon to jump directly to Dashboard or Network
 
@@ -117,10 +119,11 @@ After adding any `.swift` file outside of Xcode, run `xcodegen generate` before 
 ```
 AirDash/
 ├── AirDash/
-│   ├── App/                  # Entry point, AppState, AppDelegate, MainTabView
+│   ├── App/                  # Entry point, AppState, AppDelegate, SceneDelegate, MainTabView
+│   ├── Intents/              # AppIntents (Siri Shortcuts), ServerEntity
 │   ├── Models/               # AirVPNModels, AppError
 │   ├── Networking/           # AirVPNAPIClient (actor), CacheService
-│   ├── Services/             # KeychainService, VPNProfileImporter, SharedDataService
+│   ├── Services/             # KeychainService, VPNProfileImporter, SharedDataService, PingService, NotificationService
 │   ├── ViewModels/           # DashboardViewModel, NetworkStatusViewModel, …
 │   ├── Views/
 │   │   ├── Components/       # GlassCard, GlassButton, FlagBadge, LoadBar, …
@@ -128,7 +131,7 @@ AirDash/
 │   │   ├── NetworkStatus/    # NetworkStatusView, ServerRowView
 │   │   ├── Onboarding/       # OnboardingView
 │   │   ├── ServerDetail/     # ServerDetailView
-│   │   └── Settings/         # SettingsView
+│   │   └── Settings/         # SettingsView, ChangelogView, CreditsView
 │   └── Resources/            # Localizable.xcstrings, Assets.xcassets
 └── AirDashWidget/            # Widget Extension (WidgetKit)
     └── AirDashWidget.swift   # Provider, entry, Small/Medium views

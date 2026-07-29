@@ -114,6 +114,9 @@ final class NetworkStatusViewModel: ObservableObject {
         errorMessage = nil
         do {
             statusResponse = try await AirVPNAPIClient.shared.getStatus(forceRefresh: forceRefresh)
+            if let servers = statusResponse?.servers {
+                SharedDataService.writeServerNames(servers.map(\.publicName))
+            }
             Task { await measureLatencies() }
         } catch is CancellationError {
             // ignore
@@ -131,12 +134,13 @@ final class NetworkStatusViewModel: ObservableObject {
         measuredIds = []
         await withTaskGroup(of: (String, Int?).self) { group in
             for server in servers {
-                guard let ip = server.ipV4In1 else {
+                let ips = [server.ipV4In1, server.ipV4In2].compactMap { $0 }
+                guard !ips.isEmpty else {
                     measuredIds.insert(server.id)
                     continue
                 }
                 group.addTask {
-                    let ms = await PingService.ping(host: ip)
+                    let ms = await PingService.ping(hosts: ips)
                     return (server.id, ms)
                 }
             }

@@ -2,6 +2,13 @@ import Network
 import Foundation
 
 enum PingService {
+    static func ping(hosts: [String], port: UInt16 = 443) async -> Int? {
+        for host in hosts {
+            if let ms = await ping(host: host, port: port) { return ms }
+        }
+        return nil
+    }
+
     static func ping(host: String, port: UInt16 = 443) async -> Int? {
         await withCheckedContinuation { continuation in
             let state = PingState(continuation: continuation)

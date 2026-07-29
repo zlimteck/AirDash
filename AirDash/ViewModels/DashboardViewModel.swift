@@ -23,6 +23,12 @@ final class DashboardViewModel: ObservableObject {
             errorMessage = error.localizedDescription
         }
         if let ip = await ipTask { currentIP = ip }
+        if let expUnix = userInfo?.user.expirationUnix {
+            Task {
+                await NotificationService.requestAuthorization()
+                await NotificationService.scheduleExpirationNotifications(expirationUnix: expUnix)
+            }
+        }
         isLoading = false
         SharedDataService.write(
             currentIP: currentIP,

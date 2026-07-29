@@ -47,6 +47,16 @@ struct SettingsView: View {
                         Text(appVersion)
                             .foregroundStyle(.secondary)
                     }
+                    NavigationLink {
+                        ChangelogView()
+                    } label: {
+                        Label("settings.changelog", systemImage: "list.bullet.clipboard")
+                    }
+                    NavigationLink {
+                        CreditsView()
+                    } label: {
+                        Label("settings.credits", systemImage: "heart.fill")
+                    }
                     Link(destination: URL(string: "https://airvpn.org")!) {
                         Label("settings.airvpn_website", systemImage: "safari")
                     }

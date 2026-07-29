@@ -48,7 +48,7 @@ targets:
         CFBundleName: AirDash
         CFBundleIdentifier: com.airdash.ios
         CFBundleVersion: "1"
-        CFBundleShortVersionString: "1.0.1"
+        CFBundleShortVersionString: "1.0.2"
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
           - UIInterfaceOrientationLandscapeLeft
@@ -95,7 +95,7 @@ targets:
         CFBundleDisplayName: AirDashWidget
         CFBundleIdentifier: com.airdash.ios.widget
         CFBundleVersion: "1"
-        CFBundleShortVersionString: "1.0.1"
+        CFBundleShortVersionString: "1.0.2"
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     settings:

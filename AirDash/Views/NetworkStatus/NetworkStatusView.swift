@@ -2,9 +2,11 @@ import SwiftUI
 
 struct NetworkStatusView: View {
     @StateObject private var vm = NetworkStatusViewModel()
+    @State private var path = NavigationPath()
+    @State private var pendingServerName: String? = nil
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             Group {
                 if vm.isLoading && vm.statusResponse == nil {
                     VStack { LoadingOverlay(label: "network.loading") }
@@ -33,7 +35,36 @@ struct NetworkStatusView: View {
                 }
             }
         }
-        .task { await vm.load() }
+        .task {
+            await vm.load()
+            // Lancement froid depuis le raccourci Siri
+            if let name = UserDefaults.standard.string(forKey: "pendingOpenServer") {
+                UserDefaults.standard.removeObject(forKey: "pendingOpenServer")
+                navigateToServer(named: name)
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .openServer).receive(on: DispatchQueue.main)) { notification in
+            // Lancement chaud depuis le raccourci Siri
+            guard let name = notification.object as? String else { return }
+            if vm.statusResponse != nil {
+                navigateToServer(named: name)
+            } else {
+                pendingServerName = name
+            }
+        }
+        .onChange(of: vm.isLoading) {
+            if !vm.isLoading, let name = pendingServerName {
+                pendingServerName = nil
+                navigateToServer(named: name)
+            }
+        }
+    }
+
+    private func navigateToServer(named name: String) {
+        guard let server = vm.statusResponse?.servers.first(where: {
+            $0.publicName.lowercased() == name.lowercased()
+        }) else { return }
+        path.append(server)
     }
 
     private var serverList: some View {

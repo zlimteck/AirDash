@@ -38,5 +38,8 @@ struct MainTabView: View {
                 appState.selectedTab = tab
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .openServer).receive(on: DispatchQueue.main)) { _ in
+            appState.selectedTab = 0
+        }
     }
 }

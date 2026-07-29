@@ -1,0 +1,56 @@
+import SwiftUI
+
+private struct ChangelogEntry {
+    let version: String
+    let changes: [String]
+}
+
+private let changelog: [ChangelogEntry] = [
+    ChangelogEntry(version: "1.0.2", changes: [
+        "changelog.1_0_2.notifications",
+        "changelog.1_0_2.shortcuts",
+        "changelog.1_0_2.changelog",
+        "changelog.1_0_2.ipv6",
+        "changelog.1_0_2.ping_fallback",
+        "changelog.1_0_2.credits"
+    ]),
+    ChangelogEntry(version: "1.0.1", changes: [
+        "changelog.1_0_1.quick_actions",
+        "changelog.1_0_1.ping",
+        "changelog.1_0_1.sort_ping",
+        "changelog.1_0_1.sort_persistent",
+        "changelog.1_0_1.favorites"
+    ]),
+    ChangelogEntry(version: "1.0.0", changes: [
+        "changelog.1_0_0.initial"
+    ])
+]
+
+struct ChangelogView: View {
+    var body: some View {
+        List {
+            ForEach(changelog, id: \.version) { entry in
+                Section {
+                    VStack(alignment: .leading, spacing: 8) {
+                        ForEach(entry.changes, id: \.self) { change in
+                            HStack(alignment: .top, spacing: 8) {
+                                Text("·")
+                                    .foregroundStyle(.secondary)
+                                Text(LocalizedStringKey(change))
+                                    .font(.subheadline)
+                            }
+                        }
+                    }
+                    .padding(.vertical, 4)
+                } header: {
+                    Text("v\(entry.version)")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.primary)
+                        .textCase(nil)
+                }
+            }
+        }
+        .navigationTitle("settings.changelog")
+        .navigationBarTitleDisplayMode(.large)
+    }
+}

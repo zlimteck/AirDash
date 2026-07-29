@@ -16,9 +16,19 @@ struct ServerDetailView: View {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text(server.publicName)
                                     .font(.title2.bold())
-                                Text(server.location)
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
+                                HStack(spacing: 6) {
+                                    Text(server.location)
+                                        .font(.subheadline)
+                                        .foregroundStyle(.secondary)
+                                    if server.ipV6In1 != nil {
+                                        Text("IPv6")
+                                            .font(.caption2.weight(.semibold))
+                                            .foregroundStyle(.blue)
+                                            .padding(.horizontal, 5)
+                                            .padding(.vertical, 2)
+                                            .background(Capsule().fill(.blue.opacity(0.15)))
+                                    }
+                                }
                             }
                             Spacer()
                             HealthDot(health: server.health)

@@ -1,7 +1,9 @@
 import UIKit
+import AppIntents
 
 extension Notification.Name {
     static let shortcutAction = Notification.Name("com.airdash.shortcutAction")
+    static let openServer     = Notification.Name("com.airdash.openServer")
 }
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
@@ -11,6 +13,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         application.shortcutItems = Self.staticShortcuts
+        AirDashShortcuts.updateAppShortcutParameters()
         return true
     }
 

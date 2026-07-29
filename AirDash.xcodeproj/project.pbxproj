@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		143C011D8C35B25861853CA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03064423128889B35C9CF28 /* AppDelegate.swift */; };
 		2D81F4F5523CF9F8C3628F5A /* ServerDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F519D3FDDE31EBBA9FBD094 /* ServerDetailViewModel.swift */; };
+		2F749B6B2158C5CBFD79023F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AB78790A35880B2E347B0C /* NotificationService.swift */; };
 		35D3AAC4C42E811E623CE051 /* GlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B1C1058991EF25FFDB9214 /* GlassCard.swift */; };
 		4FB7C5DEBDE4914365A404AA /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0896E52CA29D82776ED6D /* AppError.swift */; };
 		615F44421EBEC178CD6DA8BE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954A8F7BB4CAF06F4C4FAC8B /* SettingsView.swift */; };
@@ -17,6 +18,7 @@
 		7386C12C3DDBB395DA918652 /* NetworkStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF854C5B13057988704A1750 /* NetworkStatusViewModel.swift */; };
 		7A5717509601FA108E9540AA /* SessionRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524E6DD3BE2406CB9105002 /* SessionRowView.swift */; };
 		7CB83AA2CA3C163AB752C3BD /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443624B65DC4CCADFD1EE246 /* MainTabView.swift */; };
+		7F5C7C223AB047C1507B3BB5 /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0154AF3A0A3277CF4DD1810B /* CreditsView.swift */; };
 		818320B73D7992A330C19A6F /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080121FA588324D7DFBC641 /* AppState.swift */; };
 		8508DF70FFD13D241A49D9DD /* ErrorBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C59993F915DEBC173080E1B /* ErrorBanner.swift */; };
 		90A2938D8C67CAAB4D164554 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5829791130E104980FA5015B /* DashboardView.swift */; };
@@ -25,8 +27,10 @@
 		A0709D018791E34B6E736DE9 /* AirDashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BF0598269B700AFB1796B5 /* AirDashApp.swift */; };
 		A1A3F74E97028B69C83F7C8C /* VPNProfileImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0119953FCF8E9F32C381DE26 /* VPNProfileImporter.swift */; };
 		A56E8062093BF18FB8262E5C /* ServerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9990ECF53539152D4D800DA4 /* ServerRowView.swift */; };
+		ABA09BE0CE0A33BC544D0DDF /* ChangelogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C29A76A6B57325EB1D911D6 /* ChangelogView.swift */; };
 		ADCDAD0D6BAFE247E2E901A9 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DCE3FD365F1C4C1B120A172 /* CacheService.swift */; };
 		BC107D9F0EB3C5C67958C41F /* NetworkStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 985DC2D13FD81A64819E7839 /* NetworkStatusView.swift */; };
+		BF5A7B368F6B400FCD019C4C /* AppIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC14AA3393F48DCB105EB8C /* AppIntents.swift */; };
 		C00CE7367CEFE623E4E260FF /* FlagKit in Frameworks */ = {isa = PBXBuildFile; productRef = 941CC41FEC3028E7A8CE6F3A /* FlagKit */; };
 		CCCF4A5C71B62ACDEBF7F101 /* ServerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C1C0F6204E415018B6BEC9 /* ServerDetailView.swift */; };
 		CE6F6DB3BC56608E254386A6 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18752B2FDDB8FBA7F6E81B2D /* RootView.swift */; };
@@ -69,12 +73,13 @@
 /* Begin PBXFileReference section */
 		0080121FA588324D7DFBC641 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		0119953FCF8E9F32C381DE26 /* VPNProfileImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNProfileImporter.swift; sourceTree = "<group>"; };
+		0154AF3A0A3277CF4DD1810B /* CreditsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		0D4D44486F59550DDD76DE14 /* SharedDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataService.swift; sourceTree = "<group>"; };
 		18752B2FDDB8FBA7F6E81B2D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		1C59993F915DEBC173080E1B /* ErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBanner.swift; sourceTree = "<group>"; };
 		21168271896E29266FA53186 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		249292146C138B327774E624 /* AirDashWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AirDashWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		27B3DC80A6F58DD8453ADB96 /* AirDash.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AirDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		249292146C138B327774E624 /* AirDashWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AirDashWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		27B3DC80A6F58DD8453ADB96 /* AirDash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		303CE461B0505348B4565366 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		33BF0598269B700AFB1796B5 /* AirDashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirDashApp.swift; sourceTree = "<group>"; };
 		3AC8E573EBDD4734B5A627B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -86,7 +91,10 @@
 		5DFFF22BDB56399A983F02B3 /* AirVPNAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirVPNAPIClient.swift; sourceTree = "<group>"; };
 		63B1C1058991EF25FFDB9214 /* GlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassCard.swift; sourceTree = "<group>"; };
 		6DCE3FD365F1C4C1B120A172 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		70AB78790A35880B2E347B0C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		70BD1B2B7BD2142A8406E7A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7EC14AA3393F48DCB105EB8C /* AppIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntents.swift; sourceTree = "<group>"; };
+		8C29A76A6B57325EB1D911D6 /* ChangelogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangelogView.swift; sourceTree = "<group>"; };
 		92C1A78987F2DFC66E94ED0D /* AirVPNModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirVPNModels.swift; sourceTree = "<group>"; };
 		9524E6DD3BE2406CB9105002 /* SessionRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRowView.swift; sourceTree = "<group>"; };
 		954A8F7BB4CAF06F4C4FAC8B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -139,6 +147,8 @@
 		0B39F429A4261EF5DEB66649 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				8C29A76A6B57325EB1D911D6 /* ChangelogView.swift */,
+				0154AF3A0A3277CF4DD1810B /* CreditsView.swift */,
 				954A8F7BB4CAF06F4C4FAC8B /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -159,6 +169,7 @@
 			children = (
 				6DCE3FD365F1C4C1B120A172 /* CacheService.swift */,
 				4404C4BA7787F38397A8DFA2 /* KeychainService.swift */,
+				70AB78790A35880B2E347B0C /* NotificationService.swift */,
 				BB6F2CFD8B788E011793350C /* PingService.swift */,
 				0D4D44486F59550DDD76DE14 /* SharedDataService.swift */,
 				0119953FCF8E9F32C381DE26 /* VPNProfileImporter.swift */,
@@ -237,10 +248,19 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		84839045E8D0805252BB2A04 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				7EC14AA3393F48DCB105EB8C /* AppIntents.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
 		AE364D8FA6CD72E2FC6CAE5B /* AirDash */ = {
 			isa = PBXGroup;
 			children = (
 				324DCB4B8FBEC7D4EEAA8D8B /* App */,
+				84839045E8D0805252BB2A04 /* Intents */,
 				2C98C434DB982C3C1733510B /* Models */,
 				AF299ACA56EA534D7052C43F /* Networking */,
 				76859F3823A2018D7CCC2E31 /* Resources */,
@@ -349,11 +369,9 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					89A632F19CFCF8CEDEFEDE0C = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					F9AD1F5B2E828F7B4F5690CB = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -411,9 +429,12 @@
 				9A1C0375468300424C5C7BBA /* AirVPNModels.swift in Sources */,
 				143C011D8C35B25861853CA7 /* AppDelegate.swift in Sources */,
 				4FB7C5DEBDE4914365A404AA /* AppError.swift in Sources */,
+				BF5A7B368F6B400FCD019C4C /* AppIntents.swift in Sources */,
 				818320B73D7992A330C19A6F /* AppState.swift in Sources */,
 				ADCDAD0D6BAFE247E2E901A9 /* CacheService.swift in Sources */,
+				ABA09BE0CE0A33BC544D0DDF /* ChangelogView.swift in Sources */,
 				DBF33B743A1FA435539EF3A5 /* Config.swift in Sources */,
+				7F5C7C223AB047C1507B3BB5 /* CreditsView.swift in Sources */,
 				90A2938D8C67CAAB4D164554 /* DashboardView.swift in Sources */,
 				92426C364194A2D7D0F7C23E /* DashboardViewModel.swift in Sources */,
 				8508DF70FFD13D241A49D9DD /* ErrorBanner.swift in Sources */,
@@ -422,6 +443,7 @@
 				7CB83AA2CA3C163AB752C3BD /* MainTabView.swift in Sources */,
 				BC107D9F0EB3C5C67958C41F /* NetworkStatusView.swift in Sources */,
 				7386C12C3DDBB395DA918652 /* NetworkStatusViewModel.swift in Sources */,
+				2F749B6B2158C5CBFD79023F /* NotificationService.swift in Sources */,
 				EDE30E9636E2F35AF3EB4F29 /* OnboardingView.swift in Sources */,
 				D163E9C31703CED06FEFD003 /* OnboardingViewModel.swift in Sources */,
 				F06C7C895996D1F5BCDDE358 /* PingService.swift in Sources */,
@@ -454,6 +476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AirDash/Supporting/AirDash.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = N5X9SZ4Q5B;
 				INFOPLIST_FILE = AirDash/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -474,7 +497,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AirDashWidget/AirDashWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N5X9SZ4Q5B;
 				INFOPLIST_FILE = AirDashWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -496,6 +519,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AirDash/Supporting/AirDash.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = N5X9SZ4Q5B;
 				INFOPLIST_FILE = AirDash/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -651,7 +675,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AirDashWidget/AirDashWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = N5X9SZ4Q5B;
 				INFOPLIST_FILE = AirDashWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (

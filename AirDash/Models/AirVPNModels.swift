@@ -20,6 +20,8 @@ struct AirVPNServer: Codable, Identifiable, Hashable {
     let health: AirVPNHealth
     let warning: String?
     let ipV4In1: String?
+    let ipV4In2: String?
+    let ipV6In1: String?
 
     enum CodingKeys: String, CodingKey {
         case publicName = "public_name"
@@ -31,6 +33,8 @@ struct AirVPNServer: Codable, Identifiable, Hashable {
         case currentLoad = "currentload"
         case health, warning
         case ipV4In1 = "ip_v4_in1"
+        case ipV4In2 = "ip_v4_in2"
+        case ipV6In1 = "ip_v6_in1"
     }
 }
 

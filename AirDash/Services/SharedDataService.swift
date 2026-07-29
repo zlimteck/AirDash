@@ -20,6 +20,7 @@ struct SharedWidgetData: Codable {
 enum SharedDataService {
     private static let suiteName = "group.com.airdash.ios"
     private static let key = "widgetData"
+    private static let serverNamesKey = "serverNames"
 
     static func write(
         currentIP: String?,
@@ -45,6 +46,15 @@ enum SharedDataService {
               let data = try? JSONEncoder().encode(shared) else { return }
         defaults.set(data, forKey: key)
         WidgetCenter.shared.reloadAllTimelines()
+    }
+
+    static func writeServerNames(_ names: [String]) {
+        guard let defaults = UserDefaults(suiteName: suiteName) else { return }
+        defaults.set(names, forKey: serverNamesKey)
+    }
+
+    static func readServerNames() -> [String] {
+        UserDefaults(suiteName: suiteName)?.stringArray(forKey: serverNamesKey) ?? []
     }
 
     static func read() -> SharedWidgetData? {
