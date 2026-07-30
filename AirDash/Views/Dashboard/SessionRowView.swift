@@ -4,12 +4,13 @@ struct SessionRowView: View {
     let session: AirVPNSession
     let onDisconnect: () async -> Void
     @State private var isDisconnecting = false
+    @State private var showConfirmation = false
 
     var durationText: String {
         guard let unix = session.connectedSinceUnix else { return "" }
         let interval = Date().timeIntervalSince1970 - Double(unix)
         let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute]
+        formatter.allowedUnits = [.day, .hour, .minute]
         formatter.unitsStyle = .abbreviated
         return formatter.string(from: interval) ?? ""
     }
@@ -21,8 +22,7 @@ struct SessionRowView: View {
     }
 
     var body: some View {
-        GlassCard {
-            VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 12) {
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
                         HStack(spacing: 8) {
@@ -43,7 +43,7 @@ struct SessionRowView: View {
 
                     VStack(alignment: .trailing, spacing: 4) {
                         if let device = session.deviceName {
-                            Label(device, systemImage: "iphone")
+                            Text(device)
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
@@ -77,30 +77,34 @@ struct SessionRowView: View {
                     }
                 }
 
-                Button(role: .destructive) {
-                    Task {
-                        isDisconnecting = true
-                        await onDisconnect()
-                        isDisconnecting = false
-                    }
+                Button {
+                    showConfirmation = true
                 } label: {
-                    Group {
-                        if isDisconnecting {
-                            ProgressView()
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 8)
-                        } else {
-                            Label("session.disconnect", systemImage: "xmark.shield")
-                                .font(.subheadline)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 8)
-                        }
+                    if isDisconnecting {
+                        ProgressView()
+                            .tint(.white)
+                            .frame(maxWidth: .infinity)
+                    } else {
+                        Text("session.disconnect")
+                            .frame(maxWidth: .infinity)
                     }
                 }
-                .glassEffect(in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                .foregroundStyle(.red)
+                .buttonStyle(.borderedProminent)
+                .controlSize(.regular)
+                .tint(.red)
                 .disabled(isDisconnecting)
-            }
+                .confirmationDialog("session.disconnect.confirm.title", isPresented: $showConfirmation, titleVisibility: .visible) {
+                    Button("session.disconnect", role: .destructive) {
+                        Task {
+                            isDisconnecting = true
+                            await onDisconnect()
+                            isDisconnecting = false
+                        }
+                    }
+                    Button("cancel", role: .cancel) {}
+                } message: {
+                    Text(String(format: NSLocalizedString("session.disconnect.confirm.message %@", comment: ""), session.serverName ?? ""))
+                }
         }
     }
 

@@ -29,6 +29,23 @@
     "AirDash" : {
 
     },
+    "copy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copier"
+          }
+        }
+      }
+    },
     "cancel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -78,6 +95,62 @@
             "value" : "Favoris: appui long pour épingler un serveur"
           }
         }
+      }
+    },
+    "changelog.1_0_3.widget" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Configurable widget: favorite server picker and large size" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Widget configurable : sélecteur de serveur favori et grande taille" } }
+      }
+    },
+    "changelog.1_0_3.server_detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Server detail and Dashboard: native iOS interface redesign" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Page serveur et Tableau de bord : refonte interface native iOS" } }
+      }
+    },
+    "changelog.1_0_3.ip_addresses" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Server detail: IPv4 and IPv6 address display" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Page serveur : affichage des adresses IPv4 et IPv6" } }
+      }
+    },
+    "changelog.1_0_3.dashboard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dashboard: date format dd/MM/yyyy, duration in days, disconnect button" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tableau de bord : date en jj/MM/aaaa, durée en jours, bouton déconnecter" } }
+      }
+    },
+    "changelog.1_0_3.network" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Network status: best server updates with continent filter, centered summary cards" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "État réseau : meilleur serveur selon le filtre continent, cards résumé centrées" } }
+      }
+    },
+    "changelog.1_0_3.auto_refresh" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-refresh every 30s when active sessions are running" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Actualisation automatique toutes les 30s si sessions actives" } }
+      }
+    },
+    "changelog.1_0_3.renewal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings: subscription renewal link" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Paramètres : lien de renouvellement de l'abonnement" } }
+      }
+    },
+    "changelog.1_0_3.vpn_import" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "VPN import: fixed OpenVPN App Store redirect when app is missing" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Import VPN : correction redirection App Store OpenVPN si absent" } }
       }
     },
     "changelog.1_0_2.changelog" : {
@@ -324,6 +397,13 @@
             "value" : "Dernière connexion"
           }
         }
+      }
+    },
+    "dashboard.best_server" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best server right now" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Meilleur serveur en ce moment" } }
       }
     },
     "dashboard.loading" : {
@@ -598,6 +678,13 @@
         }
       }
     },
+    "detail.ip_addresses" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "IP Addresses" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Adresses IP" } }
+      }
+    },
     "detail.load" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -839,6 +926,55 @@
         }
       }
     },
+    "continent.europe" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Europe" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Europe" } }
+      }
+    },
+    "continent.america" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "America" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Amériques" } }
+      }
+    },
+    "continent.north_america" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "North America" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Amérique du Nord" } }
+      }
+    },
+    "continent.south_america" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "South America" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Amérique du Sud" } }
+      }
+    },
+    "continent.asia" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Asia" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Asie" } }
+      }
+    },
+    "continent.oceania" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Oceania" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Océanie" } }
+      }
+    },
+    "continent.africa" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Africa" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Afrique" } }
+      }
+    },
     "network.all" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -854,6 +990,13 @@
             "value" : "Tous"
           }
         }
+      }
+    },
+    "network.best_server" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best server" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Meilleur serveur" } }
       }
     },
     "network.avg_load" : {
@@ -1281,6 +1424,40 @@
         }
       }
     },
+    "session.disconnect.confirm.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnect session?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déconnecter la session ?"
+          }
+        }
+      }
+    },
+    "session.disconnect.confirm.message %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This will disconnect the session on %@."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cela déconnectera la session sur %@."
+          }
+        }
+      }
+    },
     "session.speed" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1313,6 +1490,27 @@
             "value" : "IP VPN"
           }
         }
+      }
+    },
+    "import.app_missing.download" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Download on the App Store" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Télécharger sur l'App Store" } }
+      }
+    },
+    "import.app_missing.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ is not installed. Download it to import this profile." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ n'est pas installé. Téléchargez-le pour importer ce profil." } }
+      }
+    },
+    "import.app_missing.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "App not found" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Application introuvable" } }
       }
     },
     "settings.airvpn_website" : {
@@ -1481,6 +1679,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouvelle clé API"
+          }
+        }
+      }
+    },
+    "settings.renew_subscription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renew Subscription"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renouveler l'abonnement"
           }
         }
       }

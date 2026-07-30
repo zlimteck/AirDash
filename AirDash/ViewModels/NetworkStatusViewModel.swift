@@ -117,7 +117,6 @@ final class NetworkStatusViewModel: ObservableObject {
             if let servers = statusResponse?.servers {
                 SharedDataService.writeServerNames(servers.map(\.publicName))
             }
-            Task { await measureLatencies() }
         } catch is CancellationError {
             // ignore
         } catch let error as AppError {
@@ -149,5 +148,34 @@ final class NetworkStatusViewModel: ObservableObject {
                 measuredIds.insert(id)
             }
         }
+    }
+
+    func writeSharedFavoriteServers() {
+        let servers = favoriteServers.map {
+            SharedServerData(
+                id: $0.id,
+                name: $0.publicName,
+                countryCode: $0.countryCode,
+                load: Int($0.currentLoad),
+                users: $0.users,
+                isHealthy: $0.health == .ok,
+                latencyMs: latencies[$0.id]
+            )
+        }
+        SharedDataService.writeFavoriteServers(servers)
+    }
+
+    func computeBestServer(for continent: String? = nil) -> AirVPNServer? {
+        guard let servers = statusResponse?.servers else { return nil }
+        let pool = continent == nil ? servers : servers.filter { $0.continent == continent }
+        return pool
+            .filter { $0.health == .ok }
+            .compactMap { server -> (AirVPNServer, Double)? in
+                guard let ping = latencies[server.id] else { return nil }
+                let score = Double(ping) * (1.0 + server.currentLoad / 100.0)
+                return (server, score)
+            }
+            .min(by: { $0.1 < $1.1 })
+            .map(\.0)
     }
 }

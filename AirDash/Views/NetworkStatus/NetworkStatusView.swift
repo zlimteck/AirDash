@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct NetworkStatusView: View {
+    @EnvironmentObject var appState: AppState
     @StateObject private var vm = NetworkStatusViewModel()
     @State private var path = NavigationPath()
     @State private var pendingServerName: String? = nil
+    @State private var bestServer: AirVPNServer? = nil
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -37,14 +39,15 @@ struct NetworkStatusView: View {
         }
         .task {
             await vm.load()
-            // Lancement froid depuis le raccourci Siri
+            await vm.measureLatencies()
+            bestServer = vm.computeBestServer()
+            vm.writeSharedFavoriteServers()
             if let name = UserDefaults.standard.string(forKey: "pendingOpenServer") {
                 UserDefaults.standard.removeObject(forKey: "pendingOpenServer")
                 navigateToServer(named: name)
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .openServer).receive(on: DispatchQueue.main)) { notification in
-            // Lancement chaud depuis le raccourci Siri
             guard let name = notification.object as? String else { return }
             if vm.statusResponse != nil {
                 navigateToServer(named: name)
@@ -58,6 +61,22 @@ struct NetworkStatusView: View {
                 navigateToServer(named: name)
             }
         }
+        .onChange(of: vm.selectedContinent) {
+            bestServer = vm.computeBestServer(for: vm.selectedContinent)
+        }
+    }
+
+    private func localizedContinent(_ apiValue: String) -> LocalizedStringKey {
+        switch apiValue {
+        case "Europe":         return "continent.europe"
+        case "America":        return "continent.america"
+        case "North America":  return "continent.north_america"
+        case "South America":  return "continent.south_america"
+        case "Asia":           return "continent.asia"
+        case "Oceania":        return "continent.oceania"
+        case "Africa":         return "continent.africa"
+        default:               return LocalizedStringKey(apiValue)
+        }
     }
 
     private func navigateToServer(named name: String) {
@@ -68,16 +87,20 @@ struct NetworkStatusView: View {
     }
 
     private var serverList: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 0) {
-                // Error banner
-                if let error = vm.errorMessage {
+        List {
+            // Error banner
+            if let error = vm.errorMessage {
+                Section {
                     ErrorBanner(message: error)
-                        .padding(.top, 8)
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                 }
+            }
 
-                // Summary cards
-                if let status = vm.statusResponse, vm.searchText.isEmpty {
+            // Summary cards
+            if let status = vm.statusResponse, vm.searchText.isEmpty {
+                Section {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             SummaryCard(
@@ -120,12 +143,17 @@ struct NetworkStatusView: View {
                         .scrollTargetLayout()
                         .padding(.vertical, 12)
                     }
-                    .contentMargins(.horizontal, 16, for: .scrollContent)
                     .scrollTargetBehavior(.viewAligned)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
                 }
+                .listSectionSpacing(8)
+            }
 
-                // Continent filter
-                if !vm.continents.isEmpty && vm.searchText.isEmpty {
+            // Continent filter
+            if !vm.continents.isEmpty && vm.searchText.isEmpty {
+                Section {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 8) {
                             ContinentChip(label: "network.all", selected: vm.selectedContinent == nil) {
@@ -133,96 +161,106 @@ struct NetworkStatusView: View {
                             }
                             ForEach(vm.continents, id: \.self) { continent in
                                 ContinentChip(
-                                    label: LocalizedStringKey(continent),
+                                    label: localizedContinent(continent),
                                     selected: vm.selectedContinent == continent
                                 ) {
                                     vm.selectedContinent = vm.selectedContinent == continent ? nil : continent
                                 }
                             }
                         }
-                        .padding(.horizontal)
-                        .padding(.bottom, 4)
+                        .padding(.vertical, 4)
                     }
-                    .padding(.bottom, 8)
+                    .contentMargins(.leading, 16, for: .scrollContent)
+                    .contentMargins(.trailing, 16, for: .scrollContent)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color(.systemGroupedBackground))
+                    .listRowSeparator(.hidden)
                 }
+            }
 
-                // Favorites section
-                if vm.isFavoritesSectionVisible {
-                    Section {
-                        ForEach(vm.favoriteServers) { server in
-                            NavigationLink(value: server) {
-                                ServerRowView(
-                                    server: server,
-                                    latency: vm.latencies[server.id],
-                                    isMeasured: vm.measuredIds.contains(server.id)
-                                )
-                                .padding(.horizontal)
-                                .padding(.vertical, 10)
-                            }
-                            .buttonStyle(.plain)
-                            .contextMenu {
-                                Button(role: .destructive) {
-                                    vm.toggleFavorite(server.id)
-                                } label: {
-                                    Label("favorites.remove", systemImage: "star.slash")
-                                }
-                            }
-
-                            Divider()
-                                .padding(.leading, 66)
-                                .padding(.trailing, 16)
-                        }
-                    } header: {
-                        Text("favorites.section")
-                            .font(.footnote.weight(.semibold))
-                            .foregroundStyle(.secondary)
-                            .textCase(.uppercase)
-                            .padding(.horizontal)
-                            .padding(.vertical, 6)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                }
-
-                // Server list
+            // Best server
+            if let best = bestServer, vm.searchText.isEmpty {
                 Section {
-                    ForEach(vm.mainServers) { server in
-                        NavigationLink(value: server) {
+                    Button { path.append(best) } label: {
+                        ServerRowView(
+                            server: best,
+                            latency: vm.latencies[best.id],
+                            isMeasured: vm.measuredIds.contains(best.id)
+                        )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .listRowBackground(Color.yellow.opacity(0.06))
+                } header: {
+                    Text("network.best_server")
+                }
+            }
+
+            // Favorites section
+            if vm.isFavoritesSectionVisible {
+                Section {
+                    ForEach(vm.favoriteServers) { server in
+                        Button { path.append(server) } label: {
                             ServerRowView(
                                 server: server,
                                 latency: vm.latencies[server.id],
                                 isMeasured: vm.measuredIds.contains(server.id)
                             )
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
                         .contextMenu {
-                            Button {
+                            Button(role: .destructive) {
                                 vm.toggleFavorite(server.id)
                             } label: {
-                                Label(
-                                    vm.favoriteIds.contains(server.id) ? "favorites.remove" : "favorites.add",
-                                    systemImage: vm.favoriteIds.contains(server.id) ? "star.slash" : "star"
-                                )
+                                Label("favorites.remove", systemImage: "star.slash")
                             }
                         }
-
-                        Divider()
-                            .padding(.leading, 66)
-                            .padding(.trailing, 16)
                     }
                 } header: {
-                    Text(String(format: NSLocalizedString("network.servers %lld", comment: ""), vm.mainServers.count))
-                        .font(.footnote.weight(.semibold))
-                        .foregroundStyle(.secondary)
-                        .textCase(.uppercase)
-                        .padding(.horizontal)
-                        .padding(.vertical, 6)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("favorites.section")
                 }
             }
+
+            // Server list
+            Section {
+                ForEach(vm.mainServers) { server in
+                    Button { path.append(server) } label: {
+                        ServerRowView(
+                            server: server,
+                            latency: vm.latencies[server.id],
+                            isMeasured: vm.measuredIds.contains(server.id)
+                        )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .contextMenu {
+                        Button {
+                            vm.toggleFavorite(server.id)
+                        } label: {
+                            Label(
+                                vm.favoriteIds.contains(server.id) ? "favorites.remove" : "favorites.add",
+                                systemImage: vm.favoriteIds.contains(server.id) ? "star.slash" : "star"
+                            )
+                        }
+                    }
+                }
+            } header: {
+                Text(String(format: NSLocalizedString("network.servers %lld", comment: ""), vm.mainServers.count))
+            }
         }
-        .refreshable { await vm.load(forceRefresh: true) }
+        .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
+        .background(Color(.systemGroupedBackground))
+        .refreshable {
+            await vm.load(forceRefresh: true)
+            await vm.measureLatencies()
+            bestServer = vm.computeBestServer()
+            vm.writeSharedFavoriteServers()
+        }
         .navigationDestination(for: AirVPNServer.self) { server in
             ServerDetailView(server: server)
         }
@@ -236,11 +274,11 @@ struct SummaryCard: View {
     let color: Color
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .center, spacing: 4) {
             Image(systemName: icon)
                 .font(.title3)
                 .foregroundStyle(color)
-                .frame(height: 24, alignment: .center)
+                .frame(height: 24)
             Text(value)
                 .font(.title2.bold().monospacedDigit())
                 .lineLimit(1)
@@ -249,12 +287,12 @@ struct SummaryCard: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .lineLimit(2)
-                .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.center)
         }
+        .frame(maxWidth: .infinity)
         .padding(14)
-        .frame(maxHeight: .infinity, alignment: .topLeading)
         .containerRelativeFrame(.horizontal, count: 3, span: 1, spacing: 12)
-        .glassEffect(in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
 }
 
@@ -272,7 +310,7 @@ struct ContinentChip: View {
                 .foregroundStyle(selected ? Color.accentColor : .primary)
         }
         .buttonStyle(.plain)
-        .glassEffect(in: Capsule())
+        .background(Color(.secondarySystemGroupedBackground), in: Capsule())
         .overlay {
             if selected {
                 Capsule()

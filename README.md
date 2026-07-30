@@ -31,7 +31,7 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 - **Settings** — API key rotation, light/dark/system theme, changelog, credits
 - **Notifications** — subscription expiration alerts 7 days and 1 day in advance (delivered by the OS even when the app is closed)
 - **Siri Shortcuts** — VPN Status, My IP Address, Open Server (navigates directly to a specific server)
-- **Widget** — current IP, VPN status and active sessions directly on the home screen (Small and Medium sizes)
+- **Widget** — current IP, VPN status and active sessions on the home screen; configurable with a favorite server picker showing load, users and latency (Small, Medium and Large sizes)
 - **Quick Actions** — long-press the app icon to jump directly to Dashboard or Network
 
 ---
@@ -134,7 +134,7 @@ AirDash/
 │   │   └── Settings/         # SettingsView, ChangelogView, CreditsView
 │   └── Resources/            # Localizable.xcstrings, Assets.xcassets
 └── AirDashWidget/            # Widget Extension (WidgetKit)
-    └── AirDashWidget.swift   # Provider, entry, Small/Medium views
+    └── AirDashWidget.swift   # AppIntentProvider, entry, Small/Medium/Large views, server picker intent
 ```
 
 ### Shared data (App Group)

@@ -78,8 +78,8 @@
 		18752B2FDDB8FBA7F6E81B2D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		1C59993F915DEBC173080E1B /* ErrorBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBanner.swift; sourceTree = "<group>"; };
 		21168271896E29266FA53186 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		249292146C138B327774E624 /* AirDashWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AirDashWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		27B3DC80A6F58DD8453ADB96 /* AirDash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		249292146C138B327774E624 /* AirDashWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AirDashWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		27B3DC80A6F58DD8453ADB96 /* AirDash.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AirDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		303CE461B0505348B4565366 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		33BF0598269B700AFB1796B5 /* AirDashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirDashApp.swift; sourceTree = "<group>"; };
 		3AC8E573EBDD4734B5A627B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -369,9 +369,11 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					89A632F19CFCF8CEDEFEDE0C = {
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					F9AD1F5B2E828F7B4F5690CB = {
+						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -476,7 +478,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AirDash/Supporting/AirDash.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = N5X9SZ4Q5B;
 				INFOPLIST_FILE = AirDash/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -497,7 +498,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AirDashWidget/AirDashWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N5X9SZ4Q5B;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AirDashWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -519,7 +520,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AirDash/Supporting/AirDash.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = N5X9SZ4Q5B;
 				INFOPLIST_FILE = AirDash/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -675,7 +675,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = AirDashWidget/AirDashWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N5X9SZ4Q5B;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = AirDashWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (

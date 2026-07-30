@@ -3,7 +3,6 @@ import SwiftUI
 struct DashboardView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var vm = DashboardViewModel()
-    @Environment(\.horizontalSizeClass) private var sizeClass
 
     var body: some View {
         NavigationStack {
@@ -18,18 +17,29 @@ struct DashboardView: View {
             .navigationTitle("tab.dashboard")
             .navigationBarTitleDisplayMode(.large)
         }
-        .task { await vm.load(apiKey: appState.apiKey) }
+        .task {
+            await vm.load(apiKey: appState.apiKey)
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(30))
+                guard !Task.isCancelled, !vm.activeSessions.isEmpty else { continue }
+                await vm.silentRefresh(apiKey: appState.apiKey)
+            }
+        }
     }
 
     private var dashboardContent: some View {
-        ScrollView {
-            LazyVStack(spacing: 16) {
-                if let error = vm.errorMessage {
+        List {
+            if let error = vm.errorMessage {
+                Section {
                     ErrorBanner(message: error)
+                        .listRowInsets(EdgeInsets())
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
                 }
+            }
 
-                // Account card
-                if let userInfo = vm.userInfo {
+            if let userInfo = vm.userInfo {
+                Section {
                     AccountCard(
                         user: userInfo.user,
                         warning: vm.expirationWarning,
@@ -37,38 +47,14 @@ struct DashboardView: View {
                         currentIP: vm.currentIP,
                         isVPNActive: vm.isVPNActiveOnDevice
                     )
-                    .padding(.horizontal)
+                    .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
+                    .listRowSeparator(.hidden)
                 }
+            }
 
-                // Active sessions
-                if !vm.activeSessions.isEmpty {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text("dashboard.active_sessions")
-                            .font(.headline)
-                            .padding(.horizontal)
-
-                        if sizeClass == .regular {
-                            // iPad : grille 2 colonnes
-                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                                ForEach(vm.activeSessions) { session in
-                                    SessionRowView(session: session) {
-                                        await vm.disconnectSession(session, apiKey: appState.apiKey)
-                                    }
-                                }
-                            }
-                            .padding(.horizontal)
-                        } else {
-                            // iPhone : colonne unique
-                            ForEach(vm.activeSessions) { session in
-                                SessionRowView(session: session) {
-                                    await vm.disconnectSession(session, apiKey: appState.apiKey)
-                                }
-                                .padding(.horizontal)
-                            }
-                        }
-                    }
-                } else if vm.userInfo != nil {
-                    GlassCard {
+            if vm.userInfo != nil {
+                if vm.activeSessions.isEmpty {
+                    Section {
                         HStack {
                             Image(systemName: "shield.slash")
                                 .font(.title2)
@@ -77,12 +63,31 @@ struct DashboardView: View {
                                 .foregroundStyle(.secondary)
                         }
                         .frame(maxWidth: .infinity)
+                        .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
+                        .listRowSeparator(.hidden)
+                    } header: {
+                        Text("dashboard.active_sessions")
                     }
-                    .padding(.horizontal)
+                } else {
+                    ForEach(Array(vm.activeSessions.enumerated()), id: \.element.id) { index, session in
+                        Section {
+                            SessionRowView(session: session) {
+                                await vm.disconnectSession(session, apiKey: appState.apiKey)
+                            }
+                            .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
+                            .listRowSeparator(.hidden)
+                        } header: {
+                            if index == 0 {
+                                Text("dashboard.active_sessions")
+                            }
+                        }
+                    }
                 }
             }
-            .padding(.vertical)
         }
+        .listStyle(.insetGrouped)
+        .scrollContentBackground(.hidden)
+        .background(Color(.systemGroupedBackground))
         .refreshable { await vm.load(apiKey: appState.apiKey, forceRefresh: true) }
     }
 }
@@ -93,6 +98,7 @@ struct AccountCard: View {
     let sessionCount: Int
     let currentIP: String?
     let isVPNActive: Bool
+    @State private var ipCopied = false
 
     var expirationText: String {
         if let days = user.expirationDays {
@@ -109,9 +115,23 @@ struct AccountCard: View {
         return formatter.localizedString(for: date, relativeTo: Date())
     }
 
+    var registerDateText: String {
+        guard let raw = user.registerDate else { return "-" }
+        let parsers = ["yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ss", "yyyy-MM-dd"]
+        let input = DateFormatter()
+        let output = DateFormatter()
+        output.dateFormat = "dd/MM/yyyy"
+        for format in parsers {
+            input.dateFormat = format
+            if let date = input.date(from: raw) {
+                return output.string(from: date)
+            }
+        }
+        return raw
+    }
+
     var body: some View {
-        GlassCard {
-            VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: 14) {
                 HStack(spacing: 8) {
                     Text(user.login)
                         .font(.title3.bold())
@@ -128,18 +148,34 @@ struct AccountCard: View {
                 Divider()
 
                 // Current IP
-                HStack(spacing: 6) {
-                    Image(systemName: isVPNActive ? "shield.fill" : "shield.slash")
-                        .font(.caption)
-                        .foregroundStyle(isVPNActive ? .green : .secondary)
-                    Text(currentIP ?? "...")
-                        .font(.caption.monospaced())
-                        .foregroundStyle(.primary)
-                    Spacer()
-                    Text(isVPNActive ? "dashboard.vpn_on" : "dashboard.vpn_off")
-                        .font(.caption2)
-                        .foregroundStyle(isVPNActive ? .green : .secondary)
+                Button {
+                    guard let ip = currentIP else { return }
+                    UIPasteboard.general.string = ip
+                    withAnimation { ipCopied = true }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation { ipCopied = false }
+                    }
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: isVPNActive ? "shield.fill" : "shield.slash")
+                            .font(.caption)
+                            .foregroundStyle(isVPNActive ? .green : .secondary)
+                        Text(currentIP ?? "...")
+                            .font(.caption.monospaced())
+                            .foregroundStyle(.primary)
+                        Spacer()
+                        if ipCopied {
+                            Image(systemName: "checkmark")
+                                .font(.caption2)
+                                .foregroundStyle(.green)
+                                .transition(.scale.combined(with: .opacity))
+                        }
+                        Text(isVPNActive ? "dashboard.vpn_on" : "dashboard.vpn_off")
+                            .font(.caption2)
+                            .foregroundStyle(isVPNActive ? .green : .secondary)
+                    }
                 }
+                .buttonStyle(.plain)
 
                 Divider()
 
@@ -175,7 +211,7 @@ struct AccountCard: View {
                         Text("dashboard.member_since")
                             .font(.caption)
                             .foregroundStyle(.secondary)
-                        Text(user.registerDate ?? "-")
+                        Text(registerDateText)
                             .font(.caption.monospacedDigit())
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -205,7 +241,6 @@ struct AccountCard: View {
                         .font(.caption)
                         .foregroundStyle(.orange)
                 }
-            }
         }
     }
 }

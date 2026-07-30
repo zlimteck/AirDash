@@ -60,11 +60,10 @@ final class ServerDetailViewModel: ObservableObject {
         try? profile.content.write(to: tmpURL, atomically: true, encoding: .utf8)
         generatedFileURL = tmpURL
         shareItems = [tmpURL]
-        showShareSheet = true
     }
 
     func importToVPNApp() {
         guard let url = generatedFileURL else { return }
-        VPNProfileImporter.shared.presentOpenIn(url: url)
+        VPNProfileImporter.shared.presentOpenIn(url: url, vpnProtocol: selectedProtocol)
     }
 }

@@ -81,6 +81,21 @@ final class DashboardViewModel: ObservableObject {
         isDisconnecting = false
     }
 
+    func silentRefresh(apiKey: String) async {
+        guard !isLoading else { return }
+        do {
+            userInfo = try await AirVPNAPIClient.shared.getUserInfo(apiKey: apiKey, forceRefresh: true)
+            SharedDataService.write(
+                currentIP: currentIP,
+                isVPNActive: isVPNActiveOnDevice,
+                sessions: activeSessions,
+                user: userInfo?.user
+            )
+        } catch {
+            // Silent — ne pas afficher d'erreur pour un refresh en arrière-plan
+        }
+    }
+
     var activeSessions: [AirVPNSession] {
         let all = userInfo?.sessions ?? (userInfo?.connection.map { [$0] } ?? [])
         return all.filter { !disconnectedIDs.contains($0.id) }

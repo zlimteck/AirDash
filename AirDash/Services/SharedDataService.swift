@@ -1,6 +1,17 @@
 import Foundation
 import WidgetKit
 
+// Favorite server data shared with the widget
+struct SharedServerData: Codable {
+    let id: String
+    let name: String
+    let countryCode: String
+    let load: Int
+    let users: Int
+    let isHealthy: Bool
+    let latencyMs: Int?
+}
+
 // Shared data model written by the app, read by the widget
 struct SharedWidgetData: Codable {
     let currentIP: String?
@@ -55,6 +66,21 @@ enum SharedDataService {
 
     static func readServerNames() -> [String] {
         UserDefaults(suiteName: suiteName)?.stringArray(forKey: serverNamesKey) ?? []
+    }
+
+    static func writeFavoriteServers(_ servers: [SharedServerData]) {
+        guard let defaults = UserDefaults(suiteName: suiteName),
+              let data = try? JSONEncoder().encode(servers) else { return }
+        defaults.set(data, forKey: "favoriteServersData")
+        WidgetCenter.shared.reloadAllTimelines()
+    }
+
+    static func readFavoriteServers() -> [SharedServerData] {
+        guard let defaults = UserDefaults(suiteName: suiteName),
+              let data = defaults.data(forKey: "favoriteServersData"),
+              let decoded = try? JSONDecoder().decode([SharedServerData].self, from: data)
+        else { return [] }
+        return decoded
     }
 
     static func read() -> SharedWidgetData? {

@@ -24,6 +24,15 @@ struct SettingsView: View {
                     } label: {
                         Label("settings.rotate_key", systemImage: "arrow.triangle.2.circlepath")
                     }
+
+                    Link(destination: URL(string: "https://airvpn.org/buy/")!) {
+                        Label {
+                            Text("settings.renew_subscription")
+                        } icon: {
+                            Image(systemName: "arrow.clockwise")
+                                .foregroundStyle(.blue)
+                        }
+                    }
                 } header: {
                     Text("settings.section.account")
                 }
