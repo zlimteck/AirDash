@@ -2,9 +2,6 @@ import SwiftUI
 
 struct SessionRowView: View {
     let session: AirVPNSession
-    let onDisconnect: () async -> Void
-    @State private var isDisconnecting = false
-    @State private var showConfirmation = false
 
     var durationText: String {
         guard let unix = session.connectedSinceUnix else { return "" }
@@ -77,34 +74,6 @@ struct SessionRowView: View {
                     }
                 }
 
-                Button {
-                    showConfirmation = true
-                } label: {
-                    if isDisconnecting {
-                        ProgressView()
-                            .tint(.white)
-                            .frame(maxWidth: .infinity)
-                    } else {
-                        Text("session.disconnect")
-                            .frame(maxWidth: .infinity)
-                    }
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.regular)
-                .tint(.red)
-                .disabled(isDisconnecting)
-                .confirmationDialog("session.disconnect.confirm.title", isPresented: $showConfirmation, titleVisibility: .visible) {
-                    Button("session.disconnect", role: .destructive) {
-                        Task {
-                            isDisconnecting = true
-                            await onDisconnect()
-                            isDisconnecting = false
-                        }
-                    }
-                    Button("cancel", role: .cancel) {}
-                } message: {
-                    Text(String(format: NSLocalizedString("session.disconnect.confirm.message %@", comment: ""), session.serverName ?? ""))
-                }
         }
     }
 

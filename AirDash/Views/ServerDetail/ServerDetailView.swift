@@ -165,28 +165,6 @@ struct ServerDetailView: View {
                     .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
                     .listRowSeparator(.hidden)
 
-                    Button {
-                        vm.showShareSheet = true
-                    } label: {
-                        centeredLabel("detail.share", systemImage: "square.and.arrow.up")
-                    }
-                    .buttonStyle(.bordered)
-                    .controlSize(.regular)
-                    .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
-                    .listRowSeparator(.hidden)
-
-                    if vm.selectedProtocol == .wireguard {
-                        Button {
-                            vm.showQRCode = true
-                        } label: {
-                            centeredLabel("detail.qr_code", systemImage: "qrcode")
-                        }
-                        .buttonStyle(.bordered)
-                        .controlSize(.regular)
-                        .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
-                        .listRowSeparator(.hidden)
-                    }
-
                     Button("detail.generate_new") {
                         vm.generatedProfile = nil
                         vm.generatedFileURL = nil
@@ -202,6 +180,28 @@ struct ServerDetailView: View {
         .background(Color(.systemGroupedBackground))
         .navigationTitle(server.publicName)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if vm.generatedProfile != nil {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Button {
+                            vm.showShareSheet = true
+                        } label: {
+                            Label("detail.share", systemImage: "square.and.arrow.up")
+                        }
+                        if vm.selectedProtocol == .wireguard {
+                            Button {
+                                vm.showQRCode = true
+                            } label: {
+                                Label("detail.qr_code", systemImage: "qrcode")
+                            }
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
+                }
+            }
+        }
         .task { await vm.loadDevices(apiKey: appState.apiKey) }
         .sheet(isPresented: $vm.showShareSheet) {
             ShareSheet(items: vm.shareItems)

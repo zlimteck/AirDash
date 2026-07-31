@@ -78,11 +78,16 @@ struct DashboardView: View {
                 } else {
                     ForEach(Array(vm.activeSessions.enumerated()), id: \.element.id) { index, session in
                         Section {
-                            SessionRowView(session: session) {
-                                await vm.disconnectSession(session, apiKey: appState.apiKey)
-                            }
-                            .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-                            .listRowSeparator(.hidden)
+                            SessionRowView(session: session)
+                                .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
+                                .listRowSeparator(.hidden)
+                                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                                    Button(role: .destructive) {
+                                        Task { await vm.disconnectSession(session, apiKey: appState.apiKey) }
+                                    } label: {
+                                        Label("session.disconnect", systemImage: "xmark.circle.fill")
+                                    }
+                                }
                         } header: {
                             if index == 0 {
                                 Text("dashboard.active_sessions")
