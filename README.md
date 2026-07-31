@@ -26,9 +26,13 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 ## Features
 
 - **Network** — full server list with load, users, health, ping latency, sort (load / name / ping), continent filter, search and favorites
-- **Dashboard** — account info (current IP, VPN status, expiration, credits, sessions, member since), session disconnect
-- **Server detail** — WireGuard or OpenVPN profile generation, direct import into the system VPN app, file sharing, IPv6 indicator
-- **Settings** — API key rotation, light/dark/system theme, changelog, credits
+- **Server comparison** — long-press any server to add it to a comparison (up to 3); tap the toolbar button to view them side by side
+- **Dashboard** — account info (current IP, VPN status, expiration, credits, sessions, member since); swipe left on a session to disconnect
+- **Server detail** — WireGuard or OpenVPN profile generation, direct import into the system VPN app, share and QR code (WireGuard) in a `···` menu; recent profiles per server with one-tap reimport
+- **Profile history** — recently used server profiles shown in Dashboard and in each server detail; supports one-tap reimport by protocol
+- **Biometric lock** — Face ID / Touch ID protection, toggleable in Settings
+- **App icon** — 8 variants: Auto, Classic, Light, Purple, Green, Red, Minimal, Minimal Dark
+- **Settings** — API key rotation, light/dark/system theme, app icon picker, changelog, credits
 - **Notifications** — subscription expiration alerts 7 days and 1 day in advance (delivered by the OS even when the app is closed)
 - **Siri Shortcuts** — VPN Status, My IP Address, Open Server (navigates directly to a specific server)
 - **Widget** — current IP, VPN status and active sessions on the home screen; configurable with a favorite server picker showing load, users and latency (Small, Medium and Large sizes)
@@ -67,7 +71,7 @@ A pre-built unsigned IPA is available on the [Releases](https://github.com/zlimt
 
 ## Build from Source
 
-## Requirements
+### Requirements
 
 - Xcode 26 or later
 - iOS 26 minimum (simulator or device)
@@ -123,15 +127,15 @@ AirDash/
 │   ├── Intents/              # AppIntents (Siri Shortcuts), ServerEntity
 │   ├── Models/               # AirVPNModels, AppError
 │   ├── Networking/           # AirVPNAPIClient (actor), CacheService
-│   ├── Services/             # KeychainService, VPNProfileImporter, SharedDataService, PingService, NotificationService
+│   ├── Services/             # KeychainService, VPNProfileImporter, SharedDataService, PingService, NotificationService, AppLockService, ProfileHistoryService
 │   ├── ViewModels/           # DashboardViewModel, NetworkStatusViewModel, …
 │   ├── Views/
 │   │   ├── Components/       # GlassCard, GlassButton, FlagBadge, LoadBar, …
 │   │   ├── Dashboard/        # DashboardView, SessionRowView
-│   │   ├── NetworkStatus/    # NetworkStatusView, ServerRowView
+│   │   ├── NetworkStatus/    # NetworkStatusView, ServerRowView, ServerComparisonView
 │   │   ├── Onboarding/       # OnboardingView
-│   │   ├── ServerDetail/     # ServerDetailView
-│   │   └── Settings/         # SettingsView, ChangelogView, CreditsView
+│   │   ├── ServerDetail/     # ServerDetailView, QRCodeView
+│   │   └── Settings/         # SettingsView, ChangelogView, CreditsView, AppIconPickerView
 │   └── Resources/            # Localizable.xcstrings, Assets.xcassets
 └── AirDashWidget/            # Widget Extension (WidgetKit)
     └── AirDashWidget.swift   # AppIntentProvider, entry, Small/Medium/Large views, server picker intent
@@ -161,7 +165,11 @@ The app exclusively uses the public AirVPN API:
 
 - Disconnecting a session via the app does not kill the active VPN tunnel on the device (this would require the *Personal VPN* entitlement and `NETunnelProviderManager`, which require a paid developer account)
 - Widget is not supported when installed via LiveContainer
-- Compatible with iPhone and iPad
+
+## Compatibility
+
+- iPhone and iPad
+- iOS 26 or later
 
 ---
 

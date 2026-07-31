@@ -318,6 +318,55 @@
         }
       }
     },
+    "changelog.1_0_4.biometric_lock" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Biometric lock: Face ID / Touch ID protection in Settings" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Verrouillage biométrique : protection Face ID / Touch ID dans les Réglages" } }
+      }
+    },
+    "changelog.1_0_4.comparison" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Server comparison: compare up to 3 servers side by side (long press)" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Comparaison de serveurs : jusqu'à 3 serveurs côte à côte (appui long)" } }
+      }
+    },
+    "changelog.1_0_4.icon_picker" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "App icon picker: 8 variants (Auto, Classic, Light, Purple, Green, Red, Minimal, Minimal Dark)" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Picker d'icône : 8 variantes (Auto, Classic, Light, Violet, Vert, Rouge, Minimal, Minimal Dark)" } }
+      }
+    },
+    "changelog.1_0_4.post_generation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Share and QR Code moved to a dedicated menu after profile generation" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Partage et QR Code déplacés dans un menu dédié après la génération de profil" } }
+      }
+    },
+    "changelog.1_0_4.profile_history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profile history: last generated profiles per server and in Dashboard" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Historique des profils : derniers profils générés par serveur et dans le Dashboard" } }
+      }
+    },
+    "changelog.1_0_4.qr_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "QR code for WireGuard profiles" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "QR code pour les profils WireGuard" } }
+      }
+    },
+    "changelog.1_0_4.swipe_disconnect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Swipe to disconnect an active session" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Swipe pour déconnecter une session active" } }
+      }
+    },
     "changelog.1_0_3.widget" : {
       "extractionState" : "manual",
       "localizations" : {
