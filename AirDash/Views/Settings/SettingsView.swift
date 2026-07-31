@@ -3,6 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var appState: AppState
     @AppStorage("appTheme") private var appTheme: String = "system"
+    @AppStorage("selectedAppIcon") private var selectedAppIcon: String = "Default"
     @State private var showSignOutAlert = false
     @State private var showRotateKeySheet = false
 
@@ -44,9 +45,22 @@ struct SettingsView: View {
                         Text("settings.theme.light").tag("light")
                         Text("settings.theme.dark").tag("dark")
                     }
-
                 } header: {
                     Text("settings.section.appearance")
+                }
+
+                // App icon section
+                Section {
+                    NavigationLink {
+                        AppIconPickerView()
+                    } label: {
+                        HStack {
+                            Label("settings.section.app_icon", systemImage: "app.badge")
+                            Spacer()
+                            Text(AppIconOption(rawValue: selectedAppIcon)?.label ?? "")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                 }
 
                 // About section
@@ -124,6 +138,34 @@ struct SettingsView: View {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
         return "\(version) (\(build))"
+    }
+}
+
+enum AppIconOption: String, CaseIterable {
+    case `default` = "Default"
+    case classic = "AppIcon-Classic"
+    case light = "AppIcon-Light"
+    case purple = "AppIcon-Purple"
+    case green = "AppIcon-Green"
+    case red = "AppIcon-Red"
+    case minimal = "AppIcon-Minimal"
+    case minimalDark = "AppIcon-MinimalDark"
+
+    var label: LocalizedStringKey {
+        switch self {
+        case .default: return "settings.icon.default"
+        case .classic: return "settings.icon.classic"
+        case .light: return "settings.icon.light"
+        case .purple: return "settings.icon.purple"
+        case .green: return "settings.icon.green"
+        case .red: return "settings.icon.red"
+        case .minimal: return "settings.icon.minimal"
+        case .minimalDark: return "settings.icon.minimal_dark"
+        }
+    }
+
+    var previewImageName: String {
+        "IconPreview-\(rawValue)"
     }
 }
 

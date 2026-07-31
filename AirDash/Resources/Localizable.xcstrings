@@ -1938,6 +1938,69 @@
         }
       }
     },
+    "settings.section.app_icon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "App Icon" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Icône de l'app" } }
+      }
+    },
+    "settings.icon.default" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Auto" } }
+      }
+    },
+    "settings.icon.classic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dark" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Sombre" } }
+      }
+    },
+    "settings.icon.light" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Light" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Clair" } }
+      }
+    },
+    "settings.icon.purple" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Purple" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Violet" } }
+      }
+    },
+    "settings.icon.green" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Green" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Vert" } }
+      }
+    },
+    "settings.icon.red" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Red" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Rouge" } }
+      }
+    },
+    "settings.icon.minimal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Minimal" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Minimal" } }
+      }
+    },
+    "settings.icon.minimal_dark" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Minimal Dark" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Minimal sombre" } }
+      }
+    },
     "settings.sign_out" : {
       "extractionState" : "manual",
       "localizations" : {
