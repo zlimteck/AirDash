@@ -24,7 +24,9 @@ struct AppIconPickerView: View {
         let iconName: String? = option == .default ? nil : option.rawValue
         UIApplication.shared.setAlternateIconName(iconName) { error in
             if error == nil {
-                selectedAppIcon = option.rawValue
+                Task { @MainActor in
+                    selectedAppIcon = option.rawValue
+                }
             }
         }
     }

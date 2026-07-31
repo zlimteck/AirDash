@@ -4,6 +4,7 @@ struct SettingsView: View {
     @EnvironmentObject var appState: AppState
     @AppStorage("appTheme") private var appTheme: String = "system"
     @AppStorage("selectedAppIcon") private var selectedAppIcon: String = "Default"
+    @AppStorage("appLockEnabled") private var appLockEnabled = false
     @State private var showSignOutAlert = false
     @State private var showRotateKeySheet = false
 
@@ -25,32 +26,31 @@ struct SettingsView: View {
                     } label: {
                         Label("settings.rotate_key", systemImage: "arrow.triangle.2.circlepath")
                     }
+                    .foregroundStyle(.primary)
 
                     Link(destination: URL(string: "https://airvpn.org/buy/")!) {
-                        Label {
-                            Text("settings.renew_subscription")
-                        } icon: {
-                            Image(systemName: "arrow.clockwise")
-                                .foregroundStyle(.blue)
-                        }
+                        Label("settings.renew_subscription", systemImage: "arrow.clockwise")
                     }
+                    .foregroundStyle(.primary)
                 } header: {
                     Text("settings.section.account")
                 }
 
                 // Appearance section
                 Section {
-                    Picker("settings.theme", selection: $appTheme) {
+                    Picker(selection: $appTheme) {
                         Text("settings.theme.system").tag("system")
                         Text("settings.theme.light").tag("light")
                         Text("settings.theme.dark").tag("dark")
+                    } label: {
+                        HStack(spacing: 12) {
+                            Image(systemName: "circle.lefthalf.filled")
+                                .font(.system(size: 15, weight: .regular))
+                                .foregroundStyle(.tint)
+                            Text("settings.theme")
+                                .foregroundStyle(.primary)
+                        }
                     }
-                } header: {
-                    Text("settings.section.appearance")
-                }
-
-                // App icon section
-                Section {
                     NavigationLink {
                         AppIconPickerView()
                     } label: {
@@ -61,12 +61,37 @@ struct SettingsView: View {
                                 .foregroundStyle(.secondary)
                         }
                     }
+                } header: {
+                    Text("settings.section.appearance")
+                }
+
+                // Security section
+                Section {
+                    Toggle(isOn: $appLockEnabled) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 15, weight: .regular))
+                                .foregroundStyle(.tint)
+                            Text("settings.app_lock")
+                                .foregroundStyle(.primary)
+                        }
+                    }
+                    .onChange(of: appLockEnabled) { _, enabled in
+                        if enabled {
+                            Task {
+                                let ok = await AppLockService.shared.verifyBiometrics()
+                                if !ok { appLockEnabled = false }
+                            }
+                        }
+                    }
+                } header: {
+                    Text("settings.section.security")
                 }
 
                 // About section
                 Section {
                     HStack {
-                        Text("settings.app_version")
+                        Label("settings.app_version", systemImage: "info.circle")
                         Spacer()
                         Text(appVersion)
                             .foregroundStyle(.secondary)
@@ -84,6 +109,7 @@ struct SettingsView: View {
                     Link(destination: URL(string: "https://airvpn.org")!) {
                         Label("settings.airvpn_website", systemImage: "safari")
                     }
+                    .foregroundStyle(.primary)
                     Link(destination: URL(string: "https://github.com/zlimteck/AirDash")!) {
                         Label {
                             Text("settings.github")
@@ -91,9 +117,10 @@ struct SettingsView: View {
                             Image("github-mark")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 20, height: 20)
+                                .frame(width: 15, height: 15)
                         }
                     }
+                    .foregroundStyle(.primary)
                 } header: {
                     Text("settings.section.about")
                 } footer: {
@@ -107,11 +134,17 @@ struct SettingsView: View {
                     Button(role: .destructive) {
                         showSignOutAlert = true
                     } label: {
-                        Label("settings.sign_out", systemImage: "rectangle.portrait.and.arrow.right")
-                            .foregroundStyle(.red)
+                        HStack(spacing: 12) {
+                            Image(systemName: "rectangle.portrait.and.arrow.right")
+                                .font(.system(size: 15, weight: .regular))
+                                .foregroundStyle(.red)
+                            Text("settings.sign_out")
+                                .foregroundStyle(.red)
+                        }
                     }
                 }
             }
+            .labelStyle(SettingsLabelStyle())
             .navigationTitle("tab.settings")
             .navigationBarTitleDisplayMode(.large)
             .alert("settings.sign_out_confirm", isPresented: $showSignOutAlert) {
@@ -166,6 +199,18 @@ enum AppIconOption: String, CaseIterable {
 
     var previewImageName: String {
         "IconPreview-\(rawValue)"
+    }
+}
+
+private struct SettingsLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 12) {
+            configuration.icon
+                .font(.system(size: 15, weight: .regular))
+                .foregroundStyle(.tint)
+            configuration.title
+                .foregroundStyle(.primary)
+        }
     }
 }
 

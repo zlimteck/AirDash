@@ -21,7 +21,6 @@ settings:
     CURRENT_PROJECT_VERSION: "3"
     INFOPLIST_FILE: AirDash/Supporting/Info.plist
     CODE_SIGN_STYLE: Automatic
-    DEVELOPMENT_TEAM: ""
     SWIFT_STRICT_CONCURRENCY: targeted
     OTHER_SWIFT_FLAGS: ""
 
@@ -58,6 +57,7 @@ targets:
           - UIInterfaceOrientationLandscapeRight
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSFaceIDUsageDescription: "AirDash uses Face ID to protect access to your VPN profiles."
         LSApplicationQueriesSchemes:
           - openvpn
         NSAppTransportSecurity:
@@ -107,7 +107,6 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.airdash.ios.widget
         SWIFT_STRICT_CONCURRENCY: targeted
         CODE_SIGN_STYLE: Automatic
-        DEVELOPMENT_TEAM: ""
 
 schemes:
   AirDash:

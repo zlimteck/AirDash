@@ -29,6 +29,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<false/>
 	</dict>
+	<key>NSFaceIDUsageDescription</key>
+	<string>AirDash uses Face ID to protect access to your VPN profiles.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
