@@ -140,8 +140,7 @@ struct ServerDetailView: View {
                         if vm.isGenerating {
                             ProgressView().frame(maxWidth: .infinity)
                         } else {
-                            Label("detail.generate", systemImage: "arrow.down.doc.fill")
-                                .frame(maxWidth: .infinity)
+                            centeredLabel("detail.generate", systemImage: "arrow.down.doc.fill")
                         }
                     }
                     .buttonStyle(.borderedProminent)
@@ -159,8 +158,7 @@ struct ServerDetailView: View {
                     Button {
                         vm.importToVPNApp()
                     } label: {
-                        Label("detail.import_vpn", systemImage: "arrow.down.app.fill")
-                            .frame(maxWidth: .infinity)
+                        centeredLabel("detail.import_vpn", systemImage: "arrow.down.app.fill")
                     }
                     .buttonStyle(.borderedProminent)
                     .controlSize(.regular)
@@ -170,8 +168,7 @@ struct ServerDetailView: View {
                     Button {
                         vm.showShareSheet = true
                     } label: {
-                        Label("detail.share", systemImage: "square.and.arrow.up")
-                            .frame(maxWidth: .infinity)
+                        centeredLabel("detail.share", systemImage: "square.and.arrow.up")
                     }
                     .buttonStyle(.bordered)
                     .controlSize(.regular)
@@ -182,8 +179,7 @@ struct ServerDetailView: View {
                         Button {
                             vm.showQRCode = true
                         } label: {
-                            Label("detail.qr_code", systemImage: "qrcode")
-                                .frame(maxWidth: .infinity)
+                            centeredLabel("detail.qr_code", systemImage: "qrcode")
                         }
                         .buttonStyle(.bordered)
                         .controlSize(.regular)
@@ -215,6 +211,14 @@ struct ServerDetailView: View {
                 QRCodeView(profileContent: profile.content)
             }
         }
+    }
+
+    private func centeredLabel(_ key: LocalizedStringKey, systemImage: String) -> some View {
+        HStack(spacing: 6) {
+            Image(systemName: systemImage)
+            Text(key)
+        }
+        .frame(maxWidth: .infinity, alignment: .center)
     }
 
     private func relativeTime(_ date: Date) -> String {

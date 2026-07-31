@@ -6,6 +6,8 @@ struct NetworkStatusView: View {
     @State private var path = NavigationPath()
     @State private var pendingServerName: String? = nil
     @State private var bestServer: AirVPNServer? = nil
+    @State private var compareServers: [AirVPNServer] = []
+    @State private var showComparison = false
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -21,6 +23,16 @@ struct NetworkStatusView: View {
             .navigationBarTitleDisplayMode(.large)
             .searchable(text: $vm.searchText, prompt: "network.search.prompt")
             .toolbar {
+                if compareServers.count >= 2 {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button { showComparison = true } label: {
+                            Label(
+                                "\(String(localized: "compare.compare")) (\(compareServers.count))",
+                                systemImage: "square.split.2x1"
+                            )
+                        }
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
                         ForEach(ServerSortOrder.allCases, id: \.self) { order in
@@ -64,6 +76,14 @@ struct NetworkStatusView: View {
         .onChange(of: vm.selectedContinent) {
             bestServer = vm.computeBestServer(for: vm.selectedContinent)
         }
+        .sheet(isPresented: $showComparison) {
+            ServerComparisonView(
+                servers: compareServers,
+                latencies: vm.latencies,
+                measuredIds: vm.measuredIds,
+                onClear: { compareServers = [] }
+            )
+        }
     }
 
     private func localizedContinent(_ apiValue: String) -> LocalizedStringKey {
@@ -76,6 +96,14 @@ struct NetworkStatusView: View {
         case "Oceania":        return "continent.oceania"
         case "Africa":         return "continent.africa"
         default:               return LocalizedStringKey(apiValue)
+        }
+    }
+
+    private func toggleCompare(_ server: AirVPNServer) {
+        if let idx = compareServers.firstIndex(of: server) {
+            compareServers.remove(at: idx)
+        } else if compareServers.count < 3 {
+            compareServers.append(server)
         }
     }
 
@@ -192,6 +220,15 @@ struct NetworkStatusView: View {
                     }
                     .buttonStyle(.plain)
                     .listRowBackground(Color.yellow.opacity(0.06))
+                    .contextMenu {
+                        Button { toggleCompare(best) } label: {
+                            Label(
+                                compareServers.contains(best) ? "compare.remove" : "compare.add",
+                                systemImage: compareServers.contains(best) ? "minus.circle" : "plus.circle"
+                            )
+                        }
+                        .disabled(!compareServers.contains(best) && compareServers.count >= 3)
+                    }
                 } header: {
                     Text("network.best_server")
                 }
@@ -212,6 +249,14 @@ struct NetworkStatusView: View {
                         }
                         .buttonStyle(.plain)
                         .contextMenu {
+                            Button { toggleCompare(server) } label: {
+                                Label(
+                                    compareServers.contains(server) ? "compare.remove" : "compare.add",
+                                    systemImage: compareServers.contains(server) ? "minus.circle" : "plus.circle"
+                                )
+                            }
+                            .disabled(!compareServers.contains(server) && compareServers.count >= 3)
+                            Divider()
                             Button(role: .destructive) {
                                 vm.toggleFavorite(server.id)
                             } label: {
@@ -246,6 +291,14 @@ struct NetworkStatusView: View {
                                 systemImage: vm.favoriteIds.contains(server.id) ? "star.slash" : "star"
                             )
                         }
+                        Divider()
+                        Button { toggleCompare(server) } label: {
+                            Label(
+                                compareServers.contains(server) ? "compare.remove" : "compare.add",
+                                systemImage: compareServers.contains(server) ? "minus.circle" : "plus.circle"
+                            )
+                        }
+                        .disabled(!compareServers.contains(server) && compareServers.count >= 3)
                     }
                 }
             } header: {
