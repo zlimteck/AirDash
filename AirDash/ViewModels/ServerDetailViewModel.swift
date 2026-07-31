@@ -12,6 +12,7 @@ final class ServerDetailViewModel: ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var generatedProfile: GeneratedProfile? = nil
     @Published var showShareSheet: Bool = false
+    @Published var showQRCode: Bool = false
     @Published var shareItems: [Any] = []
     @Published var generatedFileURL: URL? = nil
 
@@ -47,6 +48,14 @@ final class ServerDetailViewModel: ObservableObject {
             )
             generatedProfile = profile
             prepareShare(profile: profile)
+            ProfileHistoryService.shared.save(
+                profile: profile,
+                serverName: server.publicName,
+                countryCode: server.countryCode,
+                vpnProtocol: selectedProtocol,
+                port: selectedPort,
+                deviceName: selectedDevice?.name
+            )
         } catch let error as AppError {
             errorMessage = error.errorDescription
         } catch {

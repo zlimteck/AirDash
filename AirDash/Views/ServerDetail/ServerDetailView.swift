@@ -57,6 +57,36 @@ struct ServerDetailView: View {
                 Label("detail.ip_addresses", systemImage: "network")
             }
 
+            // Last profile per protocol for this server
+            let history = ProfileHistoryService.shared.entriesForServer(server.publicName)
+            if !history.isEmpty, vm.generatedProfile == nil {
+                Section {
+                    ForEach(history) { entry in
+                        HStack(alignment: .center) {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text((VPNProtocol(rawValue: entry.vpnProtocol)?.displayName ?? entry.vpnProtocol) + (entry.port.map { " · \($0)" } ?? ""))
+                                    .font(.subheadline.bold())
+                                Text(relativeTime(entry.date))
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Button {
+                                reimportProfile(entry)
+                            } label: {
+                                Image(systemName: "arrow.down.circle.fill")
+                                    .font(.title2)
+                                    .foregroundStyle(.blue)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                        .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    }
+                } header: {
+                    Label("detail.last_profile", systemImage: "clock.arrow.circlepath")
+                }
+            }
+
             // Profile generator — pickers
             if vm.generatedProfile == nil {
                 Section {
@@ -148,6 +178,19 @@ struct ServerDetailView: View {
                     .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
                     .listRowSeparator(.hidden)
 
+                    if vm.selectedProtocol == .wireguard {
+                        Button {
+                            vm.showQRCode = true
+                        } label: {
+                            Label("detail.qr_code", systemImage: "qrcode")
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.regular)
+                        .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .listRowSeparator(.hidden)
+                    }
+
                     Button("detail.generate_new") {
                         vm.generatedProfile = nil
                         vm.generatedFileURL = nil
@@ -167,6 +210,29 @@ struct ServerDetailView: View {
         .sheet(isPresented: $vm.showShareSheet) {
             ShareSheet(items: vm.shareItems)
         }
+        .sheet(isPresented: $vm.showQRCode) {
+            if let profile = vm.generatedProfile {
+                QRCodeView(profileContent: profile.content)
+            }
+        }
+    }
+
+    private func relativeTime(_ date: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        formatter.dateTimeStyle = .named
+        let components = Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: date, to: Date())
+        if (components.minute ?? 0) < 1 && (components.hour ?? 0) == 0 && (components.day ?? 0) == 0 {
+            return String(localized: "detail.just_now")
+        }
+        return formatter.localizedString(for: date, relativeTo: Date())
+    }
+
+    private func reimportProfile(_ entry: ProfileHistoryEntry) {
+        let proto = VPNProtocol(rawValue: entry.vpnProtocol) ?? .wireguard
+        let tmpURL = FileManager.default.temporaryDirectory.appendingPathComponent(entry.filename)
+        try? entry.content.write(to: tmpURL, atomically: true, encoding: .utf8)
+        VPNProfileImporter.shared.presentOpenIn(url: tmpURL, vpnProtocol: proto)
     }
 
     private func formatBandwidth(_ bw: Double) -> String {

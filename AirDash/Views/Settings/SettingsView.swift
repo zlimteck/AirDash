@@ -44,6 +44,7 @@ struct SettingsView: View {
                         Text("settings.theme.light").tag("light")
                         Text("settings.theme.dark").tag("dark")
                     }
+
                 } header: {
                     Text("settings.section.appearance")
                 }

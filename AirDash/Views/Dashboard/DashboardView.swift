@@ -27,6 +27,13 @@ struct DashboardView: View {
         }
     }
 
+    private func reimportProfile(_ entry: ProfileHistoryEntry) {
+        let proto = VPNProtocol(rawValue: entry.vpnProtocol) ?? .wireguard
+        let tmpURL = FileManager.default.temporaryDirectory.appendingPathComponent(entry.filename)
+        try? entry.content.write(to: tmpURL, atomically: true, encoding: .utf8)
+        VPNProfileImporter.shared.presentOpenIn(url: tmpURL, vpnProtocol: proto)
+    }
+
     private var dashboardContent: some View {
         List {
             if let error = vm.errorMessage {
@@ -84,11 +91,94 @@ struct DashboardView: View {
                     }
                 }
             }
+
+            // Profile history — horizontal scroll
+            let history = ProfileHistoryService.shared.entries
+            if !history.isEmpty {
+                Section {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 12) {
+                            ForEach(history.prefix(8)) { entry in
+                                RecentProfileCard(entry: entry) {
+                                    reimportProfile(entry)
+                                }
+                                .containerRelativeFrame(.horizontal, count: 2, span: 1, spacing: 12)
+                            }
+                        }
+                        .scrollTargetLayout()
+                        .padding(.vertical, 12)
+                    }
+                    .scrollTargetBehavior(.viewAligned)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                } header: {
+                    Text("dashboard.recent_profiles")
+                }
+            }
         }
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
         .background(Color(.systemGroupedBackground))
         .refreshable { await vm.load(apiKey: appState.apiKey, forceRefresh: true) }
+    }
+}
+
+struct RecentProfileCard: View {
+    let entry: ProfileHistoryEntry
+    let onReimport: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Image(systemName: "doc.badge.arrow.up")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Button {
+                    onReimport()
+                } label: {
+                    Image(systemName: "arrow.down.circle.fill")
+                        .font(.title3)
+                        .foregroundStyle(.blue)
+                }
+                .buttonStyle(.plain)
+            }
+
+            HStack(spacing: 6) {
+                if let code = entry.countryCode {
+                    FlagBadge(countryCode: code, size: 18)
+                }
+                Text(entry.serverName)
+                    .font(.subheadline.bold())
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            Spacer(minLength: 0)
+
+            Text(VPNProtocol(rawValue: entry.vpnProtocol)?.displayName ?? entry.vpnProtocol)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            Text(relativeTime(entry.date))
+                .font(.caption2)
+                .foregroundStyle(.tertiary)
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+    }
+
+    private func relativeTime(_ date: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        formatter.dateTimeStyle = .named
+        let components = Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: date, to: Date())
+        if (components.minute ?? 0) < 1 && (components.hour ?? 0) == 0 && (components.day ?? 0) == 0 {
+            return String(localized: "detail.just_now")
+        }
+        return formatter.localizedString(for: date, relativeTo: Date())
     }
 }
 
