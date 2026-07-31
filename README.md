@@ -164,7 +164,7 @@ The app exclusively uses the public AirVPN API:
 ## Known Limitations
 
 - Disconnecting a session via the app does not kill the active VPN tunnel on the device (this would require the *Personal VPN* entitlement and `NETunnelProviderManager`, which require a paid developer account)
-- Widget is not supported when installed via LiveContainer
+- Widget and alternate app icons are not supported when installed via LiveContainer (system-level features require a native installation)
 
 ## Compatibility
 
