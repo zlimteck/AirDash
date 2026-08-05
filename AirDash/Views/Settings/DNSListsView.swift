@@ -27,7 +27,7 @@ struct DNSListsView: View {
     var body: some View {
         List {
             Section {
-                Link(destination: URL(string: "https://airvpn.org/dns_lists/")!) {
+                Link(destination: URL(string: "https://airvpn.org/dns/")!) {
                     Label("dns.manage_on_website", systemImage: "safari")
                 }
                 .foregroundStyle(.primary)

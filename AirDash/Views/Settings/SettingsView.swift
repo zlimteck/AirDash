@@ -12,29 +12,16 @@ struct SettingsView: View {
             List {
                 // Account section
                 Section {
-                    HStack {
-                        Label("settings.api_key", systemImage: "key.fill")
-                        Spacer()
-                        Text(maskedAPIKey)
-                            .font(.caption.monospaced())
-                            .foregroundStyle(.secondary)
-                    }
-
                     NavigationLink {
                         ManageAccountsView()
                     } label: {
                         HStack {
                             Label("settings.manage_accounts", systemImage: "person.2.fill")
                             Spacer()
-                            Text("\(appState.accounts.count)")
+                            Text(maskedAPIKey)
+                                .font(.caption.monospaced())
                                 .foregroundStyle(.secondary)
                         }
-                    }
-
-                    NavigationLink {
-                        DNSListsView()
-                    } label: {
-                        Label("dns.title", systemImage: "shield.lefthalf.filled")
                     }
 
                     Link(destination: URL(string: "https://airvpn.org/buy/")!) {
@@ -43,6 +30,17 @@ struct SettingsView: View {
                     .foregroundStyle(.primary)
                 } header: {
                     Text("settings.section.account")
+                }
+
+                // VPN section
+                Section {
+                    NavigationLink {
+                        DNSListsView()
+                    } label: {
+                        Label("dns.title", systemImage: "shield.lefthalf.filled")
+                    }
+                } header: {
+                    Text("settings.section.vpn")
                 }
 
                 // Appearance section
@@ -213,6 +211,7 @@ private struct SettingsLabelStyle: LabelStyle {
             configuration.icon
                 .font(.system(size: 15, weight: .regular))
                 .foregroundStyle(.tint)
+                .frame(width: 20, alignment: .center)
             configuration.title
                 .foregroundStyle(.primary)
         }

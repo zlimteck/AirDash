@@ -2378,6 +2378,23 @@
         }
       }
     },
+    "settings.section.vpn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN"
+          }
+        }
+      }
+    },
     "settings.section.appearance" : {
       "extractionState" : "manual",
       "localizations" : {
