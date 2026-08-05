@@ -32,7 +32,10 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 - **Profile history** — recently used server profiles shown in Dashboard and in each server detail; supports one-tap reimport by protocol
 - **Biometric lock** — Face ID / Touch ID protection, toggleable in Settings
 - **App icon** — 8 variants: Auto, Classic, Light, Purple, Green, Red, Minimal, Minimal Dark
-- **Settings** — API key rotation, light/dark/system theme, app icon picker, changelog, credits
+- **Multiple accounts** — add, switch and remove AirVPN accounts from Settings; the active account drives the whole app, including the widget
+- **Device management** — add, rename, renew WireGuard keys and remove devices directly from Settings (10-device account limit enforced)
+- **DNS blocklists** — browse AirVPN's available DNS blocklists with a direct link to manage them on airvpn.org
+- **Settings** — account switching, device management, DNS blocklists, light/dark/system theme, app icon picker, changelog, credits
 - **Notifications** — subscription expiration alerts 7 days and 1 day in advance (delivered by the OS even when the app is closed)
 - **Siri Shortcuts** — VPN Status, My IP Address, Open Server (navigates directly to a specific server)
 - **Widget** — current IP, VPN status and active sessions on the home screen; configurable with a favorite server picker showing load, users and latency (Small, Medium and Large sizes)
@@ -125,17 +128,17 @@ AirDash/
 ├── AirDash/
 │   ├── App/                  # Entry point, AppState, AppDelegate, SceneDelegate, MainTabView
 │   ├── Intents/              # AppIntents (Siri Shortcuts), ServerEntity
-│   ├── Models/               # AirVPNModels, AppError
+│   ├── Models/               # AirVPNModels, Account, AppError
 │   ├── Networking/           # AirVPNAPIClient (actor), CacheService
-│   ├── Services/             # KeychainService, VPNProfileImporter, SharedDataService, PingService, NotificationService, AppLockService, ProfileHistoryService
+│   ├── Services/             # KeychainService, VPNProfileImporter, SharedDataService, PingService, NotificationService, AppLockService, ProfileHistoryService, RelativeTimeFormatter
 │   ├── ViewModels/           # DashboardViewModel, NetworkStatusViewModel, …
 │   ├── Views/
-│   │   ├── Components/       # GlassCard, GlassButton, FlagBadge, LoadBar, …
+│   │   ├── Components/       # FlagBadge, LoadBar, ErrorBanner, LoadingOverlay, …
 │   │   ├── Dashboard/        # DashboardView, SessionRowView
 │   │   ├── NetworkStatus/    # NetworkStatusView, ServerRowView, ServerComparisonView
 │   │   ├── Onboarding/       # OnboardingView
 │   │   ├── ServerDetail/     # ServerDetailView, QRCodeView
-│   │   └── Settings/         # SettingsView, ChangelogView, CreditsView, AppIconPickerView
+│   │   └── Settings/         # SettingsView, ManageAccountsView, ManageDevicesView, DNSListsView, ChangelogView, CreditsView, AppIconPickerView
 │   └── Resources/            # Localizable.xcstrings, Assets.xcassets
 └── AirDashWidget/            # Widget Extension (WidgetKit)
     └── AirDashWidget.swift   # AppIntentProvider, entry, Small/Medium/Large views, server picker intent
@@ -156,7 +159,8 @@ The app exclusively uses the public AirVPN API:
 | `POST /api/status/` | Server list and network stats |
 | `POST /api/userinfo/` | Account info and active sessions |
 | `POST /api/disconnect/` | Disconnect a VPN session |
-| `POST /api/devices/` | Device management |
+| `POST /api/devices/` | Device management (list, add, renew, modify, delete) |
+| `POST /api/dns_lists/` | Available DNS blocklists |
 | `GET /api/generator/` | WireGuard / OpenVPN profile generation |
 
 ---
@@ -165,6 +169,7 @@ The app exclusively uses the public AirVPN API:
 
 - Disconnecting a session via the app does not kill the active VPN tunnel on the device (this would require the *Personal VPN* entitlement and `NETunnelProviderManager`, which require a paid developer account)
 - Widget and alternate app icons are not supported when installed via LiveContainer (system-level features require a native installation)
+- Enabling or disabling a DNS blocklist is not exposed by the AirVPN API; the app links out to airvpn.org to manage active lists
 
 ## Compatibility
 

@@ -318,6 +318,34 @@
         }
       }
     },
+    "changelog.1_0_5.multi_account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Multiple accounts: add, switch and remove AirVPN accounts from Settings" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Comptes multiples : ajouter, basculer et supprimer des comptes AirVPN dans les Réglages" } }
+      }
+    },
+    "changelog.1_0_5.devices" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Device management: add, rename, renew keys and remove devices from Settings" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Gestion des appareils : ajouter, renommer, renouveler les clés et supprimer des appareils dans les Réglages" } }
+      }
+    },
+    "changelog.1_0_5.dns_lists" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "DNS blocklists: browse available AirVPN DNS lists in Settings" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Listes DNS : parcourir les listes DNS AirVPN disponibles dans les Réglages" } }
+      }
+    },
+    "changelog.1_0_5.launch_screen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Custom launch screen with app icon and name" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Écran de lancement personnalisé avec icône et nom de l'app" } }
+      }
+    },
     "changelog.1_0_4.biometric_lock" : {
       "extractionState" : "manual",
       "localizations" : {
