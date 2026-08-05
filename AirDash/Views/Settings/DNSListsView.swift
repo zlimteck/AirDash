@@ -28,9 +28,16 @@ struct DNSListsView: View {
         List {
             Section {
                 Link(destination: URL(string: "https://airvpn.org/dns/")!) {
-                    Label("dns.manage_on_website", systemImage: "safari")
+                    HStack(spacing: 12) {
+                        Image(systemName: "safari")
+                            .font(.system(size: 15, weight: .regular))
+                            .foregroundStyle(.tint)
+                            .frame(width: 20, alignment: .center)
+                        Text("dns.manage_on_website")
+                            .foregroundStyle(.primary)
+                    }
                 }
-                .foregroundStyle(.primary)
+                .buttonStyle(.plain)
             } footer: {
                 Text("dns.manage_footer")
             }

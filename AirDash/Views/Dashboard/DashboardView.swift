@@ -169,14 +169,7 @@ struct RecentProfileCard: View {
     }
 
     private func relativeTime(_ date: Date) -> String {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .full
-        formatter.dateTimeStyle = .named
-        let components = Calendar.current.dateComponents([.minute, .hour, .day, .month, .year], from: date, to: Date())
-        if (components.minute ?? 0) < 1 && (components.hour ?? 0) == 0 && (components.day ?? 0) == 0 {
-            return String(localized: "detail.just_now")
-        }
-        return formatter.localizedString(for: date, relativeTo: Date())
+        date.relativeShortString
     }
 }
 
@@ -197,10 +190,7 @@ struct AccountCard: View {
 
     var lastSeenText: String {
         guard let unix = user.lastAttemptUnix else { return "-" }
-        let date = Date(timeIntervalSince1970: Double(unix))
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .full
-        return formatter.localizedString(for: date, relativeTo: Date())
+        return Date(timeIntervalSince1970: Double(unix)).relativeShortString
     }
 
     var registerDateText: String {

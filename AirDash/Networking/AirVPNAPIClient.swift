@@ -134,16 +134,35 @@ actor AirVPNAPIClient {
         return result
     }
 
-    func addDevice(apiKey: String) async throws -> String {
+    func addDevice(apiKey: String, name: String? = nil, description: String? = nil) async throws -> String {
         let cacheKey = apiKey.prefix(8).description
-        let response = try await post("devices", body: ["key": apiKey, "action": "add"]) as AirVPNDevicesResponse
+        var body: [String: String] = ["key": apiKey, "action": "add"]
+        if let name, !name.isEmpty { body["name"] = name }
+        if let description, !description.isEmpty { body["description"] = description }
+        let response = try await post("devices", body: body) as AirVPNDeviceActionResponse
         devicesCache.invalidate(for: cacheKey)
-        return response.devices.last?.id ?? ""
+        return response.id ?? ""
+    }
+
+    func renewDevice(apiKey: String, deviceId: String) async throws {
+        let cacheKey = apiKey.prefix(8).description
+        let _: AirVPNDeviceActionResponse = try await post("devices", body: [
+            "key": apiKey, "action": "renew", "id": deviceId
+        ])
+        devicesCache.invalidate(for: cacheKey)
+    }
+
+    func modifyDevice(apiKey: String, deviceId: String, name: String, description: String? = nil) async throws {
+        let cacheKey = apiKey.prefix(8).description
+        var body: [String: String] = ["key": apiKey, "action": "modify", "id": deviceId, "name": name]
+        if let description { body["description"] = description }
+        let _: AirVPNDeviceActionResponse = try await post("devices", body: body)
+        devicesCache.invalidate(for: cacheKey)
     }
 
     func deleteDevice(apiKey: String, deviceId: String) async throws {
         let cacheKey = apiKey.prefix(8).description
-        let _: AirVPNDevicesResponse = try await post("devices", body: [
+        let _: AirVPNDeviceActionResponse = try await post("devices", body: [
             "key": apiKey, "action": "delete", "id": deviceId
         ])
         devicesCache.invalidate(for: cacheKey)

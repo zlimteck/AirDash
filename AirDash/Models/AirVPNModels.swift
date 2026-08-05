@@ -184,18 +184,28 @@ struct AirVPNDevice: Codable, Identifiable, Hashable {
     let description: String?
     let status: String?
     let wireguardIPv4: String?
+    let wireguardIPv6: String?
     let vpnLastFromUnix: Int?
+    let renewFirstDate: String?
 
     enum CodingKeys: String, CodingKey {
         case id, name, description, status
         case wireguardIPv4 = "wireguard_ipv4"
+        case wireguardIPv6 = "wireguard_ipv6"
         case vpnLastFromUnix = "vpn_last_from_unix"
+        case renewFirstDate = "renew_first_date"
     }
 }
 
 struct AirVPNDevicesResponse: Codable {
     let result: String
     let devices: [AirVPNDevice]
+}
+
+struct AirVPNDeviceActionResponse: Codable {
+    let result: String
+    let action: String?
+    let id: String?
 }
 
 // MARK: - DNS Lists

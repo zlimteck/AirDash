@@ -35,6 +35,12 @@ struct SettingsView: View {
                 // VPN section
                 Section {
                     NavigationLink {
+                        ManageDevicesView()
+                    } label: {
+                        Label("devices.title", systemImage: "laptopcomputer.and.iphone")
+                    }
+
+                    NavigationLink {
                         DNSListsView()
                     } label: {
                         Label("dns.title", systemImage: "shield.lefthalf.filled")
