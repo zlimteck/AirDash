@@ -31,6 +31,12 @@ struct SettingsView: View {
                         }
                     }
 
+                    NavigationLink {
+                        DNSListsView()
+                    } label: {
+                        Label("dns.title", systemImage: "shield.lefthalf.filled")
+                    }
+
                     Link(destination: URL(string: "https://airvpn.org/buy/")!) {
                         Label("settings.renew_subscription", systemImage: "arrow.clockwise")
                     }

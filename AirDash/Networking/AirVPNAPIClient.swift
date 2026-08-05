@@ -10,6 +10,7 @@ actor AirVPNAPIClient {
     private let statusCache = TtlCache<AirVPNStatusResponse>(ttl: 60)
     private let userInfoCache = KeyedTtlCache<String, AirVPNUserInfoResponse>(ttl: 20)
     private let devicesCache = KeyedTtlCache<String, AirVPNDevicesResponse>(ttl: 60)
+    private let dnsListsCache = TtlCache<AirVPNDNSListsResponse>(ttl: 3600)
 
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
@@ -93,6 +94,13 @@ actor AirVPNAPIClient {
         if !forceRefresh, let cached = statusCache.get() { return cached }
         let result: AirVPNStatusResponse = try await post("status")
         statusCache.set(result)
+        return result
+    }
+
+    func getDNSLists(forceRefresh: Bool = false) async throws -> AirVPNDNSListsResponse {
+        if !forceRefresh, let cached = dnsListsCache.get() { return cached }
+        let result: AirVPNDNSListsResponse = try await post("dns_lists")
+        dnsListsCache.set(result)
         return result
     }
 

@@ -198,6 +198,51 @@ struct AirVPNDevicesResponse: Codable {
     let devices: [AirVPNDevice]
 }
 
+// MARK: - DNS Lists
+
+struct AirVPNDNSList: Codable, Identifiable, Hashable {
+    var id: String { name }
+    let name: String
+    let displayName: String
+    let description: String?
+    let home: String?
+    let lastUpdateUnix: Int?
+    let nItems: Int?
+
+    init(name: String, entry: AirVPNDNSListEntry) {
+        self.name = name
+        self.displayName = entry.name
+        self.description = entry.description
+        self.home = entry.home
+        self.lastUpdateUnix = entry.lastUpdateUnix
+        self.nItems = entry.nItems
+    }
+}
+
+struct AirVPNDNSListEntry: Codable {
+    let name: String
+    let description: String?
+    let home: String?
+    let lastUpdateUnix: Int?
+    let nItems: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case name, description, home
+        case lastUpdateUnix = "last_update_unix"
+        case nItems = "n_items"
+    }
+}
+
+struct AirVPNDNSListsResponse: Codable {
+    let result: String
+    let lists: [String: AirVPNDNSListEntry]
+
+    var sortedLists: [AirVPNDNSList] {
+        lists.map { AirVPNDNSList(name: $0.key, entry: $0.value) }
+            .sorted { $0.displayName.localizedCaseInsensitiveCompare($1.displayName) == .orderedAscending }
+    }
+}
+
 // MARK: - Profile Generator
 
 enum VPNProtocol: String, CaseIterable {

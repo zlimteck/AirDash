@@ -2038,6 +2038,91 @@
         }
       }
     },
+    "dns.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DNS Blocklists"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listes DNS"
+          }
+        }
+      }
+    },
+    "dns.manage_on_website" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage on airvpn.org"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gérer sur airvpn.org"
+          }
+        }
+      }
+    },
+    "dns.manage_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enabling or disabling a blocklist isn't available through the API. Use the AirVPN website to edit your active lists."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activer ou désactiver une liste n'est pas possible via l'API. Utilisez le site AirVPN pour modifier vos listes actives."
+          }
+        }
+      }
+    },
+    "dns.available_lists %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Available Lists"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Listes disponibles"
+          }
+        }
+      }
+    },
+    "dns.loading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading DNS lists…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargement des listes DNS…"
+          }
+        }
+      }
+    },
     "settings.renew_subscription" : {
       "extractionState" : "manual",
       "localizations" : {
