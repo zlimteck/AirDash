@@ -7,6 +7,9 @@ final class KeychainService: @unchecked Sendable {
 
     private let service = "com.airdash.ios"
     private let apiKeyAccount = "airvpn.apikey"
+    private let accountsAccount = "airvpn.accounts"
+
+    // MARK: - Legacy single-key API (kept for migration)
 
     func saveAPIKey(_ key: String) throws {
         let data = Data(key.utf8)
@@ -51,4 +54,48 @@ final class KeychainService: @unchecked Sendable {
     }
 
     var hasAPIKey: Bool { loadAPIKey() != nil }
+
+    // MARK: - Multi-account API
+
+    func saveAccounts(_ accounts: [Account]) throws {
+        let data = try JSONEncoder().encode(accounts)
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: service,
+            kSecAttrAccount: accountsAccount,
+            kSecValueData: data,
+            kSecAttrAccessible: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+        ]
+
+        SecItemDelete(query as CFDictionary)
+
+        let status = SecItemAdd(query as CFDictionary, nil)
+        guard status == errSecSuccess else {
+            throw AppError.keychainError("Keychain write failed: \(status)")
+        }
+    }
+
+    func loadAccounts() -> [Account] {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: service,
+            kSecAttrAccount: accountsAccount,
+            kSecReturnData: true,
+            kSecMatchLimit: kSecMatchLimitOne
+        ]
+
+        var result: AnyObject?
+        let status = SecItemCopyMatching(query as CFDictionary, &result)
+        guard status == errSecSuccess, let data = result as? Data else { return [] }
+        return (try? JSONDecoder().decode([Account].self, from: data)) ?? []
+    }
+
+    func deleteAllAccounts() {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: service,
+            kSecAttrAccount: accountsAccount
+        ]
+        SecItemDelete(query as CFDictionary)
+    }
 }

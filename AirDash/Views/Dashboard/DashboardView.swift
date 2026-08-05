@@ -17,7 +17,8 @@ struct DashboardView: View {
             .navigationTitle("tab.dashboard")
             .navigationBarTitleDisplayMode(.large)
         }
-        .task {
+        .task(id: appState.apiKey) {
+            vm.reset()
             await vm.load(apiKey: appState.apiKey)
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(30))
@@ -60,8 +61,8 @@ struct DashboardView: View {
             }
 
             if vm.userInfo != nil {
-                if vm.activeSessions.isEmpty {
-                    Section {
+                Section {
+                    if vm.activeSessions.isEmpty {
                         HStack {
                             Image(systemName: "shield.slash")
                                 .font(.title2)
@@ -70,17 +71,11 @@ struct DashboardView: View {
                                 .foregroundStyle(.secondary)
                         }
                         .frame(maxWidth: .infinity)
-                        .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-                        .listRowSeparator(.hidden)
-                    } header: {
-                        Text("dashboard.active_sessions")
-                    }
-                } else {
-                    ForEach(Array(vm.activeSessions.enumerated()), id: \.element.id) { index, session in
-                        Section {
+                        .padding(.vertical, 4)
+                    } else {
+                        ForEach(vm.activeSessions) { session in
                             SessionRowView(session: session)
-                                .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
-                                .listRowSeparator(.hidden)
+                                .padding(.vertical, 4)
                                 .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                     Button(role: .destructive) {
                                         Task { await vm.disconnectSession(session, apiKey: appState.apiKey) }
@@ -88,12 +83,10 @@ struct DashboardView: View {
                                         Label("session.disconnect", systemImage: "xmark.circle.fill")
                                     }
                                 }
-                        } header: {
-                            if index == 0 {
-                                Text("dashboard.active_sessions")
-                            }
                         }
                     }
+                } header: {
+                    Text("dashboard.active_sessions")
                 }
             }
 

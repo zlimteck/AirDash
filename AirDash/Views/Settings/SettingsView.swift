@@ -6,7 +6,6 @@ struct SettingsView: View {
     @AppStorage("selectedAppIcon") private var selectedAppIcon: String = "Default"
     @AppStorage("appLockEnabled") private var appLockEnabled = false
     @State private var showSignOutAlert = false
-    @State private var showRotateKeySheet = false
 
     var body: some View {
         NavigationStack {
@@ -21,12 +20,16 @@ struct SettingsView: View {
                             .foregroundStyle(.secondary)
                     }
 
-                    Button {
-                        showRotateKeySheet = true
+                    NavigationLink {
+                        ManageAccountsView()
                     } label: {
-                        Label("settings.rotate_key", systemImage: "arrow.triangle.2.circlepath")
+                        HStack {
+                            Label("settings.manage_accounts", systemImage: "person.2.fill")
+                            Spacer()
+                            Text("\(appState.accounts.count)")
+                                .foregroundStyle(.secondary)
+                        }
                     }
-                    .foregroundStyle(.primary)
 
                     Link(destination: URL(string: "https://airvpn.org/buy/")!) {
                         Label("settings.renew_subscription", systemImage: "arrow.clockwise")
@@ -153,10 +156,6 @@ struct SettingsView: View {
             } message: {
                 Text("settings.sign_out_message")
             }
-            .sheet(isPresented: $showRotateKeySheet) {
-                RotateAPIKeyView()
-                    .environmentObject(appState)
-            }
         }
     }
 
@@ -214,63 +213,3 @@ private struct SettingsLabelStyle: LabelStyle {
     }
 }
 
-struct RotateAPIKeyView: View {
-    @EnvironmentObject var appState: AppState
-    @Environment(\.dismiss) private var dismiss
-    @State private var newKey: String = ""
-    @State private var isValidating = false
-    @State private var errorMessage: String? = nil
-
-    var body: some View {
-        NavigationStack {
-            Form {
-                Section {
-                    SecureField("onboarding.apikey.placeholder", text: $newKey)
-                        .textContentType(.password)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                } header: {
-                    Text("settings.new_api_key")
-                } footer: {
-                    if let error = errorMessage {
-                        Label(error, systemImage: "xmark.circle.fill")
-                            .foregroundStyle(.red)
-                    }
-                }
-            }
-            .navigationTitle("settings.rotate_key")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button("cancel") { dismiss() }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("settings.save") {
-                        Task { await validateAndSave() }
-                    }
-                    .disabled(newKey.isEmpty || isValidating)
-                    .overlay {
-                        if isValidating { ProgressView().scaleEffect(0.7) }
-                    }
-                }
-            }
-        }
-    }
-
-    private func validateAndSave() async {
-        isValidating = true
-        errorMessage = nil
-        let key = newKey.trimmingCharacters(in: .whitespacesAndNewlines)
-        do {
-            _ = try await AirVPNAPIClient.shared.validateAPIKey(key)
-            try KeychainService.shared.saveAPIKey(key)
-            appState.signIn(with: key)
-            dismiss()
-        } catch let error as AppError {
-            errorMessage = error.errorDescription
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-        isValidating = false
-    }
-}

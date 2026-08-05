@@ -17,9 +17,8 @@ final class OnboardingViewModel: ObservableObject {
         errorMessage = nil
 
         do {
-            _ = try await AirVPNAPIClient.shared.validateAPIKey(key)
-            try KeychainService.shared.saveAPIKey(key)
-            appState.signIn(with: key)
+            let response = try await AirVPNAPIClient.shared.validateAPIKey(key)
+            appState.signIn(with: key, login: response.user.login)
         } catch let error as AppError {
             errorMessage = error.errorDescription
         } catch {

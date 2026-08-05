@@ -1,53 +1,6 @@
 import SwiftUI
 import FlagKit
 
-struct GlassCard<Content: View>: View {
-    let content: Content
-    var padding: CGFloat = 16
-
-    init(padding: CGFloat = 16, @ViewBuilder content: () -> Content) {
-        self.content = content()
-        self.padding = padding
-    }
-
-    var body: some View {
-        content
-            .padding(padding)
-            .glassEffect(in: RoundedRectangle(cornerRadius: 20, style: .continuous))
-    }
-}
-
-struct GlassButton: View {
-    let title: LocalizedStringKey
-    let icon: String?
-    let role: ButtonRole?
-    let action: () -> Void
-
-    init(_ title: LocalizedStringKey, icon: String? = nil, role: ButtonRole? = nil, action: @escaping () -> Void) {
-        self.title = title
-        self.icon = icon
-        self.role = role
-        self.action = action
-    }
-
-    var body: some View {
-        Button(role: role, action: action) {
-            Group {
-                if let icon {
-                    Label(title, systemImage: icon)
-                } else {
-                    Text(title)
-                }
-            }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
-                .padding(.horizontal, 16)
-        }
-        .glassEffect(in: RoundedRectangle(cornerRadius: 14, style: .continuous))
-        .foregroundStyle(role == .destructive ? .red : .primary)
-    }
-}
-
 // Health indicator dot
 struct HealthDot: View {
     let health: AirVPNHealth

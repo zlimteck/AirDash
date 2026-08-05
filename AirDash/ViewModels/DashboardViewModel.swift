@@ -9,6 +9,13 @@ final class DashboardViewModel: ObservableObject {
     @Published private var disconnectedIDs: Set<String> = []
     @Published var currentIP: String? = nil
 
+    func reset() {
+        userInfo = nil
+        currentIP = nil
+        errorMessage = nil
+        disconnectedIDs = []
+    }
+
     func load(apiKey: String, forceRefresh: Bool = false) async {
         isLoading = true
         errorMessage = nil
