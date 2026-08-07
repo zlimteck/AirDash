@@ -2,8 +2,9 @@ import UIKit
 import AppIntents
 
 extension Notification.Name {
-    static let shortcutAction = Notification.Name("com.airdash.shortcutAction")
-    static let openServer     = Notification.Name("com.airdash.openServer")
+    static let shortcutAction     = Notification.Name("com.airdash.shortcutAction")
+    static let openServer         = Notification.Name("com.airdash.openServer")
+    static let showRecentProfiles = Notification.Name("com.airdash.showRecentProfiles")
 }
 
 final class AppDelegate: NSObject, UIApplicationDelegate {

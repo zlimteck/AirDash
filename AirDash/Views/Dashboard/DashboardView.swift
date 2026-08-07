@@ -3,6 +3,7 @@ import SwiftUI
 struct DashboardView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var vm = DashboardViewModel()
+    @State private var showAllProfiles = false
 
     var body: some View {
         NavigationStack {
@@ -16,23 +17,26 @@ struct DashboardView: View {
             }
             .navigationTitle("tab.dashboard")
             .navigationBarTitleDisplayMode(.large)
+            .navigationDestination(isPresented: $showAllProfiles) {
+                AllProfilesView()
+            }
         }
         .task(id: appState.apiKey) {
             vm.reset()
             await vm.load(apiKey: appState.apiKey)
+            if UserDefaults.standard.bool(forKey: "pendingShowProfiles") {
+                UserDefaults.standard.removeObject(forKey: "pendingShowProfiles")
+                showAllProfiles = true
+            }
             while !Task.isCancelled {
                 try? await Task.sleep(for: .seconds(30))
                 guard !Task.isCancelled, !vm.activeSessions.isEmpty else { continue }
                 await vm.silentRefresh(apiKey: appState.apiKey)
             }
         }
-    }
-
-    private func reimportProfile(_ entry: ProfileHistoryEntry) {
-        let proto = VPNProtocol(rawValue: entry.vpnProtocol) ?? .wireguard
-        let tmpURL = FileManager.default.temporaryDirectory.appendingPathComponent(entry.filename)
-        try? entry.content.write(to: tmpURL, atomically: true, encoding: .utf8)
-        VPNProfileImporter.shared.presentOpenIn(url: tmpURL, vpnProtocol: proto)
+        .onReceive(NotificationCenter.default.publisher(for: .showRecentProfiles).receive(on: DispatchQueue.main)) { _ in
+            showAllProfiles = true
+        }
     }
 
     private var dashboardContent: some View {
@@ -90,26 +94,14 @@ struct DashboardView: View {
                 }
             }
 
-            // Profile history — horizontal scroll
-            let history = ProfileHistoryService.shared.entries
-            if !history.isEmpty {
+            // Profile history — link to full list
+            if !ProfileHistoryService.shared.entries.isEmpty {
                 Section {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
-                            ForEach(history.prefix(8)) { entry in
-                                RecentProfileCard(entry: entry) {
-                                    reimportProfile(entry)
-                                }
-                                .containerRelativeFrame(.horizontal, count: 2, span: 1, spacing: 12)
-                            }
-                        }
-                        .scrollTargetLayout()
-                        .padding(.vertical, 12)
+                    NavigationLink {
+                        AllProfilesView()
+                    } label: {
+                        Text("dashboard.view_recent_profiles")
                     }
-                    .scrollTargetBehavior(.viewAligned)
-                    .listRowInsets(EdgeInsets())
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
                 } header: {
                     Text("dashboard.recent_profiles")
                 }
@@ -119,57 +111,6 @@ struct DashboardView: View {
         .scrollContentBackground(.hidden)
         .background(Color(.systemGroupedBackground))
         .refreshable { await vm.load(apiKey: appState.apiKey, forceRefresh: true) }
-    }
-}
-
-struct RecentProfileCard: View {
-    let entry: ProfileHistoryEntry
-    let onReimport: () -> Void
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                Image(systemName: "doc.badge.arrow.up")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Button {
-                    onReimport()
-                } label: {
-                    Image(systemName: "arrow.down.circle.fill")
-                        .font(.title3)
-                        .foregroundStyle(.blue)
-                }
-                .buttonStyle(.plain)
-            }
-
-            HStack(spacing: 6) {
-                if let code = entry.countryCode {
-                    FlagBadge(countryCode: code, size: 18)
-                }
-                Text(entry.serverName)
-                    .font(.subheadline.bold())
-                    .lineLimit(2)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-
-            Spacer(minLength: 0)
-
-            Text(VPNProtocol(rawValue: entry.vpnProtocol)?.displayName ?? entry.vpnProtocol)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-
-            Text(relativeTime(entry.date))
-                .font(.caption2)
-                .foregroundStyle(.tertiary)
-        }
-        .padding(12)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-    }
-
-    private func relativeTime(_ date: Date) -> String {
-        date.relativeShortString
     }
 }
 

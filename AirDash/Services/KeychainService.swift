@@ -8,6 +8,51 @@ final class KeychainService: @unchecked Sendable {
     private let service = "com.airdash.ios"
     private let apiKeyAccount = "airvpn.apikey"
     private let accountsAccount = "airvpn.accounts"
+    private let profileHistoryAccount = "airvpn.profilehistory"
+
+    // MARK: - Generic Codable storage
+
+    private func saveCodable<T: Codable>(_ value: T, account: String) throws {
+        let data = try JSONEncoder().encode(value)
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: service,
+            kSecAttrAccount: account,
+            kSecValueData: data,
+            kSecAttrAccessible: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+        ]
+
+        SecItemDelete(query as CFDictionary)
+
+        let status = SecItemAdd(query as CFDictionary, nil)
+        guard status == errSecSuccess else {
+            throw AppError.keychainError("Keychain write failed: \(status)")
+        }
+    }
+
+    private func loadCodable<T: Codable>(account: String) -> T? {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: service,
+            kSecAttrAccount: account,
+            kSecReturnData: true,
+            kSecMatchLimit: kSecMatchLimitOne
+        ]
+
+        var result: AnyObject?
+        let status = SecItemCopyMatching(query as CFDictionary, &result)
+        guard status == errSecSuccess, let data = result as? Data else { return nil }
+        return try? JSONDecoder().decode(T.self, from: data)
+    }
+
+    private func deleteItem(account: String) {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: service,
+            kSecAttrAccount: account
+        ]
+        SecItemDelete(query as CFDictionary)
+    }
 
     // MARK: - Legacy single-key API (kept for migration)
 
@@ -58,44 +103,28 @@ final class KeychainService: @unchecked Sendable {
     // MARK: - Multi-account API
 
     func saveAccounts(_ accounts: [Account]) throws {
-        let data = try JSONEncoder().encode(accounts)
-        let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: service,
-            kSecAttrAccount: accountsAccount,
-            kSecValueData: data,
-            kSecAttrAccessible: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
-        ]
-
-        SecItemDelete(query as CFDictionary)
-
-        let status = SecItemAdd(query as CFDictionary, nil)
-        guard status == errSecSuccess else {
-            throw AppError.keychainError("Keychain write failed: \(status)")
-        }
+        try saveCodable(accounts, account: accountsAccount)
     }
 
     func loadAccounts() -> [Account] {
-        let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: service,
-            kSecAttrAccount: accountsAccount,
-            kSecReturnData: true,
-            kSecMatchLimit: kSecMatchLimitOne
-        ]
-
-        var result: AnyObject?
-        let status = SecItemCopyMatching(query as CFDictionary, &result)
-        guard status == errSecSuccess, let data = result as? Data else { return [] }
-        return (try? JSONDecoder().decode([Account].self, from: data)) ?? []
+        loadCodable(account: accountsAccount) ?? []
     }
 
     func deleteAllAccounts() {
-        let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrService: service,
-            kSecAttrAccount: accountsAccount
-        ]
-        SecItemDelete(query as CFDictionary)
+        deleteItem(account: accountsAccount)
+    }
+
+    // MARK: - Profile history
+
+    func saveProfileHistory(_ entries: [ProfileHistoryEntry]) throws {
+        try saveCodable(entries, account: profileHistoryAccount)
+    }
+
+    func loadProfileHistory() -> [ProfileHistoryEntry] {
+        loadCodable(account: profileHistoryAccount) ?? []
+    }
+
+    func deleteProfileHistory() {
+        deleteItem(account: profileHistoryAccount)
     }
 }

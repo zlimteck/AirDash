@@ -30,9 +30,9 @@ struct DNSListsView: View {
                 Link(destination: URL(string: "https://airvpn.org/dns/")!) {
                     HStack(spacing: 12) {
                         Image(systemName: "safari")
-                            .font(.system(size: 15, weight: .regular))
+                            .font(.system(size: 20, weight: .regular))
                             .foregroundStyle(.tint)
-                            .frame(width: 20, alignment: .center)
+                            .frame(width: 26, alignment: .center)
                         Text("dns.manage_on_website")
                             .foregroundStyle(.primary)
                     }

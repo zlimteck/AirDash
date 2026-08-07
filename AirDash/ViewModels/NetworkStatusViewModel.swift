@@ -156,6 +156,7 @@ final class NetworkStatusViewModel: ObservableObject {
                 id: $0.id,
                 name: $0.publicName,
                 countryCode: $0.countryCode,
+                location: $0.location,
                 load: Int($0.currentLoad),
                 users: $0.users,
                 isHealthy: $0.health == .ok,

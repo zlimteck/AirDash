@@ -13,6 +13,7 @@ final class ManageDevicesViewModel: ObservableObject {
         do {
             let response = try await AirVPNAPIClient.shared.getDevices(apiKey: apiKey, forceRefresh: forceRefresh)
             devices = response.devices
+            SharedDataService.writeDeviceNames(devices.map(\.name))
         } catch let error as AppError {
             errorMessage = error.errorDescription
         } catch {
@@ -315,9 +316,9 @@ struct DeviceDetailView: View {
                 } label: {
                     HStack(spacing: 12) {
                         Image(systemName: "arrow.triangle.2.circlepath")
-                            .font(.system(size: 15, weight: .regular))
+                            .font(.system(size: 20, weight: .regular))
                             .foregroundStyle(.tint)
-                            .frame(width: 20, alignment: .center)
+                            .frame(width: 26, alignment: .center)
                         Text("devices.renew")
                             .foregroundStyle(.primary)
                     }
@@ -334,9 +335,9 @@ struct DeviceDetailView: View {
                 } label: {
                     HStack(spacing: 12) {
                         Image(systemName: "trash")
-                            .font(.system(size: 15, weight: .regular))
+                            .font(.system(size: 20, weight: .regular))
                             .foregroundStyle(.red)
-                            .frame(width: 20, alignment: .center)
+                            .frame(width: 26, alignment: .center)
                         Text("delete")
                             .foregroundStyle(.red)
                     }

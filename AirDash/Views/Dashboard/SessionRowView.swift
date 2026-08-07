@@ -24,7 +24,7 @@ struct SessionRowView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         HStack(spacing: 8) {
                             if let code = session.serverCountryCode {
-                                FlagBadge(countryCode: code, size: 24)
+                                FlagBadge(countryCode: code, size: 28)
                             }
                             Text(session.serverName ?? "Unknown")
                                 .font(.headline)

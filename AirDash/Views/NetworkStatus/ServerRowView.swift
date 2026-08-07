@@ -4,6 +4,7 @@ struct ServerRowView: View {
     let server: AirVPNServer
     let latency: Int?
     let isMeasured: Bool
+    var isFavorite: Bool = false
 
     var body: some View {
         HStack(spacing: 12) {
@@ -14,6 +15,11 @@ struct ServerRowView: View {
                     Text(server.publicName)
                         .font(.headline)
                     HealthDot(health: server.health)
+                    if isFavorite {
+                        Image(systemName: "star.fill")
+                            .font(.caption2)
+                            .foregroundStyle(.yellow)
+                    }
                 }
                 Text(server.location)
                     .font(.caption)

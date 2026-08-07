@@ -6,6 +6,7 @@ struct SharedServerData: Codable {
     let id: String
     let name: String
     let countryCode: String
+    let location: String
     let load: Int
     let users: Int
     let isHealthy: Bool
@@ -68,6 +69,15 @@ enum SharedDataService {
         UserDefaults(suiteName: suiteName)?.stringArray(forKey: serverNamesKey) ?? []
     }
 
+    static func writeDeviceNames(_ names: [String]) {
+        guard let defaults = UserDefaults(suiteName: suiteName) else { return }
+        defaults.set(names, forKey: "deviceNames")
+    }
+
+    static func readDeviceNames() -> [String] {
+        UserDefaults(suiteName: suiteName)?.stringArray(forKey: "deviceNames") ?? []
+    }
+
     static func writeFavoriteServers(_ servers: [SharedServerData]) {
         guard let defaults = UserDefaults(suiteName: suiteName),
               let data = try? JSONEncoder().encode(servers) else { return }
@@ -80,6 +90,23 @@ enum SharedDataService {
               let data = defaults.data(forKey: "favoriteServersData"),
               let decoded = try? JSONDecoder().decode([SharedServerData].self, from: data)
         else { return [] }
+        return decoded
+    }
+
+    static func writeBestServer(_ server: SharedServerData?) {
+        guard let defaults = UserDefaults(suiteName: suiteName) else { return }
+        guard let server, let data = try? JSONEncoder().encode(server) else {
+            defaults.removeObject(forKey: "bestServerData")
+            return
+        }
+        defaults.set(data, forKey: "bestServerData")
+    }
+
+    static func readBestServer() -> SharedServerData? {
+        guard let defaults = UserDefaults(suiteName: suiteName),
+              let data = defaults.data(forKey: "bestServerData"),
+              let decoded = try? JSONDecoder().decode(SharedServerData.self, from: data)
+        else { return nil }
         return decoded
     }
 

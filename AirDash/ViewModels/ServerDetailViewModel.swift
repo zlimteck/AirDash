@@ -23,6 +23,7 @@ final class ServerDetailViewModel: ObservableObject {
         do {
             let response = try await AirVPNAPIClient.shared.getDevices(apiKey: apiKey)
             devices = response.devices
+            SharedDataService.writeDeviceNames(devices.map(\.name))
             // Auto-select first device if none selected
             if selectedDevice == nil {
                 selectedDevice = devices.first

@@ -53,6 +53,7 @@ struct NetworkStatusView: View {
             await vm.load()
             await vm.measureLatencies()
             bestServer = vm.computeBestServer()
+            writeSharedBestServer(bestServer)
             vm.writeSharedFavoriteServers()
             if let name = UserDefaults.standard.string(forKey: "pendingOpenServer") {
                 UserDefaults.standard.removeObject(forKey: "pendingOpenServer")
@@ -105,6 +106,23 @@ struct NetworkStatusView: View {
         } else if compareServers.count < 3 {
             compareServers.append(server)
         }
+    }
+
+    private func writeSharedBestServer(_ server: AirVPNServer?) {
+        guard let server else {
+            SharedDataService.writeBestServer(nil)
+            return
+        }
+        SharedDataService.writeBestServer(SharedServerData(
+            id: server.id,
+            name: server.publicName,
+            countryCode: server.countryCode,
+            location: server.location,
+            load: Int(server.currentLoad),
+            users: server.users,
+            isHealthy: server.health == .ok,
+            latencyMs: vm.latencies[server.id]
+        ))
     }
 
     private func navigateToServer(named name: String) {
@@ -213,13 +231,14 @@ struct NetworkStatusView: View {
                         ServerRowView(
                             server: best,
                             latency: vm.latencies[best.id],
-                            isMeasured: vm.measuredIds.contains(best.id)
+                            isMeasured: vm.measuredIds.contains(best.id),
+                            isFavorite: vm.favoriteIds.contains(best.id)
                         )
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
-                    .listRowBackground(Color.yellow.opacity(0.06))
+                    .listRowBackground(Color.yellow.opacity(0.15))
                     .contextMenu {
                         Button { toggleCompare(best) } label: {
                             Label(
@@ -242,7 +261,8 @@ struct NetworkStatusView: View {
                             ServerRowView(
                                 server: server,
                                 latency: vm.latencies[server.id],
-                                isMeasured: vm.measuredIds.contains(server.id)
+                                isMeasured: vm.measuredIds.contains(server.id),
+                                isFavorite: true
                             )
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .contentShape(Rectangle())
@@ -276,7 +296,8 @@ struct NetworkStatusView: View {
                         ServerRowView(
                             server: server,
                             latency: vm.latencies[server.id],
-                            isMeasured: vm.measuredIds.contains(server.id)
+                            isMeasured: vm.measuredIds.contains(server.id),
+                            isFavorite: vm.favoriteIds.contains(server.id)
                         )
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .contentShape(Rectangle())
@@ -312,6 +333,7 @@ struct NetworkStatusView: View {
             await vm.load(forceRefresh: true)
             await vm.measureLatencies()
             bestServer = vm.computeBestServer()
+            writeSharedBestServer(bestServer)
             vm.writeSharedFavoriteServers()
         }
         .navigationDestination(for: AirVPNServer.self) { server in

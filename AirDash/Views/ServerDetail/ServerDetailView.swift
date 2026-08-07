@@ -11,7 +11,7 @@ struct ServerDetailView: View {
             Section {
                 VStack(alignment: .leading, spacing: 12) {
                     HStack(spacing: 12) {
-                        FlagBadge(countryCode: server.countryCode, size: 36)
+                        FlagBadge(countryCode: server.countryCode, size: 28)
                         VStack(alignment: .leading, spacing: 4) {
                             Text(server.publicName)
                                 .font(.title2.bold())
@@ -202,7 +202,20 @@ struct ServerDetailView: View {
                 }
             }
         }
-        .task { await vm.loadDevices(apiKey: appState.apiKey) }
+        .task {
+            await vm.loadDevices(apiKey: appState.apiKey)
+            if let protoRaw = UserDefaults.standard.string(forKey: "pendingGenerateProtocol") {
+                UserDefaults.standard.removeObject(forKey: "pendingGenerateProtocol")
+                vm.selectedProtocol = VPNProtocol(rawValue: protoRaw) ?? .wireguard
+                if let deviceName = UserDefaults.standard.string(forKey: "pendingGenerateDeviceName") {
+                    UserDefaults.standard.removeObject(forKey: "pendingGenerateDeviceName")
+                    if let match = vm.devices.first(where: { $0.name == deviceName }) {
+                        vm.selectedDevice = match
+                    }
+                }
+                await vm.generateProfile(server: server, apiKey: appState.apiKey)
+            }
+        }
         .sheet(isPresented: $vm.showShareSheet) {
             ShareSheet(items: vm.shareItems)
         }

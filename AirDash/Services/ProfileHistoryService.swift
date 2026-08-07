@@ -15,16 +15,27 @@ struct ProfileHistoryEntry: Codable, Identifiable {
 @MainActor
 final class ProfileHistoryService {
     static let shared = ProfileHistoryService()
-    private init() {}
 
-    private let key = "profileHistory"
-    private let maxEntries = 15
+    static let maxEntries = 15
+
+    private let legacyKey = "profileHistory"
+
+    private init() {
+        migrateFromUserDefaultsIfNeeded()
+    }
+
+    private func migrateFromUserDefaultsIfNeeded() {
+        guard KeychainService.shared.loadProfileHistory().isEmpty,
+              let data = UserDefaults.standard.data(forKey: legacyKey),
+              let decoded = try? JSONDecoder().decode([ProfileHistoryEntry].self, from: data),
+              !decoded.isEmpty
+        else { return }
+        try? KeychainService.shared.saveProfileHistory(decoded)
+        UserDefaults.standard.removeObject(forKey: legacyKey)
+    }
 
     var entries: [ProfileHistoryEntry] {
-        guard let data = UserDefaults.standard.data(forKey: key),
-              let decoded = try? JSONDecoder().decode([ProfileHistoryEntry].self, from: data)
-        else { return [] }
-        return decoded
+        KeychainService.shared.loadProfileHistory()
     }
 
     func save(profile: GeneratedProfile, serverName: String, countryCode: String, vpnProtocol: VPNProtocol, port: Int?, deviceName: String?) {
@@ -42,10 +53,8 @@ final class ProfileHistoryService {
             date: Date()
         )
         current.insert(entry, at: 0)
-        if current.count > maxEntries { current = Array(current.prefix(maxEntries)) }
-        if let data = try? JSONEncoder().encode(current) {
-            UserDefaults.standard.set(data, forKey: key)
-        }
+        if current.count > Self.maxEntries { current = Array(current.prefix(Self.maxEntries)) }
+        try? KeychainService.shared.saveProfileHistory(current)
     }
 
     func entriesForServer(_ serverName: String) -> [ProfileHistoryEntry] {
@@ -55,12 +64,10 @@ final class ProfileHistoryService {
     func remove(id: UUID) {
         var current = entries
         current.removeAll { $0.id == id }
-        if let data = try? JSONEncoder().encode(current) {
-            UserDefaults.standard.set(data, forKey: key)
-        }
+        try? KeychainService.shared.saveProfileHistory(current)
     }
 
     func clearAll() {
-        UserDefaults.standard.removeObject(forKey: key)
+        KeychainService.shared.deleteProfileHistory()
     }
 }

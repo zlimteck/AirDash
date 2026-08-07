@@ -680,6 +680,69 @@
         }
       }
     },
+    "dashboard.view_recent_profiles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "View All" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Voir tout" } }
+      }
+    },
+    "profiles.search_prompt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Search profiles" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Rechercher un profil" } }
+      }
+    },
+    "profiles.qr_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "QR Code" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "QR Code" } }
+      }
+    },
+    "profiles.import" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Import" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Importer" } }
+      }
+    },
+    "profiles.empty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No Profiles" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun profil" } }
+      }
+    },
+    "profiles.count_limit %lld %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld of %lld profiles saved. Oldest ones are removed automatically." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld profils sur %lld enregistrés. Les plus anciens sont supprimés automatiquement." } }
+      }
+    },
+    "profiles.clear_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear All" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tout supprimer" } }
+      }
+    },
+    "profiles.clear_all_confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove all profiles from history? This cannot be undone." } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Supprimer tous les profils de l'historique ? Cette action est irréversible." } }
+      }
+    },
+    "profiles.remove_confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove this profile from history?" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Supprimer ce profil de l'historique ?" } }
+      }
+    },
     "dashboard.recent_profiles" : {
       "extractionState" : "manual",
       "localizations" : {

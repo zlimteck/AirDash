@@ -58,7 +58,7 @@ struct SettingsView: View {
                     } label: {
                         HStack(spacing: 12) {
                             Image(systemName: "circle.lefthalf.filled")
-                                .font(.system(size: 15, weight: .regular))
+                                .font(.system(size: 20, weight: .regular))
                                 .foregroundStyle(.tint)
                             Text("settings.theme")
                                 .foregroundStyle(.primary)
@@ -83,7 +83,7 @@ struct SettingsView: View {
                     Toggle(isOn: $appLockEnabled) {
                         HStack(spacing: 12) {
                             Image(systemName: "lock.fill")
-                                .font(.system(size: 15, weight: .regular))
+                                .font(.system(size: 20, weight: .regular))
                                 .foregroundStyle(.tint)
                             Text("settings.app_lock")
                                 .foregroundStyle(.primary)
@@ -130,7 +130,7 @@ struct SettingsView: View {
                             Image("github-mark")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 15, height: 15)
+                                .frame(width: 20, height: 20)
                         }
                     }
                     .foregroundStyle(.primary)
@@ -149,7 +149,7 @@ struct SettingsView: View {
                     } label: {
                         HStack(spacing: 12) {
                             Image(systemName: "rectangle.portrait.and.arrow.right")
-                                .font(.system(size: 15, weight: .regular))
+                                .font(.system(size: 20, weight: .regular))
                                 .foregroundStyle(.red)
                             Text("settings.sign_out")
                                 .foregroundStyle(.red)
@@ -215,9 +215,9 @@ private struct SettingsLabelStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
         HStack(spacing: 12) {
             configuration.icon
-                .font(.system(size: 15, weight: .regular))
+                .font(.system(size: 20, weight: .regular))
                 .foregroundStyle(.tint)
-                .frame(width: 20, alignment: .center)
+                .frame(width: 26, alignment: .center)
             configuration.title
                 .foregroundStyle(.primary)
         }

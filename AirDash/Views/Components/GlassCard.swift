@@ -51,7 +51,7 @@ struct LoadBar: View {
 
 struct FlagBadge: View {
     let countryCode: String
-    var size: CGFloat = 36
+    var size: CGFloat = 28
 
     var body: some View {
         Group {

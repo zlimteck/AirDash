@@ -57,7 +57,7 @@ private struct ServerCompareCard: View {
         VStack(spacing: 0) {
             // Header
             HStack(spacing: 10) {
-                FlagBadge(countryCode: server.countryCode, size: 30)
+                FlagBadge(countryCode: server.countryCode, size: 28)
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 5) {
                         Text(server.publicName)
