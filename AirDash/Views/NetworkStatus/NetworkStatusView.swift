@@ -49,7 +49,8 @@ struct NetworkStatusView: View {
                 }
             }
         }
-        .task {
+        .task(id: appState.activeAccountId) {
+            vm.loadPreferences(accountId: appState.activeAccountId ?? "")
             await vm.load()
             await vm.measureLatencies()
             bestServer = vm.computeBestServer()

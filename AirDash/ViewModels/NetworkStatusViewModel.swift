@@ -29,20 +29,38 @@ final class NetworkStatusViewModel: ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var searchText: String = ""
     @Published var selectedContinent: String? = nil
-    @Published var sortOrder: ServerSortOrder {
-        didSet { UserDefaults.standard.set(sortOrder.rawValue, forKey: "serverSortOrder") }
+    @Published var sortOrder: ServerSortOrder = .load {
+        didSet { saveSortOrder() }
     }
-    @Published var favoriteIds: Set<String> {
-        didSet { UserDefaults.standard.set(Array(favoriteIds), forKey: "favoriteServerIds") }
+    @Published var favoriteIds: Set<String> = [] {
+        didSet { saveFavorites() }
     }
     @Published var latencies: [String: Int] = [:]
     @Published var measuredIds: Set<String> = []
 
-    init() {
-        let saved = UserDefaults.standard.string(forKey: "serverSortOrder") ?? ""
+    private var accountId: String = ""
+    private var sortOrderKey: String { "serverSortOrder_\(accountId)" }
+    private var favoriteIdsKey: String { "favoriteServerIds_\(accountId)" }
+
+    /// Loads sort order and favorites scoped to the given account. Call before `load()`
+    /// whenever the active account changes, since preferences are per-account.
+    func loadPreferences(accountId: String) {
+        guard self.accountId != accountId else { return }
+        self.accountId = accountId
+        let saved = UserDefaults.standard.string(forKey: sortOrderKey) ?? ""
         sortOrder = ServerSortOrder(rawValue: saved) ?? .load
-        let savedFavorites = UserDefaults.standard.stringArray(forKey: "favoriteServerIds") ?? []
+        let savedFavorites = UserDefaults.standard.stringArray(forKey: favoriteIdsKey) ?? []
         favoriteIds = Set(savedFavorites)
+    }
+
+    private func saveSortOrder() {
+        guard !accountId.isEmpty else { return }
+        UserDefaults.standard.set(sortOrder.rawValue, forKey: sortOrderKey)
+    }
+
+    private func saveFavorites() {
+        guard !accountId.isEmpty else { return }
+        UserDefaults.standard.set(Array(favoriteIds), forKey: favoriteIdsKey)
     }
 
     var favoriteServers: [AirVPNServer] {

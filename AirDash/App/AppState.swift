@@ -1,6 +1,6 @@
 import SwiftUI
 
-final class AppState: ObservableObject {
+final class AppState: ObservableObject, @unchecked Sendable {
     @Published var isAuthenticated: Bool = false
     @Published var apiKey: String = ""
     @Published var selectedTab: Int = 1
@@ -19,6 +19,21 @@ final class AppState: ObservableObject {
             apiKey = active.apiKey
             activeAccountId = active.id
             isAuthenticated = true
+            refreshLoginIfNeeded(for: active)
+        }
+    }
+
+    /// Migrated (pre-multi-account) accounts have an empty login. Fetch it once
+    /// in the background so Manage Accounts doesn't show a blank "—".
+    private func refreshLoginIfNeeded(for account: Account) {
+        guard account.login.isEmpty else { return }
+        Task {
+            guard let response = try? await AirVPNAPIClient.shared.validateAPIKey(account.apiKey) else { return }
+            await MainActor.run {
+                guard let index = self.accounts.firstIndex(where: { $0.id == account.id }) else { return }
+                self.accounts[index] = Account(id: account.id, apiKey: account.apiKey, login: response.user.login)
+                try? KeychainService.shared.saveAccounts(self.accounts)
+            }
         }
     }
 
@@ -29,6 +44,21 @@ final class AppState: ObservableObject {
         try? KeychainService.shared.saveAccounts([account])
         UserDefaults.standard.set(account.id, forKey: activeAccountKey)
         KeychainService.shared.deleteAPIKey()
+        migrateLegacyNetworkPreferences(to: account.id)
+    }
+
+    /// Sort order and favorites used to be global (single-account era). Scope the
+    /// existing values to the migrated account so they aren't silently lost.
+    private func migrateLegacyNetworkPreferences(to accountId: String) {
+        let defaults = UserDefaults.standard
+        if let sortOrder = defaults.string(forKey: "serverSortOrder") {
+            defaults.set(sortOrder, forKey: "serverSortOrder_\(accountId)")
+            defaults.removeObject(forKey: "serverSortOrder")
+        }
+        if let favorites = defaults.stringArray(forKey: "favoriteServerIds") {
+            defaults.set(favorites, forKey: "favoriteServerIds_\(accountId)")
+            defaults.removeObject(forKey: "favoriteServerIds")
+        }
     }
 
     func signIn(with key: String, login: String) {
@@ -68,6 +98,7 @@ final class AppState: ObservableObject {
         activeAccountId = account.id
         isAuthenticated = true
         UserDefaults.standard.set(account.id, forKey: activeAccountKey)
+        refreshLoginIfNeeded(for: account)
     }
 
     func signOut() {

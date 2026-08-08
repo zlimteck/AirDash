@@ -1,17 +1,33 @@
 import SwiftUI
 
+enum ProfileProtocolFilter: String, CaseIterable {
+    case all, wireguard, openvpn
+
+    var label: LocalizedStringKey {
+        switch self {
+        case .all:       "profiles.filter.all"
+        case .wireguard: "profiles.filter.wireguard"
+        case .openvpn:   "profiles.filter.openvpn"
+        }
+    }
+}
+
 struct AllProfilesView: View {
     @State private var entries: [ProfileHistoryEntry] = ProfileHistoryService.shared.entries
     @State private var searchText = ""
+    @State private var protocolFilter: ProfileProtocolFilter = .all
     @State private var showQRCode = false
     @State private var qrContent = ""
     @State private var entryPendingDeletion: ProfileHistoryEntry? = nil
     @State private var showClearAllConfirm = false
 
     private var filteredEntries: [ProfileHistoryEntry] {
-        let sorted = entries.sorted { $0.date > $1.date }
-        guard !searchText.isEmpty else { return sorted }
-        return sorted.filter {
+        var result = entries.sorted { $0.date > $1.date }
+        if protocolFilter != .all {
+            result = result.filter { $0.vpnProtocol == protocolFilter.rawValue }
+        }
+        guard !searchText.isEmpty else { return result }
+        return result.filter {
             $0.serverName.localizedCaseInsensitiveContains(searchText) ||
             (VPNProtocol(rawValue: $0.vpnProtocol)?.displayName ?? $0.vpnProtocol).localizedCaseInsensitiveContains(searchText)
         }
@@ -81,6 +97,24 @@ struct AllProfilesView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             if !entries.isEmpty {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        ForEach(ProfileProtocolFilter.allCases, id: \.self) { filter in
+                            Button {
+                                protocolFilter = filter
+                            } label: {
+                                if protocolFilter == filter {
+                                    Label(filter.label, systemImage: "checkmark")
+                                } else {
+                                    Text(filter.label)
+                                }
+                            }
+                        }
+                    } label: {
+                        Label("profiles.filter", systemImage: "line.3.horizontal.decrease.circle")
+                            .foregroundStyle(protocolFilter == .all ? AnyShapeStyle(.primary) : AnyShapeStyle(.tint))
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
                         Button(role: .destructive) {

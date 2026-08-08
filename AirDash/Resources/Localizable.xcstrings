@@ -708,6 +708,34 @@
         "fr" : { "stringUnit" : { "state" : "translated", "value" : "Importer" } }
       }
     },
+    "profiles.filter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Filter" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Filtrer" } }
+      }
+    },
+    "profiles.filter.all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "All" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tous" } }
+      }
+    },
+    "profiles.filter.wireguard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "WireGuard" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "WireGuard" } }
+      }
+    },
+    "profiles.filter.openvpn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "OpenVPN" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "OpenVPN" } }
+      }
+    },
     "profiles.empty" : {
       "extractionState" : "manual",
       "localizations" : {
