@@ -56,6 +56,7 @@ struct NetworkStatusView: View {
             bestServer = vm.computeBestServer()
             writeSharedBestServer(bestServer)
             vm.writeSharedFavoriteServers()
+            SpotlightService.indexFavoriteServers(vm.favoriteServers)
             if let name = UserDefaults.standard.string(forKey: "pendingOpenServer") {
                 UserDefaults.standard.removeObject(forKey: "pendingOpenServer")
                 navigateToServer(named: name)
@@ -77,6 +78,10 @@ struct NetworkStatusView: View {
         }
         .onChange(of: vm.selectedContinent) {
             bestServer = vm.computeBestServer(for: vm.selectedContinent)
+        }
+        .onChange(of: vm.favoriteIds) {
+            vm.writeSharedFavoriteServers()
+            SpotlightService.indexFavoriteServers(vm.favoriteServers)
         }
         .sheet(isPresented: $showComparison) {
             ServerComparisonView(
@@ -336,6 +341,7 @@ struct NetworkStatusView: View {
             bestServer = vm.computeBestServer()
             writeSharedBestServer(bestServer)
             vm.writeSharedFavoriteServers()
+            SpotlightService.indexFavoriteServers(vm.favoriteServers)
         }
         .navigationDestination(for: AirVPNServer.self) { server in
             ServerDetailView(server: server)

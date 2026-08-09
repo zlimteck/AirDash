@@ -22,6 +22,7 @@ final class ProfileHistoryService {
 
     private init() {
         migrateFromUserDefaultsIfNeeded()
+        SpotlightService.indexRecentProfiles(entries)
     }
 
     private func migrateFromUserDefaultsIfNeeded() {
@@ -55,6 +56,7 @@ final class ProfileHistoryService {
         current.insert(entry, at: 0)
         if current.count > Self.maxEntries { current = Array(current.prefix(Self.maxEntries)) }
         try? KeychainService.shared.saveProfileHistory(current)
+        SpotlightService.indexRecentProfiles(current)
     }
 
     func entriesForServer(_ serverName: String) -> [ProfileHistoryEntry] {
@@ -65,9 +67,11 @@ final class ProfileHistoryService {
         var current = entries
         current.removeAll { $0.id == id }
         try? KeychainService.shared.saveProfileHistory(current)
+        SpotlightService.indexRecentProfiles(current)
     }
 
     func clearAll() {
         KeychainService.shared.deleteProfileHistory()
+        SpotlightService.indexRecentProfiles([])
     }
 }
