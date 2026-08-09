@@ -85,6 +85,9 @@ targets:
     deploymentTarget: "26.0"
     sources:
       - path: AirDashWidget
+    dependencies:
+      - package: FlagKit
+        product: FlagKit
     entitlements:
       path: AirDashWidget/AirDashWidget.entitlements
       properties:

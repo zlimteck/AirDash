@@ -1,6 +1,7 @@
 import AppIntents
 import SwiftUI
 import WidgetKit
+import FlagKit
 
 // MARK: - Shared models (mirror main app structs)
 
@@ -278,8 +279,7 @@ struct LargeWidgetView: View {
             if let server = watchedServer {
                 Divider().padding(.vertical, 8)
                 HStack(spacing: 10) {
-                    Text(flagEmoji(server.countryCode))
-                        .font(.title3)
+                    WidgetFlagBadge(countryCode: server.countryCode, size: 24)
                     VStack(alignment: .leading, spacing: 2) {
                         HStack {
                             Text(server.name)
@@ -359,7 +359,7 @@ struct SessionRowWidget: View {
     let session: WidgetData.WidgetSession
     var body: some View {
         HStack(spacing: 8) {
-            Text(flagEmoji(session.serverCountryCode)).font(.body)
+            WidgetFlagBadge(countryCode: session.serverCountryCode, size: 20)
             VStack(alignment: .leading, spacing: 0) {
                 Text(session.deviceName ?? "—").font(.caption.bold()).lineLimit(1)
                 Text(session.serverName ?? "—").font(.caption2).foregroundStyle(.secondary).lineLimit(1)
@@ -368,10 +368,25 @@ struct SessionRowWidget: View {
     }
 }
 
-private func flagEmoji(_ code: String?) -> String {
-    guard let code else { return "🏳️" }
-    let base: UInt32 = 127397
-    return code.uppercased().unicodeScalars.compactMap {
-        Unicode.Scalar($0.value + base).map(String.init)
-    }.joined()
+private struct WidgetFlagBadge: View {
+    let countryCode: String?
+    var size: CGFloat = 28
+
+    var body: some View {
+        Group {
+            if let countryCode, let flag = Flag(countryCode: countryCode.uppercased()) {
+                Image(uiImage: flag.image(style: .roundedRect))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            } else {
+                Color.secondary.opacity(0.15)
+            }
+        }
+        .frame(width: size, height: size * 0.72)
+        .clipShape(RoundedRectangle(cornerRadius: size * 0.14, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: size * 0.14, style: .continuous)
+                .strokeBorder(.primary.opacity(0.1), lineWidth: 0.5)
+        )
+    }
 }
