@@ -25,11 +25,12 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 
 ## Features
 
-- **Network** — full server list with load, users, health, ping latency, sort (load / name / ping), continent filter, search and favorites
+- **Network** — full server list with load, users, health, ping latency, sort (load / name / ping), continent filter, search and favorites (scoped per account)
 - **Server comparison** — long-press any server to add it to a comparison (up to 3); tap the toolbar button to view them side by side
 - **Dashboard** — account info (current IP, VPN status, expiration, credits, sessions, member since); swipe left on a session to disconnect
 - **Server detail** — WireGuard or OpenVPN profile generation, direct import into the system VPN app, share and QR code (WireGuard) in a `···` menu; recent profiles per server with one-tap reimport
-- **Profile history** — recently used server profiles shown in Dashboard and in each server detail; supports one-tap reimport by protocol
+- **Recent profiles page** — dedicated list of all generated profiles with search, sort, filter by protocol, quick import, QR code and delete; profile history is stored securely in the Keychain
+- **Spotlight search** — favorite servers and recent profiles are indexed and searchable from the system search; tapping a result opens the app directly on the right screen
 - **Biometric lock** — Face ID / Touch ID protection, toggleable in Settings
 - **App icon** — 8 variants: Auto, Classic, Light, Purple, Green, Red, Minimal, Minimal Dark
 - **Multiple accounts** — add, switch and remove AirVPN accounts from Settings; the active account drives the whole app, including the widget
@@ -37,7 +38,7 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 - **DNS blocklists** — browse AirVPN's available DNS blocklists with a direct link to manage them on airvpn.org
 - **Settings** — account switching, device management, DNS blocklists, light/dark/system theme, app icon picker, changelog, credits
 - **Notifications** — subscription expiration alerts 7 days and 1 day in advance (delivered by the OS even when the app is closed)
-- **Siri Shortcuts** — VPN Status, My IP Address, Open Server (navigates directly to a specific server)
+- **Siri Shortcuts** — VPN Status, My IP Address, Open Server, Best Server, Generate Profile, Recent Profiles, Show Profile QR Code
 - **Widget** — current IP, VPN status and active sessions on the home screen; configurable with a favorite server picker showing load, users and latency (Small, Medium and Large sizes)
 - **Quick Actions** — long-press the app icon to jump directly to Dashboard or Network
 
@@ -51,7 +52,7 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 | UI | SwiftUI + iOS 26 Liquid Glass |
 | Architecture | MVVM (`@MainActor` + `ObservableObject`) |
 | Networking | `actor AirVPNAPIClient` with TTL cache |
-| Security | API key stored in Keychain |
+| Security | API key and profile history stored in Keychain |
 | Localisation | String Catalog (FR / EN) |
 | Build | XcodeGen (`project.yml`) |
 | Dependencies | [FlagKit](https://github.com/madebybowtie/FlagKit) |
@@ -130,11 +131,11 @@ AirDash/
 │   ├── Intents/              # AppIntents (Siri Shortcuts), ServerEntity
 │   ├── Models/               # AirVPNModels, Account, AppError
 │   ├── Networking/           # AirVPNAPIClient (actor), CacheService
-│   ├── Services/             # KeychainService, VPNProfileImporter, SharedDataService, PingService, NotificationService, AppLockService, ProfileHistoryService, RelativeTimeFormatter
+│   ├── Services/             # KeychainService, VPNProfileImporter, SharedDataService, PingService, NotificationService, AppLockService, ProfileHistoryService, RelativeTimeFormatter, SpotlightService
 │   ├── ViewModels/           # DashboardViewModel, NetworkStatusViewModel, …
 │   ├── Views/
 │   │   ├── Components/       # FlagBadge, LoadBar, ErrorBanner, LoadingOverlay, …
-│   │   ├── Dashboard/        # DashboardView, SessionRowView
+│   │   ├── Dashboard/        # DashboardView, SessionRowView, AllProfilesView
 │   │   ├── NetworkStatus/    # NetworkStatusView, ServerRowView, ServerComparisonView
 │   │   ├── Onboarding/       # OnboardingView
 │   │   ├── ServerDetail/     # ServerDetailView, QRCodeView
