@@ -318,6 +318,55 @@
         }
       }
     },
+    "changelog.1_0_6.recent_profiles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recent profiles page: search, sort and filter by protocol, with quick import, QR code and delete" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Page Profils récents : recherche, tri et filtre par protocole, avec import rapide, QR code et suppression" } }
+      }
+    },
+    "changelog.1_0_6.spotlight" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Spotlight search: favorite servers and recent profiles are now searchable from the system search" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Recherche Spotlight : les serveurs favoris et les profils récents sont désormais accessibles depuis la recherche système" } }
+      }
+    },
+    "changelog.1_0_6.siri_shortcuts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "4 new Siri Shortcuts: Best Server, Generate Profile, Recent Profiles, Show Profile QR Code" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "4 nouveaux raccourcis Siri : Meilleur serveur, Générer un profil, Profils récents, Afficher le QR code du profil" } }
+      }
+    },
+    "changelog.1_0_6.favorite_badge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Favorite badge shown directly in the server list, even while searching or filtering" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Badge favori affiché directement dans la liste des serveurs, même en recherche ou en filtrage" } }
+      }
+    },
+    "changelog.1_0_6.per_account_prefs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Favorites and sort order are now scoped per account" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Favoris et ordre de tri sont désormais propres à chaque compte" } }
+      }
+    },
+    "changelog.1_0_6.security" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profile history, including WireGuard keys, is now stored securely in the Keychain instead of UserDefaults" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "L'historique des profils, y compris les clés WireGuard, est désormais stocké de manière sécurisée dans le Trousseau au lieu d'UserDefaults" } }
+      }
+    },
+    "changelog.1_0_6.widget_flags" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Widget flags now use the same flag images as the rest of the app" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Les drapeaux du widget utilisent désormais les mêmes images que le reste de l'app" } }
+      }
+    },
     "changelog.1_0_5.multi_account" : {
       "extractionState" : "manual",
       "localizations" : {
