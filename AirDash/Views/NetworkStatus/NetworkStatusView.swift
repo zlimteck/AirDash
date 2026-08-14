@@ -6,6 +6,7 @@ struct NetworkStatusView: View {
     @State private var path = NavigationPath()
     @State private var pendingServerName: String? = nil
     @State private var bestServer: AirVPNServer? = nil
+    @State private var cachedBestServer: SharedServerData? = SharedDataService.readBestServer()
     @State private var compareServers: [AirVPNServer] = []
     @State private var showComparison = false
 
@@ -257,6 +258,19 @@ struct NetworkStatusView: View {
                 } header: {
                     Text("network.best_server")
                 }
+                .transition(.opacity)
+            } else if let cached = cachedBestServer, vm.searchText.isEmpty {
+                Section {
+                    CachedBestServerRow(server: cached)
+                        .listRowBackground(Color.yellow.opacity(0.08))
+                } header: {
+                    HStack(spacing: 6) {
+                        Text("network.best_server")
+                        ProgressView()
+                            .scaleEffect(0.6)
+                    }
+                }
+                .transition(.opacity)
             }
 
             // Favorites section
@@ -332,6 +346,7 @@ struct NetworkStatusView: View {
                 Text(String(format: NSLocalizedString("network.servers %lld", comment: ""), vm.mainServers.count))
             }
         }
+        .animation(.snappy, value: bestServer)
         .listStyle(.insetGrouped)
         .scrollContentBackground(.hidden)
         .background(Color(.systemGroupedBackground))

@@ -83,3 +83,38 @@ struct ServerRowView: View {
         }
     }
 }
+
+/// Stale-while-revalidate placeholder shown instead of the Best Server card while
+/// the fresh ping sweep is still running, using the value cached from the previous session.
+struct CachedBestServerRow: View {
+    let server: SharedServerData
+
+    var body: some View {
+        HStack(spacing: 12) {
+            FlagBadge(countryCode: server.countryCode, size: 28)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(server.name)
+                    .font(.headline)
+                Text(server.location)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            Spacer()
+
+            VStack(alignment: .trailing, spacing: 4) {
+                Text("\(server.load)%")
+                    .font(.subheadline.monospacedDigit())
+                    .foregroundStyle(.secondary)
+                if let ms = server.latencyMs {
+                    Text("\(ms) ms")
+                        .font(.caption2.monospacedDigit())
+                        .foregroundStyle(.tertiary)
+                }
+            }
+        }
+        .padding(.vertical, 4)
+        .opacity(0.6)
+    }
+}
