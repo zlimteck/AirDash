@@ -4,6 +4,7 @@ struct DashboardView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var vm = DashboardViewModel()
     @State private var showAllProfiles = false
+    @State private var selectedSessionServer: AirVPNServer? = nil
 
     var body: some View {
         NavigationStack {
@@ -19,6 +20,9 @@ struct DashboardView: View {
             .navigationBarTitleDisplayMode(.large)
             .navigationDestination(isPresented: $showAllProfiles) {
                 AllProfilesView()
+            }
+            .navigationDestination(item: $selectedSessionServer) { server in
+                ServerDetailView(server: server)
             }
         }
         .task(id: appState.apiKey) {
@@ -36,6 +40,14 @@ struct DashboardView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .showRecentProfiles).receive(on: DispatchQueue.main)) { _ in
             showAllProfiles = true
+        }
+    }
+
+    private func openServerDetail(for session: AirVPNSession) async {
+        guard let name = session.serverName else { return }
+        guard let status = try? await AirVPNAPIClient.shared.getStatus() else { return }
+        selectedSessionServer = status.servers.first {
+            $0.publicName.lowercased() == name.lowercased()
         }
     }
 
@@ -80,6 +92,10 @@ struct DashboardView: View {
                         ForEach(vm.activeSessions) { session in
                             SessionRowView(session: session)
                                 .padding(.vertical, 4)
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    Task { await openServerDetail(for: session) }
+                                }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                     Button(role: .destructive) {
                                         Task { await vm.disconnectSession(session, apiKey: appState.apiKey) }
