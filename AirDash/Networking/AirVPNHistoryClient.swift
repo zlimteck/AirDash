@@ -4,7 +4,7 @@ actor AirVPNHistoryClient {
     static let shared = AirVPNHistoryClient()
     private init() {}
 
-    private let baseURL = URL(string: "https://airvpn-history-worker.zlimteck.workers.dev")!
+    private let baseURL = URL(string: "https://airvpn-api.zmtk.fr")!
     private let historyCache = KeyedTtlCache<String, ServerHistoryResponse>(ttl: 120)
     private let rankingCache = KeyedTtlCache<String, ServerRankingResponse>(ttl: 300)
 
