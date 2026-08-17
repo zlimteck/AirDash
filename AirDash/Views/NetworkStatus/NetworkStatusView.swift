@@ -9,6 +9,7 @@ struct NetworkStatusView: View {
     @State private var cachedBestServer: SharedServerData? = SharedDataService.readBestServer()
     @State private var compareServers: [AirVPNServer] = []
     @State private var showComparison = false
+    @State private var showTrends = false
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -32,6 +33,11 @@ struct NetworkStatusView: View {
                                 systemImage: "square.split.2x1"
                             )
                         }
+                    }
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { showTrends = true } label: {
+                        Label("network.trends", systemImage: "chart.line.uptrend.xyaxis")
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -360,6 +366,9 @@ struct NetworkStatusView: View {
         }
         .navigationDestination(for: AirVPNServer.self) { server in
             ServerDetailView(server: server)
+        }
+        .navigationDestination(isPresented: $showTrends) {
+            TrendsView()
         }
     }
 }

@@ -57,6 +57,9 @@ struct ServerDetailView: View {
                 Label("detail.ip_addresses", systemImage: "network")
             }
 
+            // Load & users history
+            ServerHistoryChartView(serverName: server.publicName)
+
             // Last profile per protocol for this server
             let history = ProfileHistoryService.shared.entriesForServer(server.publicName)
             if !history.isEmpty, vm.generatedProfile == nil {

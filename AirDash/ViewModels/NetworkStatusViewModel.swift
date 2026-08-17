@@ -184,6 +184,12 @@ final class NetworkStatusViewModel: ObservableObject {
         SharedDataService.writeFavoriteServers(servers)
     }
 
+    /// Weight applied to load in the Best Server score. Quadratic on purpose: a
+    /// server barely used (say 5%) should lose almost nothing, while a heavily
+    /// loaded one (70%+) should get penalized hard enough that a modestly better
+    /// ping can no longer compensate for it.
+    private static let bestServerLoadWeight: Double = 3.0
+
     func computeBestServer(for continent: String? = nil) -> AirVPNServer? {
         guard let servers = statusResponse?.servers else { return nil }
         let pool = continent == nil ? servers : servers.filter { $0.continent == continent }
@@ -191,7 +197,9 @@ final class NetworkStatusViewModel: ObservableObject {
             .filter { $0.health == .ok }
             .compactMap { server -> (AirVPNServer, Double)? in
                 guard let ping = latencies[server.id] else { return nil }
-                let score = Double(ping) * (1.0 + server.currentLoad / 100.0)
+                let loadFraction = server.currentLoad / 100.0
+                let loadPenalty = 1.0 + Self.bestServerLoadWeight * loadFraction * loadFraction
+                let score = Double(ping) * loadPenalty
                 return (server, score)
             }
             .min(by: { $0.1 < $1.1 })
