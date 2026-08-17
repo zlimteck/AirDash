@@ -26,8 +26,10 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 ## Features
 
 - **Network** — full server list with load, users, health, ping latency, sort (load / name / ping), continent filter, search and favorites (scoped per account)
+- **Best Server** — automatically picked from live ping and load, weighted so a congested server can't win purely on a low ping; instantly shows the previous session's result while the fresh ping sweep is running
+- **Server history & trends** — load and connected-users charts per server over 1h/24h/7d/30d, a reliability breakdown (healthy vs warning/error), and a Trends screen ranking servers by average load over a rolling window — all powered by a companion history service, not the official AirVPN API
 - **Server comparison** — long-press any server to add it to a comparison (up to 3); tap the toolbar button to view them side by side
-- **Dashboard** — account info (current IP, VPN status, expiration, credits, sessions, member since); swipe left on a session to disconnect
+- **Dashboard** — account info (current IP, VPN status, expiration, credits, sessions, member since); swipe left on a session to disconnect, tap a session to jump to its server detail
 - **Server detail** — WireGuard or OpenVPN profile generation, direct import into the system VPN app, share and QR code (WireGuard) in a `···` menu; recent profiles per server with one-tap reimport
 - **Recent profiles page** — dedicated list of all generated profiles with search, sort, filter by protocol, quick import, QR code and delete; profile history is stored securely in the Keychain
 - **Spotlight search** — favorite servers and recent profiles are indexed and searchable from the system search; tapping a result opens the app directly on the right screen
@@ -51,7 +53,8 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 | Language | Swift 6 |
 | UI | SwiftUI + iOS 26 Liquid Glass |
 | Architecture | MVVM (`@MainActor` + `ObservableObject`) |
-| Networking | `actor AirVPNAPIClient` with TTL cache |
+| Networking | `actor AirVPNAPIClient` (AirVPN) + `actor AirVPNHistoryClient` (history/trends), both with TTL caches |
+| Charts | Swift Charts (server load, connected users) |
 | Security | API key and profile history stored in Keychain |
 | Localisation | String Catalog (FR / EN) |
 | Build | XcodeGen (`project.yml`) |
@@ -129,16 +132,16 @@ AirDash/
 ├── AirDash/
 │   ├── App/                  # Entry point, AppState, AppDelegate, SceneDelegate, MainTabView
 │   ├── Intents/              # AppIntents (Siri Shortcuts), ServerEntity
-│   ├── Models/               # AirVPNModels, Account, AppError
-│   ├── Networking/           # AirVPNAPIClient (actor), CacheService
+│   ├── Models/               # AirVPNModels, AirVPNHistoryModels, Account, AppError
+│   ├── Networking/           # AirVPNAPIClient (actor), AirVPNHistoryClient (actor), CacheService
 │   ├── Services/             # KeychainService, VPNProfileImporter, SharedDataService, PingService, NotificationService, AppLockService, ProfileHistoryService, RelativeTimeFormatter, SpotlightService
 │   ├── ViewModels/           # DashboardViewModel, NetworkStatusViewModel, …
 │   ├── Views/
 │   │   ├── Components/       # FlagBadge, LoadBar, ErrorBanner, LoadingOverlay, …
 │   │   ├── Dashboard/        # DashboardView, SessionRowView, AllProfilesView
-│   │   ├── NetworkStatus/    # NetworkStatusView, ServerRowView, ServerComparisonView
+│   │   ├── NetworkStatus/    # NetworkStatusView, ServerRowView, ServerComparisonView, TrendsView
 │   │   ├── Onboarding/       # OnboardingView
-│   │   ├── ServerDetail/     # ServerDetailView, QRCodeView
+│   │   ├── ServerDetail/     # ServerDetailView, ServerHistoryChartView, QRCodeView
 │   │   └── Settings/         # SettingsView, ManageAccountsView, ManageDevicesView, DNSListsView, ChangelogView, CreditsView, AppIconPickerView
 │   └── Resources/            # Localizable.xcstrings, Assets.xcassets
 └── AirDashWidget/            # Widget Extension (WidgetKit)
@@ -153,7 +156,7 @@ The app and the widget communicate via `UserDefaults(suiteName: "group.com.airda
 
 ## AirVPN API
 
-The app exclusively uses the public AirVPN API:
+The app's core features use the public AirVPN API with your personal API key:
 
 | Endpoint | Usage |
 |---|---|
@@ -163,6 +166,12 @@ The app exclusively uses the public AirVPN API:
 | `POST /api/devices/` | Device management (list, add, renew, modify, delete) |
 | `POST /api/dns_lists/` | Available DNS blocklists |
 | `GET /api/generator/` | WireGuard / OpenVPN profile generation |
+
+---
+
+## History & Trends backend
+
+Server history, reliability, and the Trends ranking are powered by a separate, self-hosted service (a Cloudflare Worker backed by D1) that polls AirVPN's public server status on a schedule and stores it over time — something the AirVPN API itself doesn't offer. It's read-only, requires no authentication, and never receives your API key or any personal data: it only ever sees the same public server metrics (load, users, health) that are already visible to anyone on the Network tab.
 
 ---
 
