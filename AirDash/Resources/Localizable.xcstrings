@@ -318,6 +318,48 @@
         }
       }
     },
+    "changelog.1_0_7.history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Server history charts: load and connected users over 1h/24h/7d/30d, powered by a new history backend" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Graphiques d'historique serveur : charge et utilisateurs connectés sur 1h/24h/7j/30j, via un nouveau backend d'historique" } }
+      }
+    },
+    "changelog.1_0_7.reliability" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reliability breakdown on each server: percentage of time healthy vs warning/error over the selected period" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Indicateur de fiabilité par serveur : pourcentage de temps sain vs avertissement/erreur sur la période sélectionnée" } }
+      }
+    },
+    "changelog.1_0_7.trends" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Trends screen in Network: servers ranked by average load over a rolling window" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Nouvel écran Tendances dans Network : classement des serveurs par charge moyenne sur une fenêtre glissante" } }
+      }
+    },
+    "changelog.1_0_7.best_server_scoring" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best Server picks more sensibly: load now weighs heavily in the score instead of being nearly overridden by ping" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Meilleur serveur plus pertinent : la charge pèse désormais fortement dans le calcul au lieu d'être presque écrasée par le ping" } }
+      }
+    },
+    "changelog.1_0_7.best_server_cache" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best Server card shows the previous session's result instantly instead of appearing abruptly after the ping sweep completes" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "La carte Meilleur serveur affiche instantanément le résultat de la session précédente au lieu d'apparaître brutalement après le sondage des pings" } }
+      }
+    },
+    "changelog.1_0_7.session_tap" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap an active session on Dashboard to open its server detail directly" } },
+        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Toucher une session active dans Dashboard ouvre directement le détail du serveur" } }
+      }
+    },
     "changelog.1_0_6.recent_profiles" : {
       "extractionState" : "manual",
       "localizations" : {
