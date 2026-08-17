@@ -20,6 +20,16 @@
         }
       }
     },
+    "%@ %@%%" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@%%"
+          }
+        }
+      }
+    },
     "%@ ms" : {
 
     },
@@ -28,91 +38,6 @@
     },
     "AirDash" : {
 
-    },
-    "copy" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Copy"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Copier"
-          }
-        }
-      }
-    },
-    "done" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Done"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fermer"
-          }
-        }
-      }
-    },
-    "qr.error" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unable to generate QR code"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Impossible de générer le QR code"
-          }
-        }
-      }
-    },
-    "qr.instructions" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scan this QR code with the WireGuard app on another device to import the configuration."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Scannez ce QR code avec l'app WireGuard sur un autre appareil pour importer la configuration."
-          }
-        }
-      }
-    },
-    "qr.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WireGuard QR Code"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "QR Code WireGuard"
-          }
-        }
-      }
     },
     "cancel" : {
       "extractionState" : "manual",
@@ -127,6 +52,754 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Annuler"
+          }
+        }
+      }
+    },
+    "changelog.1_0_0.initial" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Initial release"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version initiale"
+          }
+        }
+      }
+    },
+    "changelog.1_0_1.favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites: long press a server to pin it"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoris: appui long pour épingler un serveur"
+          }
+        }
+      }
+    },
+    "changelog.1_0_1.ping" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server ping: latency displayed for each server"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ping serveurs: latence affichée pour chaque serveur"
+          }
+        }
+      }
+    },
+    "changelog.1_0_1.quick_actions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Actions: long press the app icon to jump to a tab"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick Actions: appui long sur l'icône pour accéder à un onglet"
+          }
+        }
+      }
+    },
+    "changelog.1_0_1.sort_persistent" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort order is now remembered between sessions"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'ordre de tri est maintenant mémorisé entre les sessions"
+          }
+        }
+      }
+    },
+    "changelog.1_0_1.sort_ping" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New sort option: Ping (low to high)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau tri : Ping (croissant)"
+          }
+        }
+      }
+    },
+    "changelog.1_0_2.changelog" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changelog section in Settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Section Nouveautés dans les Réglages"
+          }
+        }
+      }
+    },
+    "changelog.1_0_2.credits" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Credits section in Settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Section Crédits dans les Réglages"
+          }
+        }
+      }
+    },
+    "changelog.1_0_2.ipv6" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IPv6 badge on servers that support it"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Badge IPv6 sur les serveurs compatibles"
+          }
+        }
+      }
+    },
+    "changelog.1_0_2.notifications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications 7 and 1 day before subscription expiry"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notifications 7j et 1j avant l'expiration de l'abonnement"
+          }
+        }
+      }
+    },
+    "changelog.1_0_2.ping_fallback" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Improved ping reliability with IP fallback"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ping plus fiable avec IP de secours"
+          }
+        }
+      }
+    },
+    "changelog.1_0_2.shortcuts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri Shortcuts: VPN Status, My IP, Open Server"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Raccourcis Siri: Statut VPN, Mon IP, Ouvrir un serveur"
+          }
+        }
+      }
+    },
+    "changelog.1_0_3.auto_refresh" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auto-refresh every 30s when active sessions are running"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Actualisation automatique toutes les 30s si sessions actives"
+          }
+        }
+      }
+    },
+    "changelog.1_0_3.dashboard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dashboard: date format dd/MM/yyyy, duration in days, disconnect button"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tableau de bord : date en jj/MM/aaaa, durée en jours, bouton déconnecter"
+          }
+        }
+      }
+    },
+    "changelog.1_0_3.ip_addresses" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server detail: IPv4 and IPv6 address display"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page serveur : affichage des adresses IPv4 et IPv6"
+          }
+        }
+      }
+    },
+    "changelog.1_0_3.network" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network status: best server updates with continent filter, centered summary cards"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "État réseau : meilleur serveur selon le filtre continent, cards résumé centrées"
+          }
+        }
+      }
+    },
+    "changelog.1_0_3.renewal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings: subscription renewal link"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paramètres : lien de renouvellement de l'abonnement"
+          }
+        }
+      }
+    },
+    "changelog.1_0_3.server_detail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server detail and Dashboard: native iOS interface redesign"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page serveur et Tableau de bord : refonte interface native iOS"
+          }
+        }
+      }
+    },
+    "changelog.1_0_3.vpn_import" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN import: fixed OpenVPN App Store redirect when app is missing"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import VPN : correction redirection App Store OpenVPN si absent"
+          }
+        }
+      }
+    },
+    "changelog.1_0_3.widget" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurable widget: favorite server picker and large size"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widget configurable : sélecteur de serveur favori et grande taille"
+          }
+        }
+      }
+    },
+    "changelog.1_0_4.biometric_lock" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biometric lock: Face ID / Touch ID protection in Settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verrouillage biométrique : protection Face ID / Touch ID dans les Réglages"
+          }
+        }
+      }
+    },
+    "changelog.1_0_4.comparison" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server comparison: compare up to 3 servers side by side (long press)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparaison de serveurs : jusqu'à 3 serveurs côte à côte (appui long)"
+          }
+        }
+      }
+    },
+    "changelog.1_0_4.icon_picker" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App icon picker: 8 variants (Auto, Classic, Light, Purple, Green, Red, Minimal, Minimal Dark)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Picker d'icône : 8 variantes (Auto, Classic, Light, Violet, Vert, Rouge, Minimal, Minimal Dark)"
+          }
+        }
+      }
+    },
+    "changelog.1_0_4.post_generation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share and QR Code moved to a dedicated menu after profile generation"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partage et QR Code déplacés dans un menu dédié après la génération de profil"
+          }
+        }
+      }
+    },
+    "changelog.1_0_4.profile_history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile history: last generated profiles per server and in Dashboard"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historique des profils : derniers profils générés par serveur et dans le Dashboard"
+          }
+        }
+      }
+    },
+    "changelog.1_0_4.qr_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR code for WireGuard profiles"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR code pour les profils WireGuard"
+          }
+        }
+      }
+    },
+    "changelog.1_0_4.swipe_disconnect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe to disconnect an active session"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Swipe pour déconnecter une session active"
+          }
+        }
+      }
+    },
+    "changelog.1_0_5.devices" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Device management: add, rename, renew keys and remove devices from Settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestion des appareils : ajouter, renommer, renouveler les clés et supprimer des appareils dans les Réglages"
+          }
+        }
+      }
+    },
+    "changelog.1_0_5.dns_lists" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DNS blocklists: browse available AirVPN DNS lists in Settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listes DNS : parcourir les listes DNS AirVPN disponibles dans les Réglages"
+          }
+        }
+      }
+    },
+    "changelog.1_0_5.launch_screen" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Custom launch screen with app icon and name"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Écran de lancement personnalisé avec icône et nom de l'app"
+          }
+        }
+      }
+    },
+    "changelog.1_0_5.multi_account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Multiple accounts: add, switch and remove AirVPN accounts from Settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comptes multiples : ajouter, basculer et supprimer des comptes AirVPN dans les Réglages"
+          }
+        }
+      }
+    },
+    "changelog.1_0_6.favorite_badge" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorite badge shown directly in the server list, even while searching or filtering"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Badge favori affiché directement dans la liste des serveurs, même en recherche ou en filtrage"
+          }
+        }
+      }
+    },
+    "changelog.1_0_6.per_account_prefs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favorites and sort order are now scoped per account"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Favoris et ordre de tri sont désormais propres à chaque compte"
+          }
+        }
+      }
+    },
+    "changelog.1_0_6.recent_profiles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recent profiles page: search, sort and filter by protocol, with quick import, QR code and delete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page Profils récents : recherche, tri et filtre par protocole, avec import rapide, QR code et suppression"
+          }
+        }
+      }
+    },
+    "changelog.1_0_6.security" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile history, including WireGuard keys, is now stored securely in the Keychain instead of UserDefaults"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'historique des profils, y compris les clés WireGuard, est désormais stocké de manière sécurisée dans le Trousseau au lieu d'UserDefaults"
+          }
+        }
+      }
+    },
+    "changelog.1_0_6.siri_shortcuts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 new Siri Shortcuts: Best Server, Generate Profile, Recent Profiles, Show Profile QR Code"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 nouveaux raccourcis Siri : Meilleur serveur, Générer un profil, Profils récents, Afficher le QR code du profil"
+          }
+        }
+      }
+    },
+    "changelog.1_0_6.spotlight" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spotlight search: favorite servers and recent profiles are now searchable from the system search"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recherche Spotlight : les serveurs favoris et les profils récents sont désormais accessibles depuis la recherche système"
+          }
+        }
+      }
+    },
+    "changelog.1_0_6.widget_flags" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widget flags now use the same flag images as the rest of the app"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les drapeaux du widget utilisent désormais les mêmes images que le reste de l'app"
+          }
+        }
+      }
+    },
+    "changelog.1_0_7.best_server_cache" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best Server card shows the previous session's result instantly instead of appearing abruptly after the ping sweep completes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La carte Meilleur serveur affiche instantanément le résultat de la session précédente au lieu d'apparaître brutalement après le sondage des pings"
+          }
+        }
+      }
+    },
+    "changelog.1_0_7.best_server_scoring" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best Server picks more sensibly: load now weighs heavily in the score instead of being nearly overridden by ping"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meilleur serveur plus pertinent : la charge pèse désormais fortement dans le calcul au lieu d'être presque écrasée par le ping"
+          }
+        }
+      }
+    },
+    "changelog.1_0_7.history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server history charts: load and connected users over 1h/24h/7d/30d, powered by a new history backend"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Graphiques d'historique serveur : charge et utilisateurs connectés sur 1h/24h/7j/30j, via un nouveau backend d'historique"
+          }
+        }
+      }
+    },
+    "changelog.1_0_7.reliability" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reliability breakdown on each server: percentage of time healthy vs warning/error over the selected period"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indicateur de fiabilité par serveur : pourcentage de temps sain vs avertissement/erreur sur la période sélectionnée"
+          }
+        }
+      }
+    },
+    "changelog.1_0_7.session_tap" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap an active session on Dashboard to open its server detail directly"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toucher une session active dans Dashboard ouvre directement le détail du serveur"
+          }
+        }
+      }
+    },
+    "changelog.1_0_7.trends" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Trends screen in Network: servers ranked by average load over a rolling window"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouvel écran Tendances dans Network : classement des serveurs par charge moyenne sur une fenêtre glissante"
           }
         }
       }
@@ -284,510 +957,172 @@
         }
       }
     },
-    "changelog.1_0_0.initial" : {
+    "continent.africa" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Initial release"
+            "value" : "Africa"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Version initiale"
+            "value" : "Afrique"
           }
         }
       }
     },
-    "changelog.1_0_1.favorites" : {
+    "continent.america" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Favorites: long press a server to pin it"
+            "value" : "America"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Favoris: appui long pour épingler un serveur"
+            "value" : "Amériques"
           }
         }
       }
     },
-    "changelog.1_0_7.history" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Server history charts: load and connected users over 1h/24h/7d/30d, powered by a new history backend" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Graphiques d'historique serveur : charge et utilisateurs connectés sur 1h/24h/7j/30j, via un nouveau backend d'historique" } }
-      }
-    },
-    "changelog.1_0_7.reliability" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reliability breakdown on each server: percentage of time healthy vs warning/error over the selected period" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Indicateur de fiabilité par serveur : pourcentage de temps sain vs avertissement/erreur sur la période sélectionnée" } }
-      }
-    },
-    "changelog.1_0_7.trends" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Trends screen in Network: servers ranked by average load over a rolling window" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Nouvel écran Tendances dans Network : classement des serveurs par charge moyenne sur une fenêtre glissante" } }
-      }
-    },
-    "changelog.1_0_7.best_server_scoring" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best Server picks more sensibly: load now weighs heavily in the score instead of being nearly overridden by ping" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Meilleur serveur plus pertinent : la charge pèse désormais fortement dans le calcul au lieu d'être presque écrasée par le ping" } }
-      }
-    },
-    "changelog.1_0_7.best_server_cache" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best Server card shows the previous session's result instantly instead of appearing abruptly after the ping sweep completes" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "La carte Meilleur serveur affiche instantanément le résultat de la session précédente au lieu d'apparaître brutalement après le sondage des pings" } }
-      }
-    },
-    "changelog.1_0_7.session_tap" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap an active session on Dashboard to open its server detail directly" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Toucher une session active dans Dashboard ouvre directement le détail du serveur" } }
-      }
-    },
-    "changelog.1_0_6.recent_profiles" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recent profiles page: search, sort and filter by protocol, with quick import, QR code and delete" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Page Profils récents : recherche, tri et filtre par protocole, avec import rapide, QR code et suppression" } }
-      }
-    },
-    "changelog.1_0_6.spotlight" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Spotlight search: favorite servers and recent profiles are now searchable from the system search" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Recherche Spotlight : les serveurs favoris et les profils récents sont désormais accessibles depuis la recherche système" } }
-      }
-    },
-    "changelog.1_0_6.siri_shortcuts" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "4 new Siri Shortcuts: Best Server, Generate Profile, Recent Profiles, Show Profile QR Code" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "4 nouveaux raccourcis Siri : Meilleur serveur, Générer un profil, Profils récents, Afficher le QR code du profil" } }
-      }
-    },
-    "changelog.1_0_6.favorite_badge" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Favorite badge shown directly in the server list, even while searching or filtering" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Badge favori affiché directement dans la liste des serveurs, même en recherche ou en filtrage" } }
-      }
-    },
-    "changelog.1_0_6.per_account_prefs" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Favorites and sort order are now scoped per account" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Favoris et ordre de tri sont désormais propres à chaque compte" } }
-      }
-    },
-    "changelog.1_0_6.security" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profile history, including WireGuard keys, is now stored securely in the Keychain instead of UserDefaults" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "L'historique des profils, y compris les clés WireGuard, est désormais stocké de manière sécurisée dans le Trousseau au lieu d'UserDefaults" } }
-      }
-    },
-    "changelog.1_0_6.widget_flags" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Widget flags now use the same flag images as the rest of the app" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Les drapeaux du widget utilisent désormais les mêmes images que le reste de l'app" } }
-      }
-    },
-    "history.section" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "History" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Historique" } }
-      }
-    },
-    "history.range" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Range" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Période" } }
-      }
-    },
-    "history.range.1h" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "1h" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "1 h" } }
-      }
-    },
-    "history.range.24h" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "24h" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "24 h" } }
-      }
-    },
-    "history.range.7d" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "7d" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "7 j" } }
-      }
-    },
-    "history.range.30d" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "30d" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "30 j" } }
-      }
-    },
-    "history.load" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Load" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Charge" } }
-      }
-    },
-    "history.users" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Connected users" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Utilisateurs connectés" } }
-      }
-    },
-    "history.no_data" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No history available for this period" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun historique disponible pour cette période" } }
-      }
-    },
-    "history.chart.time" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Time" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Heure" } }
-      }
-    },
-    "history.chart.load" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Load" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Charge" } }
-      }
-    },
-    "history.chart.users" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Users" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Utilisateurs" } }
-      }
-    },
-    "history.reliability" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reliability" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Fiabilité" } }
-      }
-    },
-    "history.reliability.ok" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "OK" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "OK" } }
-      }
-    },
-    "history.reliability.warning" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Warning" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Avertissement" } }
-      }
-    },
-    "history.reliability.error" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Error" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Erreur" } }
-      }
-    },
-    "history.retry" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Retry" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Réessayer" } }
-      }
-    },
-    "network.ranking" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Lowest Average Load" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Charge moyenne la plus basse" } }
-      }
-    },
-    "network.trends" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Trends" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tendances" } }
-      }
-    },
-    "trends.samples" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "pts" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "pts" } }
-      }
-    },
-    "changelog.1_0_5.multi_account" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Multiple accounts: add, switch and remove AirVPN accounts from Settings" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Comptes multiples : ajouter, basculer et supprimer des comptes AirVPN dans les Réglages" } }
-      }
-    },
-    "changelog.1_0_5.devices" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Device management: add, rename, renew keys and remove devices from Settings" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Gestion des appareils : ajouter, renommer, renouveler les clés et supprimer des appareils dans les Réglages" } }
-      }
-    },
-    "changelog.1_0_5.dns_lists" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "DNS blocklists: browse available AirVPN DNS lists in Settings" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Listes DNS : parcourir les listes DNS AirVPN disponibles dans les Réglages" } }
-      }
-    },
-    "changelog.1_0_5.launch_screen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Custom launch screen with app icon and name" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Écran de lancement personnalisé avec icône et nom de l'app" } }
-      }
-    },
-    "changelog.1_0_4.biometric_lock" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Biometric lock: Face ID / Touch ID protection in Settings" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Verrouillage biométrique : protection Face ID / Touch ID dans les Réglages" } }
-      }
-    },
-    "changelog.1_0_4.comparison" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Server comparison: compare up to 3 servers side by side (long press)" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Comparaison de serveurs : jusqu'à 3 serveurs côte à côte (appui long)" } }
-      }
-    },
-    "changelog.1_0_4.icon_picker" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "App icon picker: 8 variants (Auto, Classic, Light, Purple, Green, Red, Minimal, Minimal Dark)" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Picker d'icône : 8 variantes (Auto, Classic, Light, Violet, Vert, Rouge, Minimal, Minimal Dark)" } }
-      }
-    },
-    "changelog.1_0_4.post_generation" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Share and QR Code moved to a dedicated menu after profile generation" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Partage et QR Code déplacés dans un menu dédié après la génération de profil" } }
-      }
-    },
-    "changelog.1_0_4.profile_history" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Profile history: last generated profiles per server and in Dashboard" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Historique des profils : derniers profils générés par serveur et dans le Dashboard" } }
-      }
-    },
-    "changelog.1_0_4.qr_code" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "QR code for WireGuard profiles" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "QR code pour les profils WireGuard" } }
-      }
-    },
-    "changelog.1_0_4.swipe_disconnect" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Swipe to disconnect an active session" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Swipe pour déconnecter une session active" } }
-      }
-    },
-    "changelog.1_0_3.widget" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Configurable widget: favorite server picker and large size" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Widget configurable : sélecteur de serveur favori et grande taille" } }
-      }
-    },
-    "changelog.1_0_3.server_detail" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Server detail and Dashboard: native iOS interface redesign" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Page serveur et Tableau de bord : refonte interface native iOS" } }
-      }
-    },
-    "changelog.1_0_3.ip_addresses" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Server detail: IPv4 and IPv6 address display" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Page serveur : affichage des adresses IPv4 et IPv6" } }
-      }
-    },
-    "changelog.1_0_3.dashboard" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dashboard: date format dd/MM/yyyy, duration in days, disconnect button" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tableau de bord : date en jj/MM/aaaa, durée en jours, bouton déconnecter" } }
-      }
-    },
-    "changelog.1_0_3.network" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Network status: best server updates with continent filter, centered summary cards" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "État réseau : meilleur serveur selon le filtre continent, cards résumé centrées" } }
-      }
-    },
-    "changelog.1_0_3.auto_refresh" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-refresh every 30s when active sessions are running" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Actualisation automatique toutes les 30s si sessions actives" } }
-      }
-    },
-    "changelog.1_0_3.renewal" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings: subscription renewal link" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Paramètres : lien de renouvellement de l'abonnement" } }
-      }
-    },
-    "changelog.1_0_3.vpn_import" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "VPN import: fixed OpenVPN App Store redirect when app is missing" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Import VPN : correction redirection App Store OpenVPN si absent" } }
-      }
-    },
-    "changelog.1_0_2.changelog" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Changelog section in Settings" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Section Nouveautés dans les Réglages" } }
-      }
-    },
-    "changelog.1_0_2.ipv6" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "IPv6 badge on servers that support it" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Badge IPv6 sur les serveurs compatibles" } }
-      }
-    },
-    "changelog.1_0_2.notifications" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications 7 and 1 day before subscription expiry" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Notifications 7j et 1j avant l'expiration de l'abonnement" } }
-      }
-    },
-    "changelog.1_0_2.ping_fallback" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Improved ping reliability with IP fallback" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Ping plus fiable avec IP de secours" } }
-      }
-    },
-    "changelog.1_0_2.shortcuts" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Siri Shortcuts: VPN Status, My IP, Open Server" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Raccourcis Siri: Statut VPN, Mon IP, Ouvrir un serveur" } }
-      }
-    },
-    "changelog.1_0_2.credits" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Credits section in Settings" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Section Crédits dans les Réglages" } }
-      }
-    },
-    "changelog.1_0_1.ping" : {
+    "continent.asia" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Server ping: latency displayed for each server"
+            "value" : "Asia"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ping serveurs: latence affichée pour chaque serveur"
+            "value" : "Asie"
           }
         }
       }
     },
-    "changelog.1_0_1.quick_actions" : {
+    "continent.europe" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quick Actions: long press the app icon to jump to a tab"
+            "value" : "Europe"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quick Actions: appui long sur l'icône pour accéder à un onglet"
+            "value" : "Europe"
           }
         }
       }
     },
-    "changelog.1_0_1.sort_persistent" : {
+    "continent.north_america" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sort order is now remembered between sessions"
+            "value" : "North America"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L'ordre de tri est maintenant mémorisé entre les sessions"
+            "value" : "Amérique du Nord"
           }
         }
       }
     },
-    "changelog.1_0_1.sort_ping" : {
+    "continent.oceania" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New sort option: Ping (low to high)"
+            "value" : "Oceania"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nouveau tri : Ping (croissant)"
+            "value" : "Océanie"
+          }
+        }
+      }
+    },
+    "continent.south_america" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "South America"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amérique du Sud"
+          }
+        }
+      }
+    },
+    "copy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copier"
+          }
+        }
+      }
+    },
+    "credits.aerya.role" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gluetun Companion"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gluetun Companion"
+          }
+        }
+      }
+    },
+    "credits.section.contributors" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acknowledgements"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remerciements"
           }
         }
       }
@@ -805,6 +1140,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sessions actives"
+          }
+        }
+      }
+    },
+    "dashboard.best_server" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best server right now"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meilleur serveur en ce moment"
           }
         }
       }
@@ -911,114 +1263,6 @@
         }
       }
     },
-    "dashboard.view_recent_profiles" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "View All" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Voir tout" } }
-      }
-    },
-    "profiles.search_prompt" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Search profiles" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Rechercher un profil" } }
-      }
-    },
-    "profiles.qr_code" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "QR Code" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "QR Code" } }
-      }
-    },
-    "profiles.import" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Import" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Importer" } }
-      }
-    },
-    "profiles.filter" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Filter" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Filtrer" } }
-      }
-    },
-    "profiles.filter.all" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "All" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tous" } }
-      }
-    },
-    "profiles.filter.wireguard" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "WireGuard" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "WireGuard" } }
-      }
-    },
-    "profiles.filter.openvpn" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "OpenVPN" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "OpenVPN" } }
-      }
-    },
-    "profiles.empty" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "No Profiles" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Aucun profil" } }
-      }
-    },
-    "profiles.count_limit %lld %lld" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%lld of %lld profiles saved. Oldest ones are removed automatically." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%lld profils sur %lld enregistrés. Les plus anciens sont supprimés automatiquement." } }
-      }
-    },
-    "profiles.clear_all" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear All" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Tout supprimer" } }
-      }
-    },
-    "profiles.clear_all_confirm" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove all profiles from history? This cannot be undone." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Supprimer tous les profils de l'historique ? Cette action est irréversible." } }
-      }
-    },
-    "profiles.remove_confirm" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove this profile from history?" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Supprimer ce profil de l'historique ?" } }
-      }
-    },
-    "dashboard.recent_profiles" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recent Profiles"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profils récents"
-          }
-        }
-      }
-    },
     "dashboard.last_seen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1034,13 +1278,6 @@
             "value" : "Dernière connexion"
           }
         }
-      }
-    },
-    "dashboard.best_server" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best server right now" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Meilleur serveur en ce moment" } }
       }
     },
     "dashboard.loading" : {
@@ -1111,6 +1348,23 @@
         }
       }
     },
+    "dashboard.recent_profiles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recent Profiles"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profils récents"
+          }
+        }
+      }
+    },
     "dashboard.sessions" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1145,6 +1399,23 @@
         }
       }
     },
+    "dashboard.view_recent_profiles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View All"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir tout"
+          }
+        }
+      }
+    },
     "dashboard.vpn_off" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1175,6 +1446,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "VPN ACTIF"
+          }
+        }
+      }
+    },
+    "delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
           }
         }
       }
@@ -1264,108 +1552,6 @@
         }
       }
     },
-    "relative.just_now" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Just now"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "À l'instant"
-          }
-        }
-      }
-    },
-    "relative.minutes_ago %lld" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld min ago"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Il y a %lld min"
-          }
-        }
-      }
-    },
-    "relative.hours_ago %lld" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld h ago"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Il y a %lld h"
-          }
-        }
-      }
-    },
-    "relative.days_ago %lld" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld d ago"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Il y a %lld j"
-          }
-        }
-      }
-    },
-    "detail.last_profile" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recent Profiles"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Profils récents"
-          }
-        }
-      }
-    },
-    "detail.reimport" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reimport"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Réimporter"
-          }
-        }
-      }
-    },
     "detail.generate_new" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1420,8 +1606,35 @@
     "detail.ip_addresses" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "IP Addresses" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Adresses IP" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "IP Addresses"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adresses IP"
+          }
+        }
+      }
+    },
+    "detail.last_profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recent Profiles"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profils récents"
+          }
+        }
       }
     },
     "detail.load" : {
@@ -1526,6 +1739,23 @@
         }
       }
     },
+    "detail.reimport" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reimport"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réimporter"
+          }
+        }
+      }
+    },
     "detail.share" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1556,6 +1786,363 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utilisateurs"
+          }
+        }
+      }
+    },
+    "devices.add" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Device"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter un appareil"
+          }
+        }
+      }
+    },
+    "devices.connection_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connection Info"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informations de connexion"
+          }
+        }
+      }
+    },
+    "devices.count %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Devices"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Appareils"
+          }
+        }
+      }
+    },
+    "devices.description_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description (optional)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description (optionnelle)"
+          }
+        }
+      }
+    },
+    "devices.limit_reached" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You've reached the maximum of 10 devices. Remove one to add a new one."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous avez atteint la limite de 10 appareils. Supprimez-en un pour en ajouter un nouveau."
+          }
+        }
+      }
+    },
+    "devices.loading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading devices…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargement des appareils…"
+          }
+        }
+      }
+    },
+    "devices.name_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Device name"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom de l'appareil"
+          }
+        }
+      }
+    },
+    "devices.name_section" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom"
+          }
+        }
+      }
+    },
+    "devices.never_connected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Never connected"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jamais connecté"
+          }
+        }
+      }
+    },
+    "devices.new_device" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Device"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouvel appareil"
+          }
+        }
+      }
+    },
+    "devices.remove_confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove this device?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer cet appareil ?"
+          }
+        }
+      }
+    },
+    "devices.renew" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renew Keys"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renouveler les clés"
+          }
+        }
+      }
+    },
+    "devices.renew_confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renew this device's keys? Its current VPN profile will stop working."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renouveler les clés de cet appareil ? Son profil VPN actuel cessera de fonctionner."
+          }
+        }
+      }
+    },
+    "devices.renew_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generates a new WireGuard key pair for this device. You'll need to re-import its VPN profile afterwards."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Génère une nouvelle paire de clés WireGuard pour cet appareil. Vous devrez réimporter son profil VPN ensuite."
+          }
+        }
+      }
+    },
+    "devices.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Devices"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appareils"
+          }
+        }
+      }
+    },
+    "dns.available_lists %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Available Lists"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Listes disponibles"
+          }
+        }
+      }
+    },
+    "dns.loading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading DNS lists…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chargement des listes DNS…"
+          }
+        }
+      }
+    },
+    "dns.manage_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enabling or disabling a blocklist isn't available through the API. Use the AirVPN website to edit your active lists."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activer ou désactiver une liste n'est pas possible via l'API. Utilisez le site AirVPN pour modifier vos listes actives."
+          }
+        }
+      }
+    },
+    "dns.manage_on_website" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage on airvpn.org"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gérer sur airvpn.org"
+          }
+        }
+      }
+    },
+    "dns.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DNS Blocklists"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listes DNS"
+          }
+        }
+      }
+    },
+    "done" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fermer"
           }
         }
       }
@@ -1662,8 +2249,355 @@
         }
       }
     },
+    "history.chart.load" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Load"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charge"
+          }
+        }
+      }
+    },
+    "history.chart.time" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heure"
+          }
+        }
+      }
+    },
+    "history.chart.users" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Users"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilisateurs"
+          }
+        }
+      }
+    },
+    "history.load" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Load"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charge"
+          }
+        }
+      }
+    },
+    "history.no_data" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No history available for this period"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun historique disponible pour cette période"
+          }
+        }
+      }
+    },
+    "history.range" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Range"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Période"
+          }
+        }
+      }
+    },
+    "history.range.1h" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1h"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 h"
+          }
+        }
+      }
+    },
+    "history.range.7d" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7d"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 j"
+          }
+        }
+      }
+    },
+    "history.range.24h" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "24h"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "24 h"
+          }
+        }
+      }
+    },
+    "history.range.30d" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30d"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "30 j"
+          }
+        }
+      }
+    },
+    "history.reliability" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reliability"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fiabilité"
+          }
+        }
+      }
+    },
+    "history.reliability.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur"
+          }
+        }
+      }
+    },
+    "history.reliability.ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "history.reliability.warning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Warning"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Avertissement"
+          }
+        }
+      }
+    },
+    "history.retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réessayer"
+          }
+        }
+      }
+    },
+    "history.section" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historique"
+          }
+        }
+      }
+    },
+    "history.users" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected users"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilisateurs connectés"
+          }
+        }
+      }
+    },
+    "import.app_missing.download" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download on the App Store"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Télécharger sur l'App Store"
+          }
+        }
+      }
+    },
+    "import.app_missing.message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ is not installed. Download it to import this profile."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ n'est pas installé. Téléchargez-le pour importer ce profil."
+          }
+        }
+      }
+    },
+    "import.app_missing.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App not found"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Application introuvable"
+          }
+        }
+      }
+    },
     "IPv6" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "IPv6"
+          }
+        }
+      }
     },
     "loading" : {
       "extractionState" : "manual",
@@ -1682,53 +2616,38 @@
         }
       }
     },
-    "continent.europe" : {
+    "lock.reason" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Europe" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Europe" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock AirDash"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déverrouillez AirDash"
+          }
+        }
       }
     },
-    "continent.america" : {
+    "lock.unlock" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "America" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Amériques" } }
-      }
-    },
-    "continent.north_america" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "North America" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Amérique du Nord" } }
-      }
-    },
-    "continent.south_america" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "South America" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Amérique du Sud" } }
-      }
-    },
-    "continent.asia" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Asia" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Asie" } }
-      }
-    },
-    "continent.oceania" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Oceania" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Océanie" } }
-      }
-    },
-    "continent.africa" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Africa" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Afrique" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déverrouiller"
+          }
+        }
       }
     },
     "network.all" : {
@@ -1748,13 +2667,6 @@
         }
       }
     },
-    "network.best_server" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Best server" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Meilleur serveur" } }
-      }
-    },
     "network.avg_load" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1768,6 +2680,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Charge moy."
+          }
+        }
+      }
+    },
+    "network.best_server" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Best server"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meilleur serveur"
           }
         }
       }
@@ -1857,6 +2786,23 @@
         }
       }
     },
+    "network.ranking" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lowest Average Load"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charge moyenne la plus basse"
+          }
+        }
+      }
+    },
     "network.search.prompt" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1938,6 +2884,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Serveurs"
+          }
+        }
+      }
+    },
+    "network.trends" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trends"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tendances"
           }
         }
       }
@@ -2146,6 +3109,261 @@
         }
       }
     },
+    "profiles.clear_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear All"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout supprimer"
+          }
+        }
+      }
+    },
+    "profiles.clear_all_confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove all profiles from history? This cannot be undone."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer tous les profils de l'historique ? Cette action est irréversible."
+          }
+        }
+      }
+    },
+    "profiles.count_limit %lld %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld of %lld profiles saved. Oldest ones are removed automatically."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld profils sur %lld enregistrés. Les plus anciens sont supprimés automatiquement."
+          }
+        }
+      }
+    },
+    "profiles.empty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Profiles"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun profil"
+          }
+        }
+      }
+    },
+    "profiles.filter" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filter"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer"
+          }
+        }
+      }
+    },
+    "profiles.filter.all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tous"
+          }
+        }
+      }
+    },
+    "profiles.filter.openvpn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OpenVPN"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OpenVPN"
+          }
+        }
+      }
+    },
+    "profiles.filter.wireguard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WireGuard"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WireGuard"
+          }
+        }
+      }
+    },
+    "profiles.import" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Import"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Importer"
+          }
+        }
+      }
+    },
+    "profiles.qr_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR Code"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR Code"
+          }
+        }
+      }
+    },
+    "profiles.remove_confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove this profile from history?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer ce profil de l'historique ?"
+          }
+        }
+      }
+    },
+    "profiles.search_prompt" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search profiles"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher un profil"
+          }
+        }
+      }
+    },
+    "qr.error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unable to generate QR code"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de générer le QR code"
+          }
+        }
+      }
+    },
+    "qr.instructions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scan this QR code with the WireGuard app on another device to import the configuration."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Scannez ce QR code avec l'app WireGuard sur un autre appareil pour importer la configuration."
+          }
+        }
+      }
+    },
+    "qr.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WireGuard QR Code"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "QR Code WireGuard"
+          }
+        }
+      }
+    },
     "refresh" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2159,6 +3377,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Actualiser"
+          }
+        }
+      }
+    },
+    "relative.days_ago %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld d ago"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il y a %lld j"
+          }
+        }
+      }
+    },
+    "relative.hours_ago %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld h ago"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il y a %lld h"
+          }
+        }
+      }
+    },
+    "relative.just_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Just now"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À l'instant"
+          }
+        }
+      }
+    },
+    "relative.minutes_ago %lld" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld min ago"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il y a %lld min"
           }
         }
       }
@@ -2180,23 +3466,6 @@
         }
       }
     },
-    "session.disconnect.confirm.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disconnect session?"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déconnecter la session ?"
-          }
-        }
-      }
-    },
     "session.disconnect.confirm.message %@" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2210,6 +3479,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cela déconnectera la session sur %@."
+          }
+        }
+      }
+    },
+    "session.disconnect.confirm.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnect session?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déconnecter la session ?"
           }
         }
       }
@@ -2248,25 +3534,21 @@
         }
       }
     },
-    "import.app_missing.download" : {
+    "settings.add_account" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Download on the App Store" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Télécharger sur l'App Store" } }
-      }
-    },
-    "import.app_missing.message" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "%@ is not installed. Download it to import this profile." } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "%@ n'est pas installé. Téléchargez-le pour importer ce profil." } }
-      }
-    },
-    "import.app_missing.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "App not found" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Application introuvable" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Account"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter un compte"
+          }
+        }
       }
     },
     "settings.airvpn_website" : {
@@ -2299,6 +3581,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Clé API"
+          }
+        }
+      }
+    },
+    "settings.app_icon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "App Icon"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Icône de l'app"
+          }
+        }
+      }
+    },
+    "settings.app_lock" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biometric Lock"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verrouillage biométrique"
           }
         }
       }
@@ -2337,40 +3653,6 @@
         }
       }
     },
-    "credits.aerya.role" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gluetun Companion"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gluetun Companion"
-          }
-        }
-      }
-    },
-    "credits.section.contributors" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Acknowledgements"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remerciements"
-          }
-        }
-      }
-    },
     "settings.credits" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2405,6 +3687,23 @@
         }
       }
     },
+    "settings.error.account_exists" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This account is already added."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce compte est déjà ajouté."
+          }
+        }
+      }
+    },
     "settings.github" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2422,393 +3721,172 @@
         }
       }
     },
-    "settings.new_api_key" : {
+    "settings.icon.classic" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "New API Key"
+            "value" : "Dark"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nouvelle clé API"
+            "value" : "Sombre"
           }
         }
       }
     },
-    "dns.title" : {
+    "settings.icon.dark" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "DNS Blocklists"
+            "value" : "Dark"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Listes DNS"
+            "value" : "Sombre"
           }
         }
       }
     },
-    "dns.manage_on_website" : {
+    "settings.icon.default" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manage on airvpn.org"
+            "value" : "Auto"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gérer sur airvpn.org"
+            "value" : "Auto"
           }
         }
       }
     },
-    "dns.manage_footer" : {
+    "settings.icon.green" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enabling or disabling a blocklist isn't available through the API. Use the AirVPN website to edit your active lists."
+            "value" : "Green"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activer ou désactiver une liste n'est pas possible via l'API. Utilisez le site AirVPN pour modifier vos listes actives."
+            "value" : "Vert"
           }
         }
       }
     },
-    "dns.available_lists %lld" : {
+    "settings.icon.light" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Available Lists"
+            "value" : "Light"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Listes disponibles"
+            "value" : "Clair"
           }
         }
       }
     },
-    "dns.loading" : {
+    "settings.icon.minimal" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Loading DNS lists…"
+            "value" : "Minimal"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chargement des listes DNS…"
+            "value" : "Minimal"
           }
         }
       }
     },
-    "devices.title" : {
+    "settings.icon.minimal_dark" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Devices"
+            "value" : "Minimal Dark"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Appareils"
+            "value" : "Minimal sombre"
           }
         }
       }
     },
-    "devices.count %lld" : {
+    "settings.icon.purple" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Devices"
+            "value" : "Purple"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld Appareils"
+            "value" : "Violet"
           }
         }
       }
     },
-    "devices.loading" : {
+    "settings.icon.red" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Loading devices…"
+            "value" : "Red"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chargement des appareils…"
+            "value" : "Rouge"
           }
         }
       }
     },
-    "devices.never_connected" : {
+    "settings.icon.tinted" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Never connected"
+            "value" : "Tinted"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jamais connecté"
-          }
-        }
-      }
-    },
-    "devices.add" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Add Device"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajouter un appareil"
-          }
-        }
-      }
-    },
-    "devices.new_device" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New Device"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nouvel appareil"
-          }
-        }
-      }
-    },
-    "devices.name_section" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Name"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nom"
-          }
-        }
-      }
-    },
-    "devices.name_placeholder" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Device name"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nom de l'appareil"
-          }
-        }
-      }
-    },
-    "devices.description_placeholder" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Description (optional)"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Description (optionnelle)"
-          }
-        }
-      }
-    },
-    "devices.connection_info" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Connection Info"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Informations de connexion"
-          }
-        }
-      }
-    },
-    "devices.renew" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Renew Keys"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Renouveler les clés"
-          }
-        }
-      }
-    },
-    "devices.renew_footer" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Generates a new WireGuard key pair for this device. You'll need to re-import its VPN profile afterwards."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Génère une nouvelle paire de clés WireGuard pour cet appareil. Vous devrez réimporter son profil VPN ensuite."
-          }
-        }
-      }
-    },
-    "devices.renew_confirm" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Renew this device's keys? Its current VPN profile will stop working."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Renouveler les clés de cet appareil ? Son profil VPN actuel cessera de fonctionner."
-          }
-        }
-      }
-    },
-    "devices.limit_reached" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You've reached the maximum of 10 devices. Remove one to add a new one."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vous avez atteint la limite de 10 appareils. Supprimez-en un pour en ajouter un nouveau."
-          }
-        }
-      }
-    },
-    "devices.remove_confirm" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remove this device?"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Supprimer cet appareil ?"
-          }
-        }
-      }
-    },
-    "settings.renew_subscription" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Renew Subscription"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Renouveler l'abonnement"
-          }
-        }
-      }
-    },
-    "settings.rotate_key" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rotate API Key"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Changer la clé API"
+            "value" : "Teinté"
           }
         }
       }
@@ -2847,19 +3925,19 @@
         }
       }
     },
-    "settings.add_account" : {
+    "settings.new_api_key" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add Account"
+            "value" : "New API Key"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter un compte"
+            "value" : "Nouvelle clé API"
           }
         }
       }
@@ -2881,36 +3959,36 @@
         }
       }
     },
-    "settings.error.account_exists" : {
+    "settings.renew_subscription" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This account is already added."
+            "value" : "Renew Subscription"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ce compte est déjà ajouté."
+            "value" : "Renouveler l'abonnement"
           }
         }
       }
     },
-    "delete" : {
+    "settings.rotate_key" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Delete"
+            "value" : "Rotate API Key"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Supprimer"
+            "value" : "Changer la clé API"
           }
         }
       }
@@ -2928,74 +4006,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrer"
-          }
-        }
-      }
-    },
-    "lock.reason" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unlock AirDash"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déverrouillez AirDash"
-          }
-        }
-      }
-    },
-    "lock.unlock" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unlock"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déverrouiller"
-          }
-        }
-      }
-    },
-    "settings.app_lock" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Biometric Lock"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verrouillage biométrique"
-          }
-        }
-      }
-    },
-    "settings.section.security" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Security"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sécurité"
           }
         }
       }
@@ -3034,19 +4044,19 @@
         }
       }
     },
-    "settings.section.vpn" : {
+    "settings.section.app_icon" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "VPN"
+            "value" : "App Icon"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "VPN"
+            "value" : "Icône de l'app"
           }
         }
       }
@@ -3068,67 +4078,38 @@
         }
       }
     },
-    "settings.section.app_icon" : {
+    "settings.section.security" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "App Icon" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Icône de l'app" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Security"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sécurité"
+          }
+        }
       }
     },
-    "settings.icon.default" : {
+    "settings.section.vpn" : {
       "extractionState" : "manual",
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Auto" } }
-      }
-    },
-    "settings.icon.classic" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dark" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Sombre" } }
-      }
-    },
-    "settings.icon.light" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Light" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Clair" } }
-      }
-    },
-    "settings.icon.purple" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Purple" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Violet" } }
-      }
-    },
-    "settings.icon.green" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Green" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Vert" } }
-      }
-    },
-    "settings.icon.red" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Red" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Rouge" } }
-      }
-    },
-    "settings.icon.minimal" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Minimal" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Minimal" } }
-      }
-    },
-    "settings.icon.minimal_dark" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Minimal Dark" } },
-        "fr" : { "stringUnit" : { "state" : "translated", "value" : "Minimal sombre" } }
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN"
+          }
+        }
       }
     },
     "settings.sign_out" : {
@@ -3178,74 +4159,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Votre clé API sera supprimée de cet appareil."
-          }
-        }
-      }
-    },
-    "settings.app_icon" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "App Icon"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Icône de l'app"
-          }
-        }
-      }
-    },
-    "settings.icon.dark" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dark"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sombre"
-          }
-        }
-      }
-    },
-    "settings.icon.light" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Light"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clair"
-          }
-        }
-      }
-    },
-    "settings.icon.tinted" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tinted"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Teinté"
           }
         }
       }
@@ -3450,6 +4363,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Réglages"
+          }
+        }
+      }
+    },
+    "trends.samples" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pts"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "pts"
           }
         }
       }
