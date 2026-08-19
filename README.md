@@ -27,10 +27,10 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 
 - **Network** — full server list with load, users, health, ping latency, sort (load / name / ping), continent filter, search and favorites (scoped per account)
 - **Best Server** — automatically picked from live ping and load, weighted so a congested server can't win purely on a low ping; instantly shows the previous session's result while the fresh ping sweep is running
-- **Server history & trends** — load and connected-users charts per server over 1h/24h/7d/30d, a reliability breakdown (healthy vs warning/error), and a Trends screen ranking servers by average load over a rolling window — all powered by a companion history service, not the official AirVPN API
-- **Server comparison** — long-press any server to add it to a comparison (up to 3); tap the toolbar button to view them side by side
+- **Server history & trends** — load and connected-users charts per server over 1h/24h/7d/30d, a reliability breakdown (healthy vs warning/error) also surfaced as a badge on favorite servers and in Trends, a peak-hours chart highlighting the quietest 3-hour window from 7 days of history, and a Trends screen ranking servers by average load over a rolling window — all powered by a companion history service, not the official AirVPN API
+- **Server comparison** — long-press any server to add it to a comparison (up to 3); tap the toolbar button to view them side by side, including bandwidth and an overlaid load-history chart across the compared servers
 - **Dashboard** — account info (current IP, VPN status, expiration, credits, sessions, member since); swipe left on a session to disconnect, tap a session to jump to its server detail
-- **Server detail** — WireGuard or OpenVPN profile generation, direct import into the system VPN app, share and QR code (WireGuard) in a `···` menu; recent profiles per server with one-tap reimport
+- **Server detail** — WireGuard or OpenVPN profile generation, direct import into the system VPN app, share and QR code (WireGuard) in a `···` menu; recent profiles per server with one-tap reimport, shown with the protocol's logo
 - **Recent profiles page** — dedicated list of all generated profiles with search, sort, filter by protocol, quick import, QR code and delete; profile history is stored securely in the Keychain
 - **Spotlight search** — favorite servers and recent profiles are indexed and searchable from the system search; tapping a result opens the app directly on the right screen
 - **Biometric lock** — Face ID / Touch ID protection, toggleable in Settings
@@ -38,10 +38,10 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 - **Multiple accounts** — add, switch and remove AirVPN accounts from Settings; the active account drives the whole app, including the widget
 - **Device management** — add, rename, renew WireGuard keys and remove devices directly from Settings (10-device account limit enforced)
 - **DNS blocklists** — browse AirVPN's available DNS blocklists with a direct link to manage them on airvpn.org
-- **Settings** — account switching, device management, DNS blocklists, light/dark/system theme, app icon picker, changelog, credits
+- **Settings** — account switching, device management, DNS blocklists, light/dark/system theme, app icon picker, changelog, credits (with trademark disclaimers for AirVPN, WireGuard and OpenVPN)
 - **Notifications** — subscription expiration alerts 7 days and 1 day in advance (delivered by the OS even when the app is closed)
 - **Siri Shortcuts** — VPN Status, My IP Address, Open Server, Best Server, Generate Profile, Recent Profiles, Show Profile QR Code
-- **Widget** — current IP, VPN status and active sessions on the home screen; configurable with a favorite server picker showing load, users and latency (Small, Medium and Large sizes)
+- **Widgets** — two home screen widgets: **AirDash** (current IP, VPN status, active sessions with flags and duration; configurable with a favorite server picker showing a load bar, users, latency and a favorite indicator, Small/Medium/Large) and **AirDash Compte** (Small only — VPN status, connected server when active, login and subscription expiration)
 - **Quick Actions** — long-press the app icon to jump directly to Dashboard or Network
 
 ---
@@ -139,13 +139,13 @@ AirDash/
 │   ├── Views/
 │   │   ├── Components/       # FlagBadge, LoadBar, ErrorBanner, LoadingOverlay, …
 │   │   ├── Dashboard/        # DashboardView, SessionRowView, AllProfilesView
-│   │   ├── NetworkStatus/    # NetworkStatusView, ServerRowView, ServerComparisonView, TrendsView
+│   │   ├── NetworkStatus/    # NetworkStatusView, ServerRowView, ServerComparisonView, ComparisonHistoryView, TrendsView
 │   │   ├── Onboarding/       # OnboardingView
-│   │   ├── ServerDetail/     # ServerDetailView, ServerHistoryChartView, QRCodeView
+│   │   ├── ServerDetail/     # ServerDetailView, ServerHistoryChartView, PeakHoursView, QRCodeView
 │   │   └── Settings/         # SettingsView, ManageAccountsView, ManageDevicesView, DNSListsView, ChangelogView, CreditsView, AppIconPickerView
 │   └── Resources/            # Localizable.xcstrings, Assets.xcassets
 └── AirDashWidget/            # Widget Extension (WidgetKit)
-    └── AirDashWidget.swift   # AppIntentProvider, entry, Small/Medium/Large views, server picker intent
+    └── AirDashWidget.swift   # WidgetBundle with two widgets (AirDash, AirDash Compte), AppIntentProvider, server picker intent
 ```
 
 ### Shared data (App Group)

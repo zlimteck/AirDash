@@ -739,6 +739,142 @@
         }
       }
     },
+    "changelog.1_0_8.peak_hours" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peak hours per server: a 24h load chart from a 7-day history, with a callout for the quietest window"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heures creuses par serveur : graphique de charge sur 24h basé sur 7 jours d'historique, avec un résumé de la fenêtre la moins chargée"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.comparison_history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historical comparison: overlay compared servers' load over 1h to 30d"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparaison historique : superposition de la charge des serveurs comparés sur 1h à 30j"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.reliability_badges" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reliability badges: healthy/warning/error breakdown for favorite servers and in Trends"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Badges de fiabilité : répartition sain/avertissement/erreur pour les favoris et dans Tendances"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.comparison_bandwidth" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bandwidth added to server comparison, IPv4 now matches the IPv6 row style"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Débit ajouté à la comparaison de serveurs, la ligne IPv4 reprend maintenant le style de la ligne IPv6"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.widgets_redesign" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets redesigned with load bars instead of plain text, plus session duration and favorite indicator"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets repensés avec des barres de charge au lieu de texte brut, plus la durée de session et l'indicateur favori"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.account_widget" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Account widget: VPN status, connected server and subscription info at a glance"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau widget Compte : statut VPN, serveur connecté et infos d'abonnement en un coup d'œil"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.protocol_logos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protocol logos (WireGuard/OpenVPN) shown next to generated profiles"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logos de protocole (WireGuard/OpenVPN) affichés à côté des profils générés"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.trademark_credits" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trademark credits for AirVPN, WireGuard and OpenVPN added to Settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentions de marques déposées pour AirVPN, WireGuard et OpenVPN ajoutées aux Réglages"
+          }
+        }
+      }
+    },
     "changelog.1_0_7.history" : {
       "extractionState" : "manual",
       "localizations" : {
