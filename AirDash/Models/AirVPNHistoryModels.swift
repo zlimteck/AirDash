@@ -65,6 +65,27 @@ struct ServerRankingResponse: Codable {
     let servers: [ServerRankingEntry]
 }
 
+struct ServerReliabilityEntry: Codable {
+    let serverName: String
+    let okPercent: Double
+    let warningPercent: Double
+    let errorPercent: Double
+    let sampleCount: Int
+
+    enum CodingKeys: String, CodingKey {
+        case serverName = "server_name"
+        case okPercent = "ok_percent"
+        case warningPercent = "warning_percent"
+        case errorPercent = "error_percent"
+        case sampleCount = "sample_count"
+    }
+}
+
+struct ServerReliabilityResponse: Codable {
+    let window: String
+    let servers: [ServerReliabilityEntry]
+}
+
 enum HistoryRange: String, CaseIterable, Identifiable {
     case oneHour = "1h"
     case oneDay = "24h"

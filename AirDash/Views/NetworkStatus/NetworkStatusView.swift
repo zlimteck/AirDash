@@ -10,6 +10,7 @@ struct NetworkStatusView: View {
     @State private var compareServers: [AirVPNServer] = []
     @State private var showComparison = false
     @State private var showTrends = false
+    @State private var reliabilityByServer: [String: Double] = [:]
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -64,6 +65,7 @@ struct NetworkStatusView: View {
             writeSharedBestServer(bestServer)
             vm.writeSharedFavoriteServers()
             SpotlightService.indexFavoriteServers(vm.favoriteServers)
+            await loadFavoritesReliability()
             if let name = UserDefaults.standard.string(forKey: "pendingOpenServer") {
                 UserDefaults.standard.removeObject(forKey: "pendingOpenServer")
                 navigateToServer(named: name)
@@ -89,6 +91,7 @@ struct NetworkStatusView: View {
         .onChange(of: vm.favoriteIds) {
             vm.writeSharedFavoriteServers()
             SpotlightService.indexFavoriteServers(vm.favoriteServers)
+            Task { await loadFavoritesReliability() }
         }
         .sheet(isPresented: $showComparison) {
             ServerComparisonView(
@@ -119,6 +122,16 @@ struct NetworkStatusView: View {
         } else if compareServers.count < 3 {
             compareServers.append(server)
         }
+    }
+
+    private func loadFavoritesReliability() async {
+        guard !vm.favoriteServers.isEmpty else { return }
+        guard let response = try? await AirVPNHistoryClient.shared.reliability(window: .oneDay) else { return }
+        var byName: [String: Double] = [:]
+        for entry in response.servers {
+            byName[entry.serverName] = entry.okPercent
+        }
+        reliabilityByServer = byName
     }
 
     private func writeSharedBestServer(_ server: AirVPNServer?) {
@@ -288,7 +301,8 @@ struct NetworkStatusView: View {
                                 server: server,
                                 latency: vm.latencies[server.id],
                                 isMeasured: vm.measuredIds.contains(server.id),
-                                isFavorite: true
+                                isFavorite: true,
+                                reliabilityPercent: reliabilityByServer[server.id]
                             )
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .contentShape(Rectangle())

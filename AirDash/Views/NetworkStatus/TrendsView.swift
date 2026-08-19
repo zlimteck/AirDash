@@ -3,6 +3,7 @@ import SwiftUI
 struct TrendsView: View {
     @State private var window: HistoryRange = .oneHour
     @State private var entries: [ServerRankingEntry] = []
+    @State private var reliabilityByServer: [String: Double] = [:]
     @State private var isLoading = false
     @State private var errorMessage: String? = nil
 
@@ -54,7 +55,7 @@ struct TrendsView: View {
             } else {
                 Section {
                     ForEach(entries) { entry in
-                        TrendRankingRow(entry: entry)
+                        TrendRankingRow(entry: entry, reliabilityPercent: reliabilityByServer[entry.serverName])
                     }
                 } header: {
                     Text("network.ranking")
@@ -75,8 +76,12 @@ struct TrendsView: View {
         isLoading = true
         errorMessage = nil
         do {
-            let response = try await AirVPNHistoryClient.shared.ranking(window: window)
-            entries = response.servers
+            async let rankingTask = AirVPNHistoryClient.shared.ranking(window: window)
+            async let reliabilityTask = try? AirVPNHistoryClient.shared.reliability(window: window)
+            entries = try await rankingTask.servers
+            if let reliability = await reliabilityTask {
+                reliabilityByServer = Dictionary(uniqueKeysWithValues: reliability.servers.map { ($0.serverName, $0.okPercent) })
+            }
         } catch is CancellationError {
             // ignore
         } catch let error as AppError {
@@ -90,6 +95,7 @@ struct TrendsView: View {
 
 private struct TrendRankingRow: View {
     let entry: ServerRankingEntry
+    var reliabilityPercent: Double? = nil
 
     var body: some View {
         HStack(spacing: 12) {
@@ -98,9 +104,22 @@ private struct TrendRankingRow: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(entry.serverName)
                     .font(.headline)
-                Text(entry.location ?? entry.countryName ?? "")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                HStack(spacing: 4) {
+                    Text(entry.location ?? entry.countryName ?? "")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    if let reliabilityPercent {
+                        Text("·")
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
+                        Image(systemName: "checkmark.shield.fill")
+                            .font(.caption2)
+                            .foregroundStyle(reliabilityColor(reliabilityPercent))
+                        Text("\(Int(reliabilityPercent.rounded()))%")
+                            .font(.caption2.monospacedDigit())
+                            .foregroundStyle(reliabilityColor(reliabilityPercent))
+                    }
+                }
                 LoadBar(load: entry.avgLoadPercent)
                     .frame(maxWidth: 120)
             }
@@ -123,6 +142,14 @@ private struct TrendRankingRow: View {
         switch load {
         case ..<50: .green
         case 50..<80: .orange
+        default: .red
+        }
+    }
+
+    private func reliabilityColor(_ percent: Double) -> Color {
+        switch percent {
+        case 90...: .green
+        case 70..<90: .orange
         default: .red
         }
     }

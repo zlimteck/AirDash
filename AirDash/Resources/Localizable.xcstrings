@@ -36,6 +36,9 @@
     "%@%%" : {
 
     },
+    "%@h" : {
+
+    },
     "AirDash" : {
 
     },
@@ -821,6 +824,23 @@
         }
       }
     },
+    "compare.bandwidth" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bandwidth"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Débit"
+          }
+        }
+      }
+    },
     "compare.clear" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -953,6 +973,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Utilisateurs"
+          }
+        }
+      }
+    },
+    "comparison.chart.server" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serveur"
+          }
+        }
+      }
+    },
+    "comparison.history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "History"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historique"
           }
         }
       }
@@ -1161,23 +1215,6 @@
         }
       }
     },
-    "credits.trademark.wireguard" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "\"WireGuard\" and the WireGuard logo are registered trademarks of Jason A. Donenfeld."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "« WireGuard » et le logo WireGuard sont des marques déposées de Jason A. Donenfeld."
-          }
-        }
-      }
-    },
     "credits.trademark.openvpn" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1191,6 +1228,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "OpenVPN® est une marque déposée d'OpenVPN, Inc."
+          }
+        }
+      }
+    },
+    "credits.trademark.wireguard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"WireGuard\" and the WireGuard logo are registered trademarks of Jason A. Donenfeld."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "« WireGuard » et le logo WireGuard sont des marques déposées de Jason A. Donenfeld."
           }
         }
       }
@@ -2657,6 +2711,9 @@
         }
       }
     },
+    "IPv4" : {
+
+    },
     "IPv6" : {
       "localizations" : {
         "en" : {
@@ -3173,6 +3230,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valider et se connecter"
+          }
+        }
+      }
+    },
+    "peakhours.chart.hour" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hour"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heure"
+          }
+        }
+      }
+    },
+    "peakhours.chart.load" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Load"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charge"
+          }
+        }
+      }
+    },
+    "peakhours.quietest" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usually less loaded between %02d:00 and %02d:00"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Généralement moins chargé entre %02dh et %02dh"
+          }
+        }
+      }
+    },
+    "peakhours.section" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peak Hours"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heures creuses"
           }
         }
       }

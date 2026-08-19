@@ -5,6 +5,7 @@ struct ServerRowView: View {
     let latency: Int?
     let isMeasured: Bool
     var isFavorite: Bool = false
+    var reliabilityPercent: Double? = nil
 
     var body: some View {
         HStack(spacing: 12) {
@@ -21,9 +22,22 @@ struct ServerRowView: View {
                             .foregroundStyle(.yellow)
                     }
                 }
-                Text(server.location)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                HStack(spacing: 4) {
+                    Text(server.location)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    if let reliabilityPercent {
+                        Text("·")
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
+                        Image(systemName: "checkmark.shield.fill")
+                            .font(.caption2)
+                            .foregroundStyle(reliabilityColor(reliabilityPercent))
+                        Text("\(Int(reliabilityPercent.rounded()))%")
+                            .font(.caption2.monospacedDigit())
+                            .foregroundStyle(reliabilityColor(reliabilityPercent))
+                    }
+                }
 
                 if let warning = server.warning, !warning.isEmpty {
                     Text(warning.trimmingCharacters(in: .init(charactersIn: "* ")))
@@ -71,6 +85,14 @@ struct ServerRowView: View {
         switch load {
         case ..<50: .green
         case 50..<80: .orange
+        default: .red
+        }
+    }
+
+    private func reliabilityColor(_ percent: Double) -> Color {
+        switch percent {
+        case 90...: .green
+        case 70..<90: .orange
         default: .red
         }
     }

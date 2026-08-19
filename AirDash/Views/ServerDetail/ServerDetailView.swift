@@ -59,6 +59,7 @@ struct ServerDetailView: View {
 
             // Load & users history
             ServerHistoryChartView(serverName: server.publicName)
+            PeakHoursView(serverName: server.publicName)
 
             // Last profile per protocol for this server
             let history = ProfileHistoryService.shared.entriesForServer(server.publicName)

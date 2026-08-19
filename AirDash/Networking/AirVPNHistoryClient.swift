@@ -7,6 +7,7 @@ actor AirVPNHistoryClient {
     private let baseURL = URL(string: "https://airvpn-api.zmtk.fr")!
     private let historyCache = KeyedTtlCache<String, ServerHistoryResponse>(ttl: 120)
     private let rankingCache = KeyedTtlCache<String, ServerRankingResponse>(ttl: 300)
+    private let reliabilityCache = KeyedTtlCache<String, ServerReliabilityResponse>(ttl: 300)
 
     private let session: URLSession = {
         let config = URLSessionConfiguration.default
@@ -54,6 +55,16 @@ actor AirVPNHistoryClient {
             URLQueryItem(name: "window", value: window.rawValue)
         ])
         rankingCache.set(result, for: cacheKey)
+        return result
+    }
+
+    func reliability(window: HistoryRange = .oneDay, forceRefresh: Bool = false) async throws -> ServerReliabilityResponse {
+        let cacheKey = window.rawValue
+        if !forceRefresh, let cached = reliabilityCache.get(for: cacheKey) { return cached }
+        let result: ServerReliabilityResponse = try await get("servers/reliability", query: [
+            URLQueryItem(name: "window", value: window.rawValue)
+        ])
+        reliabilityCache.set(result, for: cacheKey)
         return result
     }
 }

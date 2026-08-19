@@ -11,6 +11,7 @@ struct ServerComparisonView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 12) {
+                    ComparisonHistoryView(servers: servers)
                     ForEach(servers) { server in
                         NavigationLink(value: server) {
                             ServerCompareCard(
@@ -102,17 +103,29 @@ private struct ServerCompareCard: View {
                         pingView
                     }
                     verticalDivider
-                    statCell(label: "IPv4") {
-                        Text(server.ipV4In1 ?? "—")
-                            .font(.caption2.monospaced())
-                            .foregroundStyle(server.ipV4In1 != nil ? .primary : .tertiary)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.7)
-                            .padding(.horizontal, 4)
+                    statCell(label: "compare.bandwidth") {
+                        Text(formatBandwidth(server.bw))
+                            .font(.subheadline.bold().monospacedDigit())
                     }
                 }
                 .frame(height: 52)
+
             }
+
+            Divider()
+            HStack(spacing: 6) {
+                Text("IPv4")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text(server.ipV4In1 ?? "—")
+                    .font(.caption2.monospaced())
+                    .foregroundStyle(server.ipV4In1 != nil ? .secondary : .tertiary)
+                    .lineLimit(1)
+                    .truncationMode(.middle)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 8)
 
             if let ip6 = server.ipV6In1 {
                 Divider()
@@ -164,6 +177,11 @@ private struct ServerCompareCard: View {
                 .font(.subheadline.bold())
                 .foregroundStyle(.tertiary)
         }
+    }
+
+    private func formatBandwidth(_ bw: Double) -> String {
+        if bw >= 1000 { return String(format: "%.0f Gbps", bw / 1000) }
+        return String(format: "%.0f Mbps", bw)
     }
 
     private func loadColor(_ load: Double) -> Color {
