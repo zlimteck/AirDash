@@ -272,6 +272,13 @@ enum VPNProtocol: String, CaseIterable {
         }
     }
 
+    var iconAssetName: String {
+        switch self {
+        case .wireguard: "protocol-wireguard"
+        case .openvpn: "protocol-openvpn"
+        }
+    }
+
     var ports: [Int] {
         switch self {
         case .wireguard: [1637, 47107, 51820]

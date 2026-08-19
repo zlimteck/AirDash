@@ -32,6 +32,20 @@ struct CreditsView: View {
             } header: {
                 Text("credits.section.contributors")
             }
+
+            Section {
+                Text("credits.trademark.airvpn")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text("credits.trademark.wireguard")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Text("credits.trademark.openvpn")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            } header: {
+                Text("credits.section.trademarks")
+            }
         }
         .navigationTitle("settings.credits")
         .navigationBarTitleDisplayMode(.large)

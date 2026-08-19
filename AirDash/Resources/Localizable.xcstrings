@@ -1127,6 +1127,74 @@
         }
       }
     },
+    "credits.section.trademarks" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trademarks"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marques déposées"
+          }
+        }
+      }
+    },
+    "credits.trademark.airvpn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirVPN is a trademark of its respective owner. AirDash is an independent, unofficial client with no affiliation to or endorsement by AirVPN."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AirVPN est une marque déposée de son propriétaire respectif. AirDash est un client indépendant et non officiel, sans affiliation avec AirVPN ni approbation de sa part."
+          }
+        }
+      }
+    },
+    "credits.trademark.wireguard" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"WireGuard\" and the WireGuard logo are registered trademarks of Jason A. Donenfeld."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "« WireGuard » et le logo WireGuard sont des marques déposées de Jason A. Donenfeld."
+          }
+        }
+      }
+    },
+    "credits.trademark.openvpn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OpenVPN® is a registered trademark of OpenVPN, Inc."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OpenVPN® est une marque déposée d'OpenVPN, Inc."
+          }
+        }
+      }
+    },
     "dashboard.active_sessions" : {
       "extractionState" : "manual",
       "localizations" : {

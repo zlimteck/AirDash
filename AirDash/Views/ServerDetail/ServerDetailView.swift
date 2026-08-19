@@ -66,6 +66,12 @@ struct ServerDetailView: View {
                 Section {
                     ForEach(history) { entry in
                         HStack(alignment: .center) {
+                            if let proto = VPNProtocol(rawValue: entry.vpnProtocol) {
+                                Image(proto.iconAssetName)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 22, height: 22)
+                            }
                             VStack(alignment: .leading, spacing: 2) {
                                 Text((VPNProtocol(rawValue: entry.vpnProtocol)?.displayName ?? entry.vpnProtocol) + (entry.port.map { " · \($0)" } ?? ""))
                                     .font(.subheadline.bold())
