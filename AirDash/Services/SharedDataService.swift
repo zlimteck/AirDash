@@ -26,6 +26,8 @@ struct SharedWidgetData: Codable {
         let deviceName: String?
         let serverName: String?
         let serverCountryCode: String?
+        let connectedSinceUnix: Int?
+        let isThisDevice: Bool
     }
 }
 
@@ -47,7 +49,9 @@ enum SharedDataService {
                 SharedWidgetData.SharedSession(
                     deviceName: $0.deviceName,
                     serverName: $0.serverName,
-                    serverCountryCode: $0.serverCountryCode
+                    serverCountryCode: $0.serverCountryCode,
+                    connectedSinceUnix: $0.connectedSinceUnix,
+                    isThisDevice: currentIP != nil && $0.exitIP == currentIP
                 )
             },
             expirationDays: user?.expirationDays,
