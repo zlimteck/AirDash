@@ -14,6 +14,9 @@ build/
 .build/
 .swiftpm/
 
+# WireGuardKitGo build artifacts (libwg-go.a, built by the WireGuardGoBridge aggregate target)
+Vendor/.build/
+
 # CocoaPods (non utilisé mais au cas où)
 Pods/
 Podfile.lock

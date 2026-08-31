@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F9AD1F5B2E828F7B4F5690CB"
-               BuildableName = "AirDash.app"
-               BlueprintName = "AirDash"
-               ReferencedContainer = "container:AirDash.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F66C15AF3AF2A33996F194E7"
-               BuildableName = "AirDashTunnel.appex"
-               BlueprintName = "AirDashTunnel"
+               BlueprintIdentifier = "BD36587726E9D17CEFAE967C"
+               BuildableName = "AirDashLite.app"
+               BlueprintName = "AirDashLite"
                ReferencedContainer = "container:AirDash.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -58,9 +44,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F9AD1F5B2E828F7B4F5690CB"
-            BuildableName = "AirDash.app"
-            BlueprintName = "AirDash"
+            BlueprintIdentifier = "BD36587726E9D17CEFAE967C"
+            BuildableName = "AirDashLite.app"
+            BlueprintName = "AirDashLite"
             ReferencedContainer = "container:AirDash.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -81,9 +67,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F9AD1F5B2E828F7B4F5690CB"
-            BuildableName = "AirDash.app"
-            BlueprintName = "AirDash"
+            BlueprintIdentifier = "BD36587726E9D17CEFAE967C"
+            BuildableName = "AirDashLite.app"
+            BlueprintName = "AirDashLite"
             ReferencedContainer = "container:AirDash.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -98,9 +84,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F9AD1F5B2E828F7B4F5690CB"
-            BuildableName = "AirDash.app"
-            BlueprintName = "AirDash"
+            BlueprintIdentifier = "BD36587726E9D17CEFAE967C"
+            BuildableName = "AirDashLite.app"
+            BlueprintName = "AirDashLite"
             ReferencedContainer = "container:AirDash.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

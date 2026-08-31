@@ -12,6 +12,11 @@ private let credits: [CreditEntry] = [
         name: "Aerya",
         role: "credits.aerya.role",
         url: URL(string: "https://github.com/Aerya/Gluetun-Companion")
+    ),
+    CreditEntry(
+        name: "WireGuard",
+        role: "credits.wireguard.role",
+        url: URL(string: "https://github.com/WireGuard/wireguard-apple")
     )
 ]
 

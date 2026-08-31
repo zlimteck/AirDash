@@ -1,0 +1,3 @@
+[submodule "Vendor/wireguard-apple"]
+	path = Vendor/wireguard-apple
+	url = https://github.com/zlimteck/wireguard-apple.git

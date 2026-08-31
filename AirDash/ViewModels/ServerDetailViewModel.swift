@@ -15,6 +15,7 @@ final class ServerDetailViewModel: ObservableObject {
     @Published var showQRCode: Bool = false
     @Published var shareItems: [Any] = []
     @Published var generatedFileURL: URL? = nil
+    @Published var isConnectingNative: Bool = false
 
     var availablePorts: [Int] { selectedProtocol.ports }
 
@@ -75,5 +76,32 @@ final class ServerDetailViewModel: ObservableObject {
     func importToVPNApp() {
         guard let url = generatedFileURL else { return }
         VPNProfileImporter.shared.presentOpenIn(url: url, vpnProtocol: selectedProtocol)
+    }
+
+    /// Connects the native tunnel using the profile already generated in this session —
+    /// reuses `generatedProfile.content` as-is, no new API call, no key regeneration.
+    func connectViaNativeTunnel(tunnelManager: VPNTunnelManager, serverName: String) async {
+        guard let profile = generatedProfile, selectedProtocol == .wireguard else { return }
+        isConnectingNative = true
+        errorMessage = nil
+        do {
+            try await tunnelManager.saveTunnel(wgQuickConfigText: profile.content, serverName: serverName)
+            try await tunnelManager.connect()
+        } catch let error as AppError {
+            errorMessage = error.errorDescription
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        isConnectingNative = false
+    }
+
+    /// Generates a profile and connects in one step, for the primary "Connect" action
+    /// shown before generation — skips the intermediate "generated profile" screen
+    /// entirely for people who just want to connect, not export a file.
+    func connectDirectly(server: AirVPNServer, apiKey: String, tunnelManager: VPNTunnelManager) async {
+        guard selectedProtocol == .wireguard else { return }
+        await generateProfile(server: server, apiKey: apiKey)
+        guard generatedProfile != nil, errorMessage == nil else { return }
+        await connectViaNativeTunnel(tunnelManager: tunnelManager, serverName: server.publicName)
     }
 }

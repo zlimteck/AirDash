@@ -3,6 +3,9 @@ import SwiftUI
 struct ServerDetailView: View {
     let server: AirVPNServer
     @EnvironmentObject var appState: AppState
+    #if VPN_ENABLED
+    @EnvironmentObject var tunnelManager: VPNTunnelManager
+    #endif
     @StateObject private var vm = ServerDetailViewModel()
 
     var body: some View {
@@ -74,7 +77,9 @@ struct ServerDetailView: View {
                                     .frame(width: 22, height: 22)
                             }
                             VStack(alignment: .leading, spacing: 2) {
-                                Text((VPNProtocol(rawValue: entry.vpnProtocol)?.displayName ?? entry.vpnProtocol) + (entry.port.map { " · \($0)" } ?? ""))
+                                let protocolName: String = VPNProtocol(rawValue: entry.vpnProtocol)?.displayName ?? entry.vpnProtocol
+                                let portSuffix: String = entry.port.map { " · \($0)" } ?? ""
+                                Text(protocolName + portSuffix)
                                     .font(.subheadline.bold())
                                 Text(relativeTime(entry.date))
                                     .font(.caption)
@@ -144,19 +149,31 @@ struct ServerDetailView: View {
                             .listRowSeparator(.hidden)
                     }
 
+                    #if VPN_ENABLED
+                    if vm.selectedProtocol == .wireguard {
+                        connectButton {
+                            if tunnelManager.status == .connected {
+                                await tunnelManager.disconnect()
+                            } else {
+                                await vm.connectDirectly(server: server, apiKey: appState.apiKey, tunnelManager: tunnelManager)
+                            }
+                        }
+                    }
+                    #endif
+
                     Button {
                         Task { await vm.generateProfile(server: server, apiKey: appState.apiKey) }
                     } label: {
-                        if vm.isGenerating {
+                        if vm.isGenerating && vm.generatedProfile == nil && !vm.isConnectingNative {
                             ProgressView().frame(maxWidth: .infinity)
                         } else {
                             centeredLabel("detail.generate", systemImage: "arrow.down.doc.fill")
                         }
                     }
-                    .buttonStyle(.borderedProminent)
+                    .modifier(GenerateButtonStyleModifier(isSecondary: vm.selectedProtocol == .wireguard))
                     .controlSize(.regular)
-                    .disabled(vm.isGenerating)
-                    .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    .disabled(vm.isGenerating || vm.isConnectingNative)
+                    .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 12, trailing: 16))
                     .listRowSeparator(.hidden)
 
                 } header: {
@@ -165,14 +182,26 @@ struct ServerDetailView: View {
             } else {
                 // Post-generation actions
                 Section {
+                    #if VPN_ENABLED
+                    if vm.selectedProtocol == .wireguard {
+                        connectButton {
+                            if tunnelManager.status == .connected {
+                                await tunnelManager.disconnect()
+                            } else {
+                                await vm.connectViaNativeTunnel(tunnelManager: tunnelManager, serverName: server.publicName)
+                            }
+                        }
+                    }
+                    #endif
+
                     Button {
                         vm.importToVPNApp()
                     } label: {
                         centeredLabel("detail.import_vpn", systemImage: "arrow.down.app.fill")
                     }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(.bordered)
                     .controlSize(.regular)
-                    .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                    .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 12, trailing: 16))
                     .listRowSeparator(.hidden)
 
                     Button("detail.generate_new") {
@@ -182,6 +211,13 @@ struct ServerDetailView: View {
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity)
                     .listRowSeparator(.hidden)
+
+                    if let error = vm.errorMessage {
+                        Label(error, systemImage: "xmark.circle.fill")
+                            .font(.caption)
+                            .foregroundStyle(.red)
+                            .listRowSeparator(.hidden)
+                    }
                 }
             }
         }
@@ -236,6 +272,33 @@ struct ServerDetailView: View {
         }
     }
 
+    #if VPN_ENABLED
+    private func connectButton(action: @escaping () async -> Void) -> some View {
+        Button {
+            Task { await action() }
+        } label: {
+            connectButtonLabel
+        }
+        .buttonStyle(.borderedProminent)
+        .tint(tunnelManager.status == .connected ? .red : .accentColor)
+        .controlSize(.regular)
+        .disabled(vm.isGenerating || vm.isConnectingNative)
+        .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 4, trailing: 16))
+        .listRowSeparator(.hidden)
+    }
+
+    @ViewBuilder
+    private var connectButtonLabel: some View {
+        if vm.isGenerating || vm.isConnectingNative {
+            ProgressView().frame(maxWidth: .infinity)
+        } else if tunnelManager.status == .connected {
+            centeredLabel("detail.disconnect_native", systemImage: "lock.slash.fill")
+        } else {
+            centeredLabel("detail.connect_native", systemImage: "lock.shield.fill")
+        }
+    }
+    #endif
+
     private func centeredLabel(_ key: LocalizedStringKey, systemImage: String) -> some View {
         HStack(spacing: 6) {
             Image(systemName: systemImage)
@@ -258,6 +321,18 @@ struct ServerDetailView: View {
     private func formatBandwidth(_ bw: Double) -> String {
         if bw >= 1000 { return String(format: "%.0f Gbps", bw / 1000) }
         return String(format: "%.0f Mbps", bw)
+    }
+}
+
+private struct GenerateButtonStyleModifier: ViewModifier {
+    let isSecondary: Bool
+
+    func body(content: Content) -> some View {
+        if isSecondary {
+            content.buttonStyle(.bordered)
+        } else {
+            content.buttonStyle(.borderedProminent)
+        }
     }
 }
 

@@ -1,7 +1,11 @@
 import SwiftUI
+import NetworkExtension
 
 struct DashboardView: View {
     @EnvironmentObject var appState: AppState
+    #if VPN_ENABLED
+    @EnvironmentObject var tunnelManager: VPNTunnelManager
+    #endif
     @StateObject private var vm = DashboardViewModel()
     @State private var showAllProfiles = false
     @State private var selectedSessionServer: AirVPNServer? = nil
@@ -43,6 +47,26 @@ struct DashboardView: View {
         }
     }
 
+    private var isAccountCardVPNActive: Bool {
+        #if VPN_ENABLED
+        vm.isVPNActiveOnDevice || tunnelManager.status == .connected
+        #else
+        vm.isVPNActiveOnDevice
+        #endif
+    }
+
+    #if VPN_ENABLED
+    private var nativeTunnelStatusText: LocalizedStringKey {
+        switch tunnelManager.status {
+        case .connected: "tunnel.status.connected"
+        case .connecting: "tunnel.status.connecting"
+        case .reasserting: "tunnel.status.reasserting"
+        case .disconnecting: "tunnel.status.disconnecting"
+        default: "tunnel.status.disconnected"
+        }
+    }
+    #endif
+
     private func openServerDetail(for session: AirVPNSession) async {
         guard let name = session.serverName else { return }
         guard let status = try? await AirVPNAPIClient.shared.getStatus() else { return }
@@ -69,12 +93,53 @@ struct DashboardView: View {
                         warning: vm.expirationWarning,
                         sessionCount: vm.activeSessions.count,
                         currentIP: vm.currentIP,
-                        isVPNActive: vm.isVPNActiveOnDevice
+                        isVPNActive: isAccountCardVPNActive
                     )
                     .listRowInsets(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
                     .listRowSeparator(.hidden)
                 }
             }
+
+            #if VPN_ENABLED
+            if tunnelManager.status != .invalid && tunnelManager.status != .disconnected {
+                Section {
+                    HStack(spacing: 12) {
+                        ZStack {
+                            Circle()
+                                .fill((tunnelManager.status == .connected ? Color.green : Color.secondary).opacity(0.15))
+                                .frame(width: 34, height: 34)
+                            Image(systemName: "lock.shield.fill")
+                                .font(.subheadline)
+                                .foregroundStyle(tunnelManager.status == .connected ? .green : .secondary)
+                        }
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("tunnel.title")
+                                .font(.subheadline.bold())
+                            Text(nativeTunnelStatusText)
+                                .font(.caption)
+                                .foregroundStyle(tunnelManager.status == .connected ? .green : .secondary)
+                        }
+                        Spacer()
+                        if tunnelManager.status == .connecting || tunnelManager.status == .reasserting || tunnelManager.status == .disconnecting {
+                            ProgressView()
+                        }
+                    }
+                    .listRowInsets(EdgeInsets(top: 14, leading: 16, bottom: 14, trailing: 16))
+                    .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                        if tunnelManager.status == .connected {
+                            Button(role: .destructive) {
+                                Task {
+                                    await tunnelManager.disconnect()
+                                    await vm.load(apiKey: appState.apiKey, forceRefresh: true)
+                                }
+                            } label: {
+                                Label("tunnel.disconnect", systemImage: "xmark.circle.fill")
+                            }
+                        }
+                    }
+                }
+            }
+            #endif
 
             if vm.userInfo != nil {
                 Section {
@@ -98,7 +163,14 @@ struct DashboardView: View {
                                 }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                     Button(role: .destructive) {
-                                        Task { await vm.disconnectSession(session, apiKey: appState.apiKey) }
+                                        Task {
+                                            await vm.disconnectSession(session, apiKey: appState.apiKey)
+                                            #if VPN_ENABLED
+                                            if session.exitIP != nil, session.exitIP == vm.currentIP {
+                                                await tunnelManager.disconnect()
+                                            }
+                                            #endif
+                                        }
                                     } label: {
                                         Label("session.disconnect", systemImage: "xmark.circle.fill")
                                     }

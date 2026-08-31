@@ -7,8 +7,14 @@ struct AirDashApp: App {
 
     var body: some Scene {
         WindowGroup {
+            #if VPN_ENABLED
             RootView()
                 .environmentObject(appState)
+                .environmentObject(VPNTunnelManager.shared)
+            #else
+            RootView()
+                .environmentObject(appState)
+            #endif
         }
     }
 }
