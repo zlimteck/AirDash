@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Select Xcode 26
         run: sudo xcode-select -s /Applications/Xcode_26.0.app/Contents/Developer
@@ -26,14 +28,14 @@ jobs:
         run: |
           xcodebuild -resolvePackageDependencies \
             -project AirDash.xcodeproj \
-            -scheme AirDash
+            -scheme AirDash-Lite
 
       - name: Build for Simulator
         run: |
           set -o pipefail
           xcodebuild build \
             -project AirDash.xcodeproj \
-            -scheme AirDash \
+            -scheme AirDash-Lite \
             -destination 'generic/platform=iOS Simulator' \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
