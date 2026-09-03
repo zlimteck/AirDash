@@ -15,10 +15,11 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 ## Screenshots
 
 <p float="left">
-  <img src="assets/screenshot-login.png" width="22%" alt="Login" />
-  <img src="assets/screenshot-dashboard.png" width="22%" alt="Dashboard" />
-  <img src="assets/screenshot-network.png" width="22%" alt="Network" />
-  <img src="assets/screenshot-server-detail.png" width="22%" alt="Server detail" />
+  <img src="assets/screenshot-login.png" width="18%" alt="Login" />
+  <img src="assets/screenshot-network.png" width="18%" alt="Network" />
+  <img src="assets/screenshot-dashboard.png" width="18%" alt="Dashboard" />
+  <img src="assets/screenshot-server-detail.png" width="18%" alt="Server detail" />
+  <img src="assets/screenshot-connect.png" width="18%" alt="Native VPN connect" />
 </p>
 
 ---
@@ -217,6 +218,14 @@ Server history, reliability, and the Trends ranking are powered by a separate, s
 
 ---
 
+## Contributing
+
+Found a bug or have a feature idea? Open an [issue](https://github.com/zlimteck/AirDash/issues) or a pull request.
+
+## Privacy Policy
+
+[PRIVACY.md](PRIVACY.md)
+
 ## License
 
-MIT
+[MIT](LICENSE)
