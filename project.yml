@@ -75,6 +75,7 @@ targets:
         UILaunchStoryboardName: LaunchScreen
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
+        ITSAppUsesNonExemptEncryption: true
     dependencies:
       - package: FlagKit
         product: FlagKit
@@ -141,6 +142,7 @@ targets:
         UILaunchStoryboardName: LaunchScreen
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
+        ITSAppUsesNonExemptEncryption: false
     dependencies:
       - package: FlagKit
         product: FlagKit
