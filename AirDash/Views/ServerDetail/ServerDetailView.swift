@@ -152,9 +152,14 @@ struct ServerDetailView: View {
                     #if VPN_ENABLED
                     if vm.selectedProtocol == .wireguard {
                         connectButton {
-                            if tunnelManager.status == .connected {
+                            if isConnectedToThisServer {
                                 await tunnelManager.disconnect()
                             } else {
+                                if tunnelManager.status == .connected {
+                                    vm.isConnectingNative = true
+                                    await tunnelManager.disconnect()
+                                    await tunnelManager.waitUntilDisconnected()
+                                }
                                 await vm.connectDirectly(server: server, apiKey: appState.apiKey, tunnelManager: tunnelManager)
                             }
                         }
@@ -185,9 +190,14 @@ struct ServerDetailView: View {
                     #if VPN_ENABLED
                     if vm.selectedProtocol == .wireguard {
                         connectButton {
-                            if tunnelManager.status == .connected {
+                            if isConnectedToThisServer {
                                 await tunnelManager.disconnect()
                             } else {
+                                if tunnelManager.status == .connected {
+                                    vm.isConnectingNative = true
+                                    await tunnelManager.disconnect()
+                                    await tunnelManager.waitUntilDisconnected()
+                                }
                                 await vm.connectViaNativeTunnel(tunnelManager: tunnelManager, serverName: server.publicName)
                             }
                         }
@@ -273,6 +283,10 @@ struct ServerDetailView: View {
     }
 
     #if VPN_ENABLED
+    private var isConnectedToThisServer: Bool {
+        tunnelManager.status == .connected && tunnelManager.connectedServerName == server.publicName
+    }
+
     private func connectButton(action: @escaping () async -> Void) -> some View {
         Button {
             Task { await action() }
@@ -280,7 +294,7 @@ struct ServerDetailView: View {
             connectButtonLabel
         }
         .buttonStyle(.borderedProminent)
-        .tint(tunnelManager.status == .connected ? .red : .accentColor)
+        .tint(isConnectedToThisServer ? .red : .accentColor)
         .controlSize(.regular)
         .disabled(vm.isGenerating || vm.isConnectingNative)
         .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 4, trailing: 16))
@@ -291,7 +305,7 @@ struct ServerDetailView: View {
     private var connectButtonLabel: some View {
         if vm.isGenerating || vm.isConnectingNative {
             ProgressView().frame(maxWidth: .infinity)
-        } else if tunnelManager.status == .connected {
+        } else if isConnectedToThisServer {
             centeredLabel("detail.disconnect_native", systemImage: "lock.slash.fill")
         } else {
             centeredLabel("detail.connect_native", systemImage: "lock.shield.fill")

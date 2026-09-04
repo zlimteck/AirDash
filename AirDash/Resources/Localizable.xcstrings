@@ -739,6 +739,40 @@
         }
       }
     },
+    "changelog.1_0_10.remember_last_device" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixed: the device picker on server detail now remembers your last used device instead of always resetting to the first one"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correction : le sélecteur d'appareil sur la fiche serveur se souvient maintenant du dernier appareil utilisé au lieu de toujours revenir au premier"
+          }
+        }
+      }
+    },
+    "changelog.1_0_10.switch_server_fix" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixed: switching the native VPN connection to another server now works in one tap instead of requiring a manual disconnect first"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correction : changer de serveur en VPN natif fonctionne maintenant en un seul tap, sans devoir se déconnecter manuellement d'abord"
+          }
+        }
+      }
+    },
     "changelog.1_0_9.native_vpn" : {
       "extractionState" : "manual",
       "localizations" : {

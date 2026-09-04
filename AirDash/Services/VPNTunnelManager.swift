@@ -9,6 +9,7 @@ final class VPNTunnelManager: ObservableObject {
     static let shared = VPNTunnelManager()
 
     @Published private(set) var status: NEVPNStatus = .invalid
+    @Published private(set) var connectedServerName: String?
 
     private var manager: NETunnelProviderManager?
     private var statusObserver: NSObjectProtocol?
@@ -25,6 +26,7 @@ final class VPNTunnelManager: ObservableObject {
         guard let managers = try? await loadAllManagers(), let existing = managers.first else { return }
         manager = existing
         status = existing.connection.status
+        connectedServerName = (existing.protocolConfiguration as? NETunnelProviderProtocol)?.serverAddress
         observeStatus(for: existing)
     }
 
@@ -50,6 +52,7 @@ final class VPNTunnelManager: ObservableObject {
         manager = target
         observeStatus(for: target)
         status = target.connection.status
+        connectedServerName = serverName
     }
 
     /// Pulls the port out of the wg-quick text's `Endpoint = host:port` line, so the
@@ -73,6 +76,17 @@ final class VPNTunnelManager: ObservableObject {
 
     func disconnect() async {
         manager?.connection.stopVPNTunnel()
+    }
+
+    /// Waits for an in-flight disconnect to actually finish, so a caller that wants to
+    /// switch servers can safely start a new tunnel right after without the OS silently
+    /// ignoring `startVPNTunnel()` because the previous session is still tearing down.
+    func waitUntilDisconnected(timeout: TimeInterval = 5) async {
+        let deadline = Date().addingTimeInterval(timeout)
+        while status == .connected || status == .connecting || status == .disconnecting || status == .reasserting {
+            if Date() >= deadline { break }
+            try? await Task.sleep(for: .milliseconds(200))
+        }
     }
 
     private func observeStatus(for manager: NETunnelProviderManager) {
