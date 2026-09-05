@@ -7,6 +7,7 @@ struct ServerDetailView: View {
     @EnvironmentObject var tunnelManager: VPNTunnelManager
     #endif
     @StateObject private var vm = ServerDetailViewModel()
+    @AppStorage("historyFeaturesEnabled") private var historyFeaturesEnabled = false
 
     var body: some View {
         List {
@@ -60,9 +61,11 @@ struct ServerDetailView: View {
                 Label("detail.ip_addresses", systemImage: "network")
             }
 
-            // Load & users history
-            ServerHistoryChartView(serverName: server.publicName)
-            PeakHoursView(serverName: server.publicName)
+            // Load & users history — opt-in, powered by a separate history service (see Settings)
+            if historyFeaturesEnabled {
+                ServerHistoryChartView(serverName: server.publicName)
+                PeakHoursView(serverName: server.publicName)
+            }
 
             // Last profile per protocol for this server
             let history = ProfileHistoryService.shared.entriesForServer(server.publicName)
@@ -216,7 +219,7 @@ struct ServerDetailView: View {
 
                     Button("detail.generate_new") {
                         vm.generatedProfile = nil
-                        vm.generatedFileURL = nil
+                        vm.deleteTempFileIfNeeded()
                     }
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity)
@@ -241,7 +244,7 @@ struct ServerDetailView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
                         Button {
-                            vm.showShareSheet = true
+                            vm.prepareShareSheet()
                         } label: {
                             Label("detail.share", systemImage: "square.and.arrow.up")
                         }
@@ -274,6 +277,7 @@ struct ServerDetailView: View {
         }
         .sheet(isPresented: $vm.showShareSheet) {
             ShareSheet(items: vm.shareItems)
+                .onDisappear { vm.deleteTempFileIfNeeded() }
         }
         .sheet(isPresented: $vm.showQRCode) {
             if let profile = vm.generatedProfile {
@@ -329,7 +333,9 @@ struct ServerDetailView: View {
         let proto = VPNProtocol(rawValue: entry.vpnProtocol) ?? .wireguard
         let tmpURL = FileManager.default.temporaryDirectory.appendingPathComponent(entry.filename)
         try? entry.content.write(to: tmpURL, atomically: true, encoding: .utf8)
-        VPNProfileImporter.shared.presentOpenIn(url: tmpURL, vpnProtocol: proto)
+        VPNProfileImporter.shared.presentOpenIn(url: tmpURL, vpnProtocol: proto) {
+            try? FileManager.default.removeItem(at: tmpURL)
+        }
     }
 
     private func formatBandwidth(_ bw: Double) -> String {

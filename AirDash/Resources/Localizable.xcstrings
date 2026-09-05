@@ -739,244 +739,6 @@
         }
       }
     },
-    "changelog.1_0_10.remember_last_device" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fixed: the device picker on server detail now remembers your last used device instead of always resetting to the first one"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correction : le sélecteur d'appareil sur la fiche serveur se souvient maintenant du dernier appareil utilisé au lieu de toujours revenir au premier"
-          }
-        }
-      }
-    },
-    "changelog.1_0_10.switch_server_fix" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fixed: switching the native VPN connection to another server now works in one tap instead of requiring a manual disconnect first"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correction : changer de serveur en VPN natif fonctionne maintenant en un seul tap, sans devoir se déconnecter manuellement d'abord"
-          }
-        }
-      }
-    },
-    "changelog.1_0_9.native_vpn" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Native WireGuard VPN connect/disconnect, no external app needed"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Connexion/déconnexion VPN WireGuard native, sans application externe"
-          }
-        }
-      }
-    },
-    "changelog.1_0_9.dashboard_tunnel_card" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Live tunnel status card on the Dashboard, swipe to disconnect"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Carte de statut du tunnel en direct sur le Dashboard, swipe pour déconnecter"
-          }
-        }
-      }
-    },
-    "changelog.1_0_9.direct_connect" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Direct Connect button on server detail, skips the generate/share step"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bouton Se connecter direct sur la fiche serveur, sans passer par générer/partager"
-          }
-        }
-      }
-    },
-    "changelog.1_0_9.wireguard_credit" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WireGuardKit credit added to Settings"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Crédit WireGuardKit ajouté aux Réglages"
-          }
-        }
-      }
-    },
-    "changelog.1_0_8.peak_hours" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Peak hours per server: a 24h load chart from a 7-day history, with a callout for the quietest window"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Heures creuses par serveur : graphique de charge sur 24h basé sur 7 jours d'historique, avec un résumé de la fenêtre la moins chargée"
-          }
-        }
-      }
-    },
-    "changelog.1_0_8.comparison_history" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Historical comparison: overlay compared servers' load over 1h to 30d"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comparaison historique : superposition de la charge des serveurs comparés sur 1h à 30j"
-          }
-        }
-      }
-    },
-    "changelog.1_0_8.reliability_badges" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reliability badges: healthy/warning/error breakdown for favorite servers and in Trends"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Badges de fiabilité : répartition sain/avertissement/erreur pour les favoris et dans Tendances"
-          }
-        }
-      }
-    },
-    "changelog.1_0_8.comparison_bandwidth" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bandwidth added to server comparison, IPv4 now matches the IPv6 row style"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Débit ajouté à la comparaison de serveurs, la ligne IPv4 reprend maintenant le style de la ligne IPv6"
-          }
-        }
-      }
-    },
-    "changelog.1_0_8.widgets_redesign" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Widgets redesigned with load bars instead of plain text, plus session duration and favorite indicator"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Widgets repensés avec des barres de charge au lieu de texte brut, plus la durée de session et l'indicateur favori"
-          }
-        }
-      }
-    },
-    "changelog.1_0_8.account_widget" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "New Account widget: VPN status, connected server and subscription info at a glance"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nouveau widget Compte : statut VPN, serveur connecté et infos d'abonnement en un coup d'œil"
-          }
-        }
-      }
-    },
-    "changelog.1_0_8.protocol_logos" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Protocol logos (WireGuard/OpenVPN) shown next to generated profiles"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Logos de protocole (WireGuard/OpenVPN) affichés à côté des profils générés"
-          }
-        }
-      }
-    },
-    "changelog.1_0_8.trademark_credits" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trademark credits for AirVPN, WireGuard and OpenVPN added to Settings"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mentions de marques déposées pour AirVPN, WireGuard et OpenVPN ajoutées aux Réglages"
-          }
-        }
-      }
-    },
     "changelog.1_0_7.history" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1041,6 +803,312 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouvel écran Tendances dans Network : classement des serveurs par charge moyenne sur une fenêtre glissante"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.account_widget" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Account widget: VPN status, connected server and subscription info at a glance"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouveau widget Compte : statut VPN, serveur connecté et infos d'abonnement en un coup d'œil"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.comparison_bandwidth" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bandwidth added to server comparison, IPv4 now matches the IPv6 row style"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Débit ajouté à la comparaison de serveurs, la ligne IPv4 reprend maintenant le style de la ligne IPv6"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.comparison_history" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historical comparison: overlay compared servers' load over 1h to 30d"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comparaison historique : superposition de la charge des serveurs comparés sur 1h à 30j"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.peak_hours" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peak hours per server: a 24h load chart from a 7-day history, with a callout for the quietest window"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heures creuses par serveur : graphique de charge sur 24h basé sur 7 jours d'historique, avec un résumé de la fenêtre la moins chargée"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.protocol_logos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protocol logos (WireGuard/OpenVPN) shown next to generated profiles"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logos de protocole (WireGuard/OpenVPN) affichés à côté des profils générés"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.reliability_badges" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reliability badges: healthy/warning/error breakdown for favorite servers and in Trends"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Badges de fiabilité : répartition sain/avertissement/erreur pour les favoris et dans Tendances"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.trademark_credits" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trademark credits for AirVPN, WireGuard and OpenVPN added to Settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentions de marques déposées pour AirVPN, WireGuard et OpenVPN ajoutées aux Réglages"
+          }
+        }
+      }
+    },
+    "changelog.1_0_8.widgets_redesign" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets redesigned with load bars instead of plain text, plus session duration and favorite indicator"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widgets repensés avec des barres de charge au lieu de texte brut, plus la durée de session et l'indicateur favori"
+          }
+        }
+      }
+    },
+    "changelog.1_0_9.dashboard_tunnel_card" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live tunnel status card on the Dashboard, swipe to disconnect"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carte de statut du tunnel en direct sur le Dashboard, swipe pour déconnecter"
+          }
+        }
+      }
+    },
+    "changelog.1_0_9.direct_connect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Direct Connect button on server detail, skips the generate/share step"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bouton Se connecter direct sur la fiche serveur, sans passer par générer/partager"
+          }
+        }
+      }
+    },
+    "changelog.1_0_9.native_vpn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Native WireGuard VPN connect/disconnect, no external app needed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connexion/déconnexion VPN WireGuard native, sans application externe"
+          }
+        }
+      }
+    },
+    "changelog.1_0_9.wireguard_credit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WireGuardKit credit added to Settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crédit WireGuardKit ajouté aux Réglages"
+          }
+        }
+      }
+    },
+    "changelog.1_0_10.remember_last_device" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixed: the device picker on server detail now remembers your last used device instead of always resetting to the first one"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correction : le sélecteur d'appareil sur la fiche serveur se souvient maintenant du dernier appareil utilisé au lieu de toujours revenir au premier"
+          }
+        }
+      }
+    },
+    "changelog.1_0_11.history_opt_in" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server History & Trends is now opt-in and off by default, enable it in Settings"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historique et tendances des serveurs est maintenant optionnel et désactivé par défaut, à activer dans les Réglages"
+          }
+        }
+      }
+    },
+    "changelog.1_0_11.temp_file_privacy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy hardening: generated VPN profiles are no longer written to a temporary file until you actually share or import them, and are deleted right after"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renforcement de la confidentialité : les profils VPN générés ne sont plus écrits dans un fichier temporaire tant que vous ne les partagez pas ou ne les importez pas, et sont supprimés juste après"
+          }
+        }
+      }
+    },
+    "changelog.1_0_11.privacy_policy_in_app" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Privacy Policy is now readable directly in the app (Settings > About), in French or English"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La politique de confidentialité est maintenant consultable directement dans l'app (Réglages > À propos), en français ou en anglais"
+          }
+        }
+      }
+    },
+    "changelog.1_0_11.dashboard_retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixed: the Dashboard now automatically retries once if your account fails to load right after connecting the native VPN"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correction : le Tableau de bord retente maintenant automatiquement une fois si le chargement du compte échoue juste après une connexion au VPN natif"
+          }
+        }
+      }
+    },
+    "changelog.1_0_10.switch_server_fix" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fixed: switching the native VPN connection to another server now works in one tap instead of requiring a manual disconnect first"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Correction : changer de serveur en VPN natif fonctionne maintenant en un seul tap, sans devoir se déconnecter manuellement d'abord"
           }
         }
       }
@@ -1402,23 +1470,6 @@
         }
       }
     },
-    "credits.wireguard.role" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WireGuardKit (MIT License)"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WireGuardKit (licence MIT)"
-          }
-        }
-      }
-    },
     "credits.section.contributors" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1500,6 +1551,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "« WireGuard » et le logo WireGuard sont des marques déposées de Jason A. Donenfeld."
+          }
+        }
+      }
+    },
+    "credits.wireguard.role" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WireGuardKit (MIT License)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "WireGuardKit (licence MIT)"
           }
         }
       }
@@ -1861,6 +1929,23 @@
         }
       }
     },
+    "detail.connect_native" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connect"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se connecter"
+          }
+        }
+      }
+    },
     "detail.default_port" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1912,6 +1997,23 @@
         }
       }
     },
+    "detail.disconnect_native" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnect"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déconnecter"
+          }
+        }
+      }
+    },
     "detail.generate" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1959,176 +2061,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Générer un profil VPN"
-          }
-        }
-      }
-    },
-    "detail.connect_native" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Connect"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se connecter"
-          }
-        }
-      }
-    },
-    "detail.disconnect_native" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disconnect"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déconnecter"
-          }
-        }
-      }
-    },
-    "tunnel.disconnect" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disconnect"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déconnecter"
-          }
-        }
-      }
-    },
-    "tunnel.title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "VPN Tunnel"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tunnel VPN"
-          }
-        }
-      }
-    },
-    "tunnel.status.connected" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "VPN tunnel connected"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tunnel VPN connecté"
-          }
-        }
-      }
-    },
-    "tunnel.status.connecting" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Connecting…"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Connexion en cours…"
-          }
-        }
-      }
-    },
-    "tunnel.status.reasserting" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reconnecting…"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reconnexion…"
-          }
-        }
-      }
-    },
-    "tunnel.status.disconnecting" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Disconnecting…"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Déconnexion…"
-          }
-        }
-      }
-    },
-    "tunnel.status.disconnected" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "VPN tunnel disconnected"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tunnel VPN déconnecté"
-          }
-        }
-      }
-    },
-    "tunnel.error.no_saved_tunnel" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No tunnel has been saved yet."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aucun tunnel n'a encore été enregistré."
           }
         }
       }
@@ -4339,6 +4271,40 @@
         }
       }
     },
+    "settings.history_features" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Server History & Trends"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Historique et tendances des serveurs"
+          }
+        }
+      }
+    },
+    "settings.history_features_footer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Off by default. Powers history charts, reliability badges and Trends via a separate self-hosted service that never receives your API key. See Privacy Policy in About for details."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Désactivé par défaut. Alimente les graphiques d'historique, les badges de fiabilité et Tendances via un service auto-hébergé séparé qui ne reçoit jamais votre clé API. Voir la Politique de confidentialité dans À propos pour les détails."
+          }
+        }
+      }
+    },
     "settings.icon.classic" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4556,6 +4522,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nouvelle clé API"
+          }
+        }
+      }
+    },
+    "settings.privacy_policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Politique de confidentialité"
           }
         }
       }
@@ -4998,6 +4981,142 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "pts"
+          }
+        }
+      }
+    },
+    "tunnel.disconnect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnect"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déconnecter"
+          }
+        }
+      }
+    },
+    "tunnel.error.no_saved_tunnel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No tunnel has been saved yet."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun tunnel n'a encore été enregistré."
+          }
+        }
+      }
+    },
+    "tunnel.status.connected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN tunnel connected"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunnel VPN connecté"
+          }
+        }
+      }
+    },
+    "tunnel.status.connecting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connecting…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connexion en cours…"
+          }
+        }
+      }
+    },
+    "tunnel.status.disconnected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN tunnel disconnected"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunnel VPN déconnecté"
+          }
+        }
+      }
+    },
+    "tunnel.status.disconnecting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disconnecting…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déconnexion…"
+          }
+        }
+      }
+    },
+    "tunnel.status.reasserting" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reconnecting…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reconnexion…"
+          }
+        }
+      }
+    },
+    "tunnel.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "VPN Tunnel"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunnel VPN"
           }
         }
       }

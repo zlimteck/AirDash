@@ -56,8 +56,8 @@ final class ServerDetailViewModel: ObservableObject {
                 port: selectedPort,
                 deviceName: selectedDevice?.name
             )
+            deleteTempFileIfNeeded()
             generatedProfile = profile
-            prepareShare(profile: profile)
             ProfileHistoryService.shared.save(
                 profile: profile,
                 serverName: server.publicName,
@@ -74,16 +74,35 @@ final class ServerDetailViewModel: ObservableObject {
         isGenerating = false
     }
 
-    private func prepareShare(profile: GeneratedProfile) {
+    /// Writes the profile (private key included, for WireGuard) to a temp file only when
+    /// actually needed for a share/import handoff, and only for as long as that handoff
+    /// takes — never kept around eagerly. See `deleteTempFileIfNeeded()`.
+    private func writeTempFile(for profile: GeneratedProfile) -> URL {
+        deleteTempFileIfNeeded()
         let tmpURL = FileManager.default.temporaryDirectory.appendingPathComponent(profile.filename)
         try? profile.content.write(to: tmpURL, atomically: true, encoding: .utf8)
         generatedFileURL = tmpURL
-        shareItems = [tmpURL]
+        return tmpURL
+    }
+
+    func deleteTempFileIfNeeded() {
+        guard let url = generatedFileURL else { return }
+        try? FileManager.default.removeItem(at: url)
+        generatedFileURL = nil
+    }
+
+    func prepareShareSheet() {
+        guard let profile = generatedProfile else { return }
+        shareItems = [writeTempFile(for: profile)]
+        showShareSheet = true
     }
 
     func importToVPNApp() {
-        guard let url = generatedFileURL else { return }
-        VPNProfileImporter.shared.presentOpenIn(url: url, vpnProtocol: selectedProtocol)
+        guard let profile = generatedProfile else { return }
+        let url = writeTempFile(for: profile)
+        VPNProfileImporter.shared.presentOpenIn(url: url, vpnProtocol: selectedProtocol) { [weak self] in
+            self?.deleteTempFileIfNeeded()
+        }
     }
 
     /// Connects the native tunnel using the profile already generated in this session —

@@ -5,6 +5,7 @@ struct SettingsView: View {
     @AppStorage("appTheme") private var appTheme: String = "system"
     @AppStorage("selectedAppIcon") private var selectedAppIcon: String = "Default"
     @AppStorage("appLockEnabled") private var appLockEnabled = false
+    @AppStorage("historyFeaturesEnabled") private var historyFeaturesEnabled = false
     @State private var showSignOutAlert = false
 
     var body: some View {
@@ -45,8 +46,22 @@ struct SettingsView: View {
                     } label: {
                         Label("dns.title", systemImage: "shield.lefthalf.filled")
                     }
+
+                    Toggle(isOn: $historyFeaturesEnabled) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "chart.line.uptrend.xyaxis")
+                                .font(.system(size: 20, weight: .regular))
+                                .foregroundStyle(.tint)
+                            Text("settings.history_features")
+                                .foregroundStyle(.primary)
+                        }
+                    }
                 } header: {
                     Text("settings.section.vpn")
+                } footer: {
+                    Text("settings.history_features_footer")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
 
                 // Appearance section
@@ -123,6 +138,11 @@ struct SettingsView: View {
                         Label("settings.airvpn_website", systemImage: "safari")
                     }
                     .foregroundStyle(.primary)
+                    NavigationLink {
+                        PrivacyPolicyView()
+                    } label: {
+                        Label("settings.privacy_policy", systemImage: "hand.raised.fill")
+                    }
                     Link(destination: URL(string: "https://github.com/zlimteck/AirDash")!) {
                         Label {
                             Text("settings.github")
@@ -181,6 +201,7 @@ struct SettingsView: View {
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
         return "\(version) (\(build))"
     }
+
 }
 
 enum AppIconOption: String, CaseIterable {

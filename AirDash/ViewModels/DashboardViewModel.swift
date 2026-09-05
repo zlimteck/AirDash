@@ -16,20 +16,41 @@ final class DashboardViewModel: ObservableObject {
         disconnectedIDs = []
     }
 
-    func load(apiKey: String, forceRefresh: Bool = false) async {
+    /// Transient network errors worth a single silent retry — mainly seen right after
+    /// connecting the native VPN tunnel, when the exit server's route back to airvpn.org
+    /// hasn't settled yet. Anything else (bad key, decoding, etc.) surfaces immediately.
+    private static let transientNetworkErrorCodes: Set<URLError.Code> = [
+        .timedOut, .networkConnectionLost, .notConnectedToInternet,
+        .cannotConnectToHost, .cannotFindHost, .dnsLookupFailed
+    ]
+
+    func load(apiKey: String, forceRefresh: Bool = false, isRetry: Bool = false) async {
         isLoading = true
         errorMessage = nil
         async let userInfoTask = AirVPNAPIClient.shared.getUserInfo(apiKey: apiKey, forceRefresh: forceRefresh)
         async let ipTask = fetchPublicIP()
+
+        var shouldRetry = false
         do {
             userInfo = try await userInfoTask
         } catch is CancellationError {
+        } catch let urlError as URLError where !isRetry && Self.transientNetworkErrorCodes.contains(urlError.code) {
+            shouldRetry = true
         } catch let error as AppError {
             errorMessage = error.errorDescription
         } catch {
             errorMessage = error.localizedDescription
         }
+
         if let ip = await ipTask { currentIP = ip }
+
+        if shouldRetry {
+            isLoading = false
+            try? await Task.sleep(for: .seconds(4))
+            await load(apiKey: apiKey, forceRefresh: true, isRetry: true)
+            return
+        }
+
         if let expUnix = userInfo?.user.expirationUnix {
             Task {
                 await NotificationService.requestAuthorization()

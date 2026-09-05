@@ -15,7 +15,20 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     ) -> Bool {
         application.shortcutItems = Self.staticShortcuts
         AirDashShortcuts.updateAppShortcutParameters()
+        Self.cleanUpLeftoverProfileTempFiles()
         return true
+    }
+
+    /// Defence in depth: shared/imported VPN profiles (private key included, for WireGuard)
+    /// are written to a temp file only for the duration of the share/import handoff and
+    /// deleted right after — this sweeps up anything a previous crash left behind before
+    /// that cleanup could run.
+    private static func cleanUpLeftoverProfileTempFiles() {
+        let tmpDir = FileManager.default.temporaryDirectory
+        guard let files = try? FileManager.default.contentsOfDirectory(at: tmpDir, includingPropertiesForKeys: nil) else { return }
+        for file in files where ["conf", "ovpn"].contains(file.pathExtension.lowercased()) {
+            try? FileManager.default.removeItem(at: file)
+        }
     }
 
     // Lancement froid depuis une Quick Action — shortcut dans les options de connexion

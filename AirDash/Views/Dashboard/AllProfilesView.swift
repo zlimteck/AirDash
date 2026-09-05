@@ -169,7 +169,9 @@ struct AllProfilesView: View {
         let proto = VPNProtocol(rawValue: entry.vpnProtocol) ?? .wireguard
         let tmpURL = FileManager.default.temporaryDirectory.appendingPathComponent(entry.filename)
         try? entry.content.write(to: tmpURL, atomically: true, encoding: .utf8)
-        VPNProfileImporter.shared.presentOpenIn(url: tmpURL, vpnProtocol: proto)
+        VPNProfileImporter.shared.presentOpenIn(url: tmpURL, vpnProtocol: proto) {
+            try? FileManager.default.removeItem(at: tmpURL)
+        }
     }
 }
 

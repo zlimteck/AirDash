@@ -8,19 +8,25 @@ final class VPNProfileImporter: NSObject, @preconcurrency UIDocumentInteractionC
     private override init() {}
 
     private var controller: UIDocumentInteractionController?
+    private var onDismiss: (() -> Void)?
 
     private static let appStoreURLs: [VPNProtocol: URL] = [
         .wireguard: URL(string: "https://apps.apple.com/app/id1441195209")!,
         .openvpn:   URL(string: "https://apps.apple.com/app/id590379981")!
     ]
 
-    func presentOpenIn(url: URL, vpnProtocol: VPNProtocol) {
+    /// `onDismiss` fires once the Open In menu closes (whichever app was picked, or the
+    /// alert path below) so the caller can delete the temp file it wrote for this handoff.
+    func presentOpenIn(url: URL, vpnProtocol: VPNProtocol, onDismiss: (() -> Void)? = nil) {
         guard
             let scene = UIApplication.shared.connectedScenes
                 .compactMap({ $0 as? UIWindowScene })
                 .first(where: { $0.activationState == .foregroundActive }),
             let root = scene.keyWindow?.rootViewController
-        else { return }
+        else {
+            onDismiss?()
+            return
+        }
 
         let presented = topViewController(from: root)
 
@@ -30,19 +36,23 @@ final class VPNProfileImporter: NSObject, @preconcurrency UIDocumentInteractionC
         if vpnProtocol == .openvpn,
            !UIApplication.shared.canOpenURL(URL(string: "openvpn://")!) {
             showAppStoreAlert(for: vpnProtocol, from: presented)
+            onDismiss?()
             return
         }
 
         let dic = UIDocumentInteractionController(url: url)
         dic.delegate = self
         controller = dic
+        self.onDismiss = onDismiss
 
         let rect = CGRect(x: presented.view.bounds.midX, y: presented.view.bounds.midY, width: 0, height: 0)
         let didShow = dic.presentOpenInMenu(from: rect, in: presented.view, animated: true)
 
         if !didShow {
             controller = nil
+            self.onDismiss = nil
             showAppStoreAlert(for: vpnProtocol, from: presented)
+            onDismiss?()
         }
     }
 
@@ -70,6 +80,9 @@ final class VPNProfileImporter: NSObject, @preconcurrency UIDocumentInteractionC
 
     func documentInteractionControllerDidDismissOpenInMenu(_ controller: UIDocumentInteractionController) {
         self.controller = nil
+        let callback = onDismiss
+        onDismiss = nil
+        callback?()
     }
 
     private func topViewController(from root: UIViewController) -> UIViewController {

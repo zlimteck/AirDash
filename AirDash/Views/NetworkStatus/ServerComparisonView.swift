@@ -6,12 +6,15 @@ struct ServerComparisonView: View {
     let measuredIds: Set<String>
     let onClear: () -> Void
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("historyFeaturesEnabled") private var historyFeaturesEnabled = false
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 12) {
-                    ComparisonHistoryView(servers: servers)
+                    if historyFeaturesEnabled {
+                        ComparisonHistoryView(servers: servers)
+                    }
                     ForEach(servers) { server in
                         NavigationLink(value: server) {
                             ServerCompareCard(

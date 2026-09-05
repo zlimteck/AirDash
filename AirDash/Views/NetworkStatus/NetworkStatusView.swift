@@ -11,6 +11,7 @@ struct NetworkStatusView: View {
     @State private var showComparison = false
     @State private var showTrends = false
     @State private var reliabilityByServer: [String: Double] = [:]
+    @AppStorage("historyFeaturesEnabled") private var historyFeaturesEnabled = false
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -36,9 +37,11 @@ struct NetworkStatusView: View {
                         }
                     }
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button { showTrends = true } label: {
-                        Label("network.trends", systemImage: "chart.line.uptrend.xyaxis")
+                if historyFeaturesEnabled {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button { showTrends = true } label: {
+                            Label("network.trends", systemImage: "chart.line.uptrend.xyaxis")
+                        }
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -125,7 +128,7 @@ struct NetworkStatusView: View {
     }
 
     private func loadFavoritesReliability() async {
-        guard !vm.favoriteServers.isEmpty else { return }
+        guard historyFeaturesEnabled, !vm.favoriteServers.isEmpty else { return }
         guard let response = try? await AirVPNHistoryClient.shared.reliability(window: .oneDay) else { return }
         var byName: [String: Double] = [:]
         for entry in response.servers {
