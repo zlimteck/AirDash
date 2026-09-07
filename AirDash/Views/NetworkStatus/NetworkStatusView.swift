@@ -2,6 +2,13 @@ import SwiftUI
 
 struct NetworkStatusView: View {
     @EnvironmentObject var appState: AppState
+    #if VPN_ENABLED
+    @EnvironmentObject var tunnelManager: VPNTunnelManager
+    @StateObject private var quickConnectVM = ServerDetailViewModel()
+    @State private var quickConnectingServerName: String? = nil
+    @State private var showQuickConnectDevicePicker = false
+    @State private var pendingQuickConnectServer: AirVPNServer? = nil
+    #endif
     @StateObject private var vm = NetworkStatusViewModel()
     @State private var path = NavigationPath()
     @State private var pendingServerName: String? = nil
@@ -104,6 +111,29 @@ struct NetworkStatusView: View {
                 onClear: { compareServers = [] }
             )
         }
+        #if VPN_ENABLED
+        .confirmationDialog("quickconnect.choose_device", isPresented: $showQuickConnectDevicePicker, titleVisibility: .visible) {
+            ForEach(quickConnectVM.devices) { device in
+                Button(device.name) {
+                    quickConnectVM.selectedDevice = device
+                    if let server = pendingQuickConnectServer {
+                        Task { await runQuickConnect(server) }
+                    }
+                    pendingQuickConnectServer = nil
+                }
+            }
+            Button("detail.no_device") {
+                quickConnectVM.selectedDevice = nil
+                if let server = pendingQuickConnectServer {
+                    Task { await runQuickConnect(server) }
+                }
+                pendingQuickConnectServer = nil
+            }
+            Button("cancel", role: .cancel) {
+                pendingQuickConnectServer = nil
+            }
+        }
+        #endif
     }
 
     private func localizedContinent(_ apiValue: String) -> LocalizedStringKey {
@@ -153,6 +183,62 @@ struct NetworkStatusView: View {
             latencyMs: vm.latencies[server.id]
         ))
     }
+
+    private func isConnectedToTunnel(_ server: AirVPNServer) -> Bool {
+        #if VPN_ENABLED
+        return tunnelManager.status == .connected && tunnelManager.connectedServerName == server.publicName
+        #else
+        return false
+        #endif
+    }
+
+    private func isQuickConnecting(_ server: AirVPNServer) -> Bool {
+        #if VPN_ENABLED
+        return quickConnectingServerName == server.publicName
+        #else
+        return false
+        #endif
+    }
+
+    /// One-tap connect from the server list, bypassing the detail screen. Auto-reuses the
+    /// last device used elsewhere in the app; if none is remembered yet and there's more
+    /// than one to choose from, asks via `showQuickConnectDevicePicker` instead of
+    /// silently defaulting to the first one. `nil` (no button shown at all) on the Lite
+    /// build, which has no native tunnel.
+    private func quickConnectAction(for server: AirVPNServer) -> (() -> Void)? {
+        #if VPN_ENABLED
+        return {
+            if isConnectedToTunnel(server) {
+                Task { await tunnelManager.disconnect() }
+                return
+            }
+            let hadRememberedDevice = ServerDetailViewModel.hasRememberedDevice
+            Task {
+                await quickConnectVM.loadDevices(apiKey: appState.apiKey)
+                if !hadRememberedDevice && quickConnectVM.devices.count > 1 {
+                    pendingQuickConnectServer = server
+                    showQuickConnectDevicePicker = true
+                } else {
+                    await runQuickConnect(server)
+                }
+            }
+        }
+        #else
+        return nil
+        #endif
+    }
+
+    #if VPN_ENABLED
+    private func runQuickConnect(_ server: AirVPNServer) async {
+        quickConnectingServerName = server.publicName
+        if tunnelManager.status == .connected {
+            await tunnelManager.disconnect()
+            await tunnelManager.waitUntilDisconnected()
+        }
+        await quickConnectVM.connectDirectly(server: server, apiKey: appState.apiKey, tunnelManager: tunnelManager)
+        quickConnectingServerName = nil
+    }
+    #endif
 
     private func navigateToServer(named name: String) {
         guard let server = vm.statusResponse?.servers.first(where: {
@@ -261,7 +347,10 @@ struct NetworkStatusView: View {
                             server: best,
                             latency: vm.latencies[best.id],
                             isMeasured: vm.measuredIds.contains(best.id),
-                            isFavorite: vm.favoriteIds.contains(best.id)
+                            isFavorite: vm.favoriteIds.contains(best.id),
+                            isConnected: isConnectedToTunnel(best),
+                            isConnecting: isQuickConnecting(best),
+                            onQuickConnect: quickConnectAction(for: best)
                         )
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .contentShape(Rectangle())
@@ -305,7 +394,10 @@ struct NetworkStatusView: View {
                                 latency: vm.latencies[server.id],
                                 isMeasured: vm.measuredIds.contains(server.id),
                                 isFavorite: true,
-                                reliabilityPercent: reliabilityByServer[server.id]
+                                reliabilityPercent: reliabilityByServer[server.id],
+                                isConnected: isConnectedToTunnel(server),
+                                isConnecting: isQuickConnecting(server),
+                                onQuickConnect: quickConnectAction(for: server)
                             )
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .contentShape(Rectangle())
@@ -340,7 +432,10 @@ struct NetworkStatusView: View {
                             server: server,
                             latency: vm.latencies[server.id],
                             isMeasured: vm.measuredIds.contains(server.id),
-                            isFavorite: vm.favoriteIds.contains(server.id)
+                            isFavorite: vm.favoriteIds.contains(server.id),
+                            isConnected: isConnectedToTunnel(server),
+                            isConnecting: isQuickConnecting(server),
+                            onQuickConnect: quickConnectAction(for: server)
                         )
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .contentShape(Rectangle())

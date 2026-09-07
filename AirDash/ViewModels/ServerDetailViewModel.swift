@@ -5,6 +5,13 @@ import UniformTypeIdentifiers
 final class ServerDetailViewModel: ObservableObject {
     private static let lastDeviceNameKey = "lastUsedDeviceName"
 
+    /// Whether a device has ever been remembered from a previous selection — used by
+    /// quick connect to decide whether it's safe to auto-pick it or whether the user
+    /// needs to be asked (rather than silently defaulting to the first device).
+    static var hasRememberedDevice: Bool {
+        UserDefaults.standard.string(forKey: lastDeviceNameKey) != nil
+    }
+
     @Published var selectedProtocol: VPNProtocol = .wireguard
     @Published var selectedPort: Int? = nil
     @Published var selectedDevice: AirVPNDevice? = nil {

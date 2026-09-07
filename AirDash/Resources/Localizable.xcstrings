@@ -3404,6 +3404,23 @@
         }
       }
     },
+    "quickconnect.choose_device" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a device"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisir un appareil"
+          }
+        }
+      }
+    },
     "notification.expiry.1d.body" : {
       "extractionState" : "manual",
       "localizations" : {

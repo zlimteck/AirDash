@@ -6,6 +6,9 @@ struct ServerRowView: View {
     let isMeasured: Bool
     var isFavorite: Bool = false
     var reliabilityPercent: Double? = nil
+    var isConnected: Bool = false
+    var isConnecting: Bool = false
+    var onQuickConnect: (() -> Void)? = nil
 
     var body: some View {
         HStack(spacing: 12) {
@@ -60,8 +63,34 @@ struct ServerRowView: View {
                     .foregroundStyle(.secondary)
                 latencyView
             }
+
+            quickConnectButton
         }
         .padding(.vertical, 4)
+    }
+
+    @ViewBuilder
+    private var quickConnectButton: some View {
+        if let onQuickConnect {
+            Button(action: onQuickConnect) {
+                ZStack {
+                    Circle()
+                        .fill(isConnected ? Color.accentColor : Color.accentColor.opacity(0.2))
+                        .frame(width: 32, height: 32)
+                    if isConnecting {
+                        ProgressView()
+                            .scaleEffect(0.65)
+                            .tint(isConnected ? .white : .accentColor)
+                    } else {
+                        Image(systemName: isConnected ? "lock.slash.fill" : "lock.shield.fill")
+                            .font(.system(size: 15, weight: .semibold))
+                            .foregroundStyle(isConnected ? .white : .accentColor)
+                    }
+                }
+            }
+            .buttonStyle(.plain)
+            .disabled(isConnecting)
+        }
     }
 
     @ViewBuilder
