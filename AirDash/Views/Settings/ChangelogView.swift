@@ -6,6 +6,11 @@ private struct ChangelogEntry {
 }
 
 private let changelog: [ChangelogEntry] = [
+    ChangelogEntry(version: "1.0.12", changes: [
+        "changelog.1_0_12.ipad_sidebar",
+        "changelog.1_0_12.live_activity",
+        "changelog.1_0_12.quick_connect"
+    ]),
     ChangelogEntry(version: "1.0.11", changes: [
         "changelog.1_0_11.history_opt_in",
         "changelog.1_0_11.temp_file_privacy",

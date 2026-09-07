@@ -1028,6 +1028,57 @@
         }
       }
     },
+    "changelog.1_0_12.ipad_sidebar" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Native, collapsible sidebar on iPad"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sidebar native et rétractable sur iPad"
+          }
+        }
+      }
+    },
+    "changelog.1_0_12.live_activity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity for the native VPN session, on the lock screen and Dynamic Island"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Live Activity pour la session VPN native, sur l'écran verrouillé et la Dynamic Island"
+          }
+        }
+      }
+    },
+    "changelog.1_0_12.quick_connect" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick connect straight from the server list in the Network tab"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connexion rapide directement depuis la liste des serveurs dans l'onglet Réseau"
+          }
+        }
+      }
+    },
     "changelog.1_0_11.history_opt_in" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2129,6 +2180,57 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Charge"
+          }
+        }
+      }
+    },
+    "easter_egg.message.1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum speed unlocked"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vitesse maximale débloquée"
+          }
+        }
+      }
+    },
+    "easter_egg.message.2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secret tunnel found"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunnel secret trouvé"
+          }
+        }
+      }
+    },
+    "easter_egg.message.3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connected at light speed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connexion à la vitesse de la lumière"
           }
         }
       }

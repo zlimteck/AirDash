@@ -7,6 +7,8 @@ struct SettingsView: View {
     @AppStorage("appLockEnabled") private var appLockEnabled = false
     @AppStorage("historyFeaturesEnabled") private var historyFeaturesEnabled = false
     @State private var showSignOutAlert = false
+    @State private var versionTapCount = 0
+    @State private var showEasterEgg = false
 
     var body: some View {
         NavigationStack {
@@ -124,6 +126,14 @@ struct SettingsView: View {
                         Text(appVersion)
                             .foregroundStyle(.secondary)
                     }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        versionTapCount += 1
+                        if versionTapCount >= 7 {
+                            versionTapCount = 0
+                            showEasterEgg = true
+                        }
+                    }
                     NavigationLink {
                         ChangelogView()
                     } label: {
@@ -185,6 +195,10 @@ struct SettingsView: View {
                 Button("cancel", role: .cancel) {}
             } message: {
                 Text("settings.sign_out_message")
+            }
+            .fullScreenCover(isPresented: $showEasterEgg) {
+                EasterEggView(isPresented: $showEasterEgg)
+                    .presentationBackground(.clear)
             }
         }
     }
