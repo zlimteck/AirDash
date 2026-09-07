@@ -1,5 +1,6 @@
 import Foundation
 @preconcurrency import NetworkExtension
+import ActivityKit
 
 /// Owns the single native WireGuard tunnel profile Air-Dash manages via
 /// NETunnelProviderManager/AirDashTunnel. Deliberately separate from `AppState`
@@ -8,13 +9,22 @@ import Foundation
 final class VPNTunnelManager: ObservableObject {
     static let shared = VPNTunnelManager()
 
-    @Published private(set) var status: NEVPNStatus = .invalid
+    @Published private(set) var status: NEVPNStatus = .invalid {
+        didSet { handleStatusChange() }
+    }
     @Published private(set) var connectedServerName: String?
+    private var connectedCountryCode: String?
 
     private var manager: NETunnelProviderManager?
     private var statusObserver: NSObjectProtocol?
 
+    private var sessionStartUnix: Int?
+    private var activity: Activity<VPNSessionAttributes>?
+
     private init() {
+        // Re-adopt a Live Activity that's still running from a previous process
+        // (e.g. app was killed while connected) instead of starting a duplicate.
+        activity = Activity<VPNSessionAttributes>.activities.first
         Task { [weak self] in
             await self?.loadExistingManager()
         }
@@ -25,15 +35,15 @@ final class VPNTunnelManager: ObservableObject {
     func loadExistingManager() async {
         guard let managers = try? await loadAllManagers(), let existing = managers.first else { return }
         manager = existing
-        status = existing.connection.status
         connectedServerName = (existing.protocolConfiguration as? NETunnelProviderProtocol)?.serverAddress
         observeStatus(for: existing)
+        status = existing.connection.status
     }
 
     /// Saves (creating on first use, overwriting thereafter) the single managed tunnel
     /// profile. Never regenerates WireGuard keys — that's entirely the caller's concern;
     /// this only persists whatever wg-quick text it's given.
-    func saveTunnel(wgQuickConfigText: String, serverName: String) async throws {
+    func saveTunnel(wgQuickConfigText: String, serverName: String, countryCode: String? = nil) async throws {
         try TunnelKeychainService.save(wgQuickConfigText: wgQuickConfigText)
 
         let target = manager ?? NETunnelProviderManager()
@@ -51,8 +61,9 @@ final class VPNTunnelManager: ObservableObject {
 
         manager = target
         observeStatus(for: target)
-        status = target.connection.status
         connectedServerName = serverName
+        connectedCountryCode = countryCode
+        status = target.connection.status
     }
 
     /// Pulls the port out of the wg-quick text's `Endpoint = host:port` line, so the
@@ -86,6 +97,56 @@ final class VPNTunnelManager: ObservableObject {
         while status == .connected || status == .connecting || status == .disconnecting || status == .reasserting {
             if Date() >= deadline { break }
             try? await Task.sleep(for: .milliseconds(200))
+        }
+    }
+
+    // MARK: - Live Activity (lock screen / Dynamic Island)
+
+    private func handleStatusChange() {
+        if status == .connected {
+            if sessionStartUnix == nil {
+                sessionStartUnix = Int(Date().timeIntervalSince1970)
+            }
+        } else if status == .disconnected || status == .invalid {
+            sessionStartUnix = nil
+        }
+        syncLiveActivity()
+    }
+
+    /// Starts, updates, or ends the Live Activity to mirror `status`. A no-op if the
+    /// user disabled Live Activities system-wide (Settings > Face ID & Code) — the
+    /// tunnel itself is unaffected either way.
+    private func syncLiveActivity() {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+
+        let activityStatus: VPNActivityStatus
+        switch status {
+        case .connecting:     activityStatus = .connecting
+        case .connected:      activityStatus = .connected
+        case .reasserting:    activityStatus = .reasserting
+        case .disconnecting:  activityStatus = .disconnecting
+        default:
+            guard let activity else { return }
+            let content = ActivityContent(state: activity.content.state, staleDate: nil)
+            // Activity<Attributes> isn't Sendable-checked by the compiler even though
+            // it's safe to call from any context (an OS-managed handle) — same
+            // rationale as `UncheckedSendableBox` below for NetworkExtension's
+            // non-Sendable completion-handler payloads.
+            let box = UncheckedSendableBox(value: activity)
+            Task { await box.value.end(content, dismissalPolicy: .immediate) }
+            self.activity = nil
+            return
+        }
+
+        let state = VPNSessionAttributes.ContentState(status: activityStatus, connectedSinceUnix: sessionStartUnix)
+        let content = ActivityContent(state: state, staleDate: nil)
+
+        if let activity {
+            let box = UncheckedSendableBox(value: activity)
+            Task { await box.value.update(content) }
+        } else if let name = connectedServerName {
+            let attributes = VPNSessionAttributes(serverName: name, countryCode: connectedCountryCode)
+            activity = try? Activity.request(attributes: attributes, content: content, pushType: nil)
         }
     }
 

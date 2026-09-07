@@ -136,6 +136,7 @@ struct AirDashWidgetBundle: WidgetBundle {
     var body: some Widget {
         AirDashWidget()
         AirDashStatusWidget()
+        AirDashVPNLiveActivity()
     }
 }
 

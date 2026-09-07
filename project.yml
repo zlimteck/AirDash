@@ -76,6 +76,7 @@ targets:
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         ITSAppUsesNonExemptEncryption: true
+        NSSupportsLiveActivities: true
     dependencies:
       - package: FlagKit
         product: FlagKit
@@ -163,6 +164,8 @@ targets:
     deploymentTarget: "26.0"
     sources:
       - path: AirDashWidget
+      - path: AirDash/Models/VPNActivityAttributes.swift
+        group: AirDashWidget
     dependencies:
       - package: FlagKit
         product: FlagKit

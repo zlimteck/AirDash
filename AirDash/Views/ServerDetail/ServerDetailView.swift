@@ -201,7 +201,7 @@ struct ServerDetailView: View {
                                     await tunnelManager.disconnect()
                                     await tunnelManager.waitUntilDisconnected()
                                 }
-                                await vm.connectViaNativeTunnel(tunnelManager: tunnelManager, serverName: server.publicName)
+                                await vm.connectViaNativeTunnel(tunnelManager: tunnelManager, serverName: server.publicName, countryCode: server.countryCode)
                             }
                         }
                     }

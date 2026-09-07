@@ -24,6 +24,7 @@ struct MainTabView: View {
                 SettingsView()
             }
         }
+        .tabViewStyle(.sidebarAdaptable)
         .preferredColorScheme(colorScheme)
         .onAppear {
             // Lancement froid : shortcut stocké par configurationForConnecting

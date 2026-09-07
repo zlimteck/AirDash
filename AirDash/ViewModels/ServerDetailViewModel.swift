@@ -107,12 +107,12 @@ final class ServerDetailViewModel: ObservableObject {
 
     /// Connects the native tunnel using the profile already generated in this session —
     /// reuses `generatedProfile.content` as-is, no new API call, no key regeneration.
-    func connectViaNativeTunnel(tunnelManager: VPNTunnelManager, serverName: String) async {
+    func connectViaNativeTunnel(tunnelManager: VPNTunnelManager, serverName: String, countryCode: String? = nil) async {
         guard let profile = generatedProfile, selectedProtocol == .wireguard else { return }
         isConnectingNative = true
         errorMessage = nil
         do {
-            try await tunnelManager.saveTunnel(wgQuickConfigText: profile.content, serverName: serverName)
+            try await tunnelManager.saveTunnel(wgQuickConfigText: profile.content, serverName: serverName, countryCode: countryCode)
             try await tunnelManager.connect()
         } catch let error as AppError {
             errorMessage = error.errorDescription
@@ -133,6 +133,6 @@ final class ServerDetailViewModel: ObservableObject {
             isConnectingNative = false
             return
         }
-        await connectViaNativeTunnel(tunnelManager: tunnelManager, serverName: server.publicName)
+        await connectViaNativeTunnel(tunnelManager: tunnelManager, serverName: server.publicName, countryCode: server.countryCode)
     }
 }
