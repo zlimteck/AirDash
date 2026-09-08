@@ -4,7 +4,7 @@
 
 [![Build](https://github.com/zlimteck/AirDash/actions/workflows/build.yml/badge.svg)](https://github.com/zlimteck/AirDash/actions/workflows/build.yml)
 
-Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with SwiftUI and the iOS 26 Liquid Glass design.
+Unofficial native iOS dashboard and VPN client for [AirVPN](https://airvpn.org), built with SwiftUI and the iOS 26 Liquid Glass design.
 
 > ⭐ If you find this project useful, a star on GitHub is greatly appreciated!
 
@@ -22,15 +22,26 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
   <img src="assets/screenshot-connect.png" width="18%" alt="Native VPN connect" />
 </p>
 
+### iPad
+
+<p float="left">
+  <img src="assets/screenshot-ipad-login.png" width="32%" alt="iPad Login" />
+  <img src="assets/screenshot-ipad-network.png" width="32%" alt="iPad Network" />
+  <img src="assets/screenshot-ipad-dashboard.png" width="32%" alt="iPad Dashboard" />
+  <img src="assets/screenshot-ipad-server-detail.png" width="32%" alt="iPad Server detail" />
+  <img src="assets/screenshot-ipad-connect.png" width="32%" alt="iPad Native VPN connect" />
+</p>
+
 ---
 
 ## Features
 
-- **Network**: full server list with load, users, health, ping latency, sort (load / name / ping), continent filter, search and favorites (scoped per account)
+- **Network**: full server list with load, users, health, ping latency, sort (load / name / ping), continent filter, search and favorites (scoped per account); a one-tap connect button on every row starts the native tunnel directly, no need to open the server detail screen (full build only)
 - **Best Server**: automatically picked from live ping and load, weighted so a congested server can't win purely on a low ping; instantly shows the previous session's result while the fresh ping sweep is running
 - **Server history & trends** (opt-in, off by default): load and connected-users charts per server over 1h/24h/7d/30d, a reliability breakdown (healthy vs warning/error) also surfaced as a badge on favorite servers and in Trends, a peak-hours chart highlighting the quietest 3-hour window from 7 days of history, and a Trends screen ranking servers by average load over a rolling window; all powered by a companion history service, not the official AirVPN API. Enable it in Settings; see [Privacy Policy](PRIVACY.md) for exactly what that service sees
 - **Server comparison**: long-press any server to add it to a comparison (up to 3); tap the toolbar button to view them side by side, including bandwidth and (if the history feature above is enabled) an overlaid load-history chart across the compared servers
 - **Native VPN (WireGuard)**: connect and disconnect straight from the app via `NetworkExtension`, no external VPN app required; live tunnel status card on the Dashboard with swipe to disconnect, one profile saved and reused (regenerated only on explicit action). Only available in the full build; see [Full vs Lite build](#full-vs-lite-build) below
+- **Live Activity**: shows the active native VPN session (connected server, duration) on the lock screen and in the Dynamic Island, driven live by the tunnel's status; full build only
 - **Dashboard**: account info (current IP, VPN status, expiration, credits, sessions, member since); swipe left on a session to disconnect (also stops the native tunnel if it's this device's own session), tap a session to jump to its server detail
 - **Server detail**: WireGuard or OpenVPN profile generation, direct import into the system VPN app, share and QR code (WireGuard) in a `···` menu; a direct **Connect** button for WireGuard (native build only), skipping the generate/share step; recent profiles per server with one-tap reimport, shown with the protocol's logo
 - **Recent profiles page**: dedicated list of all generated profiles with search, sort, filter by protocol, quick import, QR code and delete; profile history is stored securely in the Keychain
@@ -61,6 +72,7 @@ Unofficial native iOS dashboard for [AirVPN](https://airvpn.org), built with Swi
 | Localisation | String Catalog (FR / EN) |
 | Build | XcodeGen (`project.yml`), two schemes: `AirDash` (full) and `AirDash-Lite` |
 | VPN | `NEPacketTunnelProvider` + [WireGuardKit](https://github.com/zlimteck/wireguard-apple) (fork), full build only |
+| Live Activity | ActivityKit, lock screen and Dynamic Island, full build only |
 | Dependencies | [FlagKit](https://github.com/madebybowtie/FlagKit) |
 
 ---
@@ -213,7 +225,7 @@ Server history, reliability, and the Trends ranking are **opt-in, off by default
 
 ## Compatibility
 
-- iPhone and iPad
+- iPhone and iPad, with a native collapsible sidebar on iPad (`.tabViewStyle(.sidebarAdaptable)`)
 - iOS 26 or later
 
 ---
