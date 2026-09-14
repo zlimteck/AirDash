@@ -3,6 +3,7 @@
   "identifier": "com.airdash.ios.altstore-source",
   "sourceURL": "https://raw.githubusercontent.com/zlimteck/AirDash/main/altstore-source.json",
   "website": "https://github.com/zlimteck/AirDash",
+  "nsfw": false,
   "apps": [
     {
       "name": "AirDash",
@@ -13,15 +14,57 @@
       "iconURL": "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/icon.png",
       "tintColor": "0E2A49",
       "category": "utilities",
-      "size": 4079558,
-      "version": "1.0.12",
-      "versionDate": "2026-09-07T19:27:11Z",
-      "versionDescription": "Native, collapsible sidebar on iPad. Live Activity for the native VPN session. Quick connect straight from the server list in the Network tab.",
-      "downloadURL": "https://github.com/zlimteck/AirDash/releases/download/v1.0.12/AirDash-1.0.12.ipa",
-      "minOSVersion": "26.0",
+      "screenshots": {
+        "iphone": [
+          "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/screenshot-login.png",
+          "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/screenshot-network.png",
+          "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/screenshot-dashboard.png",
+          "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/screenshot-server-detail.png",
+          "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/screenshot-connect.png"
+        ],
+        "ipad": [
+          {
+            "imageURL": "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/screenshot-ipad-login.png",
+            "width": 2752,
+            "height": 2064
+          },
+          {
+            "imageURL": "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/screenshot-ipad-network.png",
+            "width": 2752,
+            "height": 2064
+          },
+          {
+            "imageURL": "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/screenshot-ipad-dashboard.png",
+            "width": 2752,
+            "height": 2064
+          },
+          {
+            "imageURL": "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/screenshot-ipad-server-detail.png",
+            "width": 2752,
+            "height": 2064
+          },
+          {
+            "imageURL": "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/screenshot-ipad-connect.png",
+            "width": 2752,
+            "height": 2064
+          }
+        ]
+      },
+      "appPermissions": {
+        "entitlements": [
+          "com.apple.developer.networking.networkextension",
+          "com.apple.developer.networking.vpn.api",
+          "com.apple.security.application-groups",
+          "keychain-access-groups"
+        ],
+        "privacy": {
+          "NSFaceIDUsageDescription": "AirDash uses Face ID to protect access to your VPN profiles."
+        }
+      },
       "versions": [
         {
           "version": "1.0.12",
+          "buildVersion": "12",
           "date": "2026-09-07T19:27:11Z",
           "localizedDescription": "Native, collapsible sidebar on iPad. Live Activity for the native VPN session. Quick connect straight from the server list in the Network tab.",
           "downloadURL": "https://github.com/zlimteck/AirDash/releases/download/v1.0.12/AirDash-1.0.12.ipa",
