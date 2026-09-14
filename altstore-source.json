@@ -1,0 +1,35 @@
+{
+  "name": "AirDash",
+  "identifier": "com.airdash.ios.altstore-source",
+  "sourceURL": "https://raw.githubusercontent.com/zlimteck/AirDash/main/altstore-source.json",
+  "website": "https://github.com/zlimteck/AirDash",
+  "apps": [
+    {
+      "name": "AirDash",
+      "bundleIdentifier": "com.airdash.ios",
+      "developerName": "zlimteck",
+      "subtitle": "Unofficial native iOS dashboard and VPN client for AirVPN",
+      "localizedDescription": "AirDash is an independent, unofficial dashboard and VPN client for AirVPN, built natively for iOS with the Liquid Glass design.\n\nNot affiliated with AirVPN. AirDash uses your personal AirVPN API key to access your account and server data directly from AirVPN's own API, nothing passes through any other server that could see your credentials.\n\nThis is the full build: native WireGuard connect/disconnect via NetworkExtension, Live Activity, and the widget. Installing it through AltStore/SideStore requires connecting your own paid Apple Developer account, since the Personal VPN entitlement can't be granted to a free account.",
+      "iconURL": "https://raw.githubusercontent.com/zlimteck/AirDash/main/assets/icon.png",
+      "tintColor": "0E2A49",
+      "category": "utilities",
+      "size": 4079558,
+      "version": "1.0.12",
+      "versionDate": "2026-09-07T19:27:11Z",
+      "versionDescription": "Native, collapsible sidebar on iPad. Live Activity for the native VPN session. Quick connect straight from the server list in the Network tab.",
+      "downloadURL": "https://github.com/zlimteck/AirDash/releases/download/v1.0.12/AirDash-1.0.12.ipa",
+      "minOSVersion": "26.0",
+      "versions": [
+        {
+          "version": "1.0.12",
+          "date": "2026-09-07T19:27:11Z",
+          "localizedDescription": "Native, collapsible sidebar on iPad. Live Activity for the native VPN session. Quick connect straight from the server list in the Network tab.",
+          "downloadURL": "https://github.com/zlimteck/AirDash/releases/download/v1.0.12/AirDash-1.0.12.ipa",
+          "size": 4079558,
+          "minOSVersion": "26.0"
+        }
+      ]
+    }
+  ],
+  "news": []
+}
