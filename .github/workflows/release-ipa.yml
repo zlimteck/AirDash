@@ -1,0 +1,144 @@
+name: Release IPAs
+
+# Builds the unsigned Lite and Full IPAs, checks that nothing personal
+# (provisioning profile, Team ID, signature) ended up inside, and attaches
+# them to the GitHub release. Nothing is uploaded if a check fails.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to build and attach to (e.g. v1.0.12)
+        required: true
+      upload:
+        description: Attach the IPAs to the release (off = build and verify only)
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+env:
+  TAG: ${{ github.event.release.tag_name || inputs.tag }}
+
+jobs:
+  ipa:
+    runs-on: macos-15
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - variant: lite
+            scheme: AirDash-Lite
+            app: AirDashLite
+          - variant: full
+            scheme: AirDash
+            app: AirDash
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+          submodules: recursive
+
+      - name: Select Xcode 26
+        run: sudo xcode-select -s /Applications/Xcode_26.0.app/Contents/Developer
+
+      - name: Install Go (full build only, compiles libwg-go.a)
+        if: matrix.variant == 'full'
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.1'
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Archive (unsigned)
+        run: |
+          set -o pipefail
+          xcodebuild archive \
+            -project AirDash.xcodeproj \
+            -scheme "${{ matrix.scheme }}" \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/${{ matrix.app }}.xcarchive" \
+            -derivedDataPath "$RUNNER_TEMP/derived" \
+            CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+
+      - name: Package IPA
+        run: |
+          VERSION="${TAG#v}"
+          mkdir -p "$RUNNER_TEMP/pkg/Payload"
+          cp -R "$RUNNER_TEMP/${{ matrix.app }}.xcarchive/Products/Applications/${{ matrix.app }}.app" "$RUNNER_TEMP/pkg/Payload/"
+          (cd "$RUNNER_TEMP/pkg" && zip -qr "$GITHUB_WORKSPACE/${{ matrix.app }}-$VERSION.ipa" Payload)
+          echo "IPA=${{ matrix.app }}-$VERSION.ipa" >> "$GITHUB_ENV"
+
+      - name: Verify IPA (version, provisioning, signature, extensions)
+        run: |
+          VERSION="${TAG#v}"
+          APP="Payload/${{ matrix.app }}.app"
+          WORK="$(mktemp -d)"
+          unzip -q "$IPA" -d "$WORK"
+          fail=0
+
+          # Version must match the release tag
+          PLIST_VERSION=$(plutil -extract CFBundleShortVersionString raw "$WORK/$APP/Info.plist")
+          PLIST_BUILD=$(plutil -extract CFBundleVersion raw "$WORK/$APP/Info.plist")
+          echo "Version: $PLIST_VERSION (build $PLIST_BUILD)"
+          if [ "$PLIST_VERSION" != "$VERSION" ]; then
+            echo "::error::Info.plist version $PLIST_VERSION does not match tag $TAG"; fail=1
+          fi
+
+          # No provisioning profile anywhere in the bundle
+          if unzip -l "$IPA" | grep -qi "mobileprovision"; then
+            echo "::error::A .mobileprovision is embedded in the IPA"; fail=1
+          else
+            echo "No mobileprovision"
+          fi
+
+          # No signature / Team ID on the app or any of its extensions
+          for bundle in "$WORK/$APP" "$WORK/$APP"/PlugIns/*.appex; do
+            [ -e "$bundle" ] || continue
+            if codesign -d --verbose=4 "$bundle" 2>&1 | grep -E "TeamIdentifier|Authority"; then
+              echo "::error::$(basename "$bundle") carries a signature or Team ID"; fail=1
+            else
+              echo "No signature: $(basename "$bundle")"
+            fi
+          done
+
+          # Sanity: the right variant was built
+          if [ "${{ matrix.variant }}" = "full" ]; then
+            [ -d "$WORK/$APP/PlugIns/AirDashTunnel.appex" ] || { echo "::error::Full build is missing AirDashTunnel.appex"; fail=1; }
+          else
+            [ ! -d "$WORK/$APP/PlugIns/AirDashTunnel.appex" ] || { echo "::error::Lite build must not embed AirDashTunnel.appex"; fail=1; }
+          fi
+
+          rm -rf "$WORK"
+          exit $fail
+
+      - name: Summary
+        run: |
+          SIZE=$(stat -f%z "$IPA")
+          {
+            echo "### $IPA"
+            echo "- Size: \`$SIZE\` bytes (update \`size\` in altstore-source.json for the full build)"
+            echo "- Attached to release: \`${{ (github.event_name == 'release' || inputs.upload) && 'yes' || 'no (dry run)' }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep the built IPA as a workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.app }}-ipa
+          path: ${{ env.IPA }}
+          retention-days: 7
+
+      - name: Attach IPA to the release
+        if: github.event_name == 'release' || inputs.upload
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$TAG" "$IPA" --clobber
