@@ -1028,6 +1028,23 @@
         }
       }
     },
+    "changelog.1_0_13.export_compliance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added the encryption export compliance information required for the App Store release"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajout des informations de conformité à l'export du chiffrement requises pour la publication sur l'App Store"
+          }
+        }
+      }
+    },
     "changelog.1_0_12.ipad_sidebar" : {
       "extractionState" : "manual",
       "localizations" : {
