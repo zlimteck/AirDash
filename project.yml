@@ -76,6 +76,7 @@ targets:
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
         ITSAppUsesNonExemptEncryption: true
+        ITSEncryptionExportComplianceCode: 3b60dacc-5ae6-4380-b4d6-514eb5f8a7d5
         NSSupportsLiveActivities: true
     dependencies:
       - package: FlagKit
