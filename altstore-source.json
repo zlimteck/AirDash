@@ -63,6 +63,15 @@
       },
       "versions": [
         {
+          "version": "1.0.13",
+          "buildVersion": "13",
+          "date": "2026-10-03T08:33:25Z",
+          "localizedDescription": "Added the encryption export compliance information required for the App Store release. No change in features or behavior.",
+          "downloadURL": "https://github.com/zlimteck/AirDash/releases/download/v1.0.13/AirDash-1.0.13.ipa",
+          "size": 5652656,
+          "minOSVersion": "26.0"
+        },
+        {
           "version": "1.0.12",
           "buildVersion": "12",
           "date": "2026-09-07T19:27:11Z",
