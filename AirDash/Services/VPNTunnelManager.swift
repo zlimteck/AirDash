@@ -49,7 +49,11 @@ final class VPNTunnelManager: ObservableObject {
         let target = manager ?? NETunnelProviderManager()
 
         let proto = NETunnelProviderProtocol()
-        proto.providerBundleIdentifier = "com.airdash.ios.tunnel"
+        // Derived from the host app's own bundle ID (rather than hardcoded) so a
+        // re-signed IPA with a different bundle ID still resolves to its matching
+        // tunnel extension — iOS requires the extension ID to be a suffix of the
+        // container app's ID, so this always points at the right one.
+        proto.providerBundleIdentifier = Bundle.main.bundleIdentifier.map { "\($0).tunnel" } ?? "com.airdash.ios.tunnel"
         proto.serverAddress = serverName
         target.protocolConfiguration = proto
         let port = Self.endpointPort(fromWgQuickConfig: wgQuickConfigText) ?? "?"
