@@ -16,7 +16,7 @@ ZSIGN_BIN="$HOME/zsign/bin/zsign"          # path to the compiled zsign binary
 P12_PATH="Certificates.p12"
 P12_PASSWORD="CHANGE_ME"
 
-TEAM_ID="CHANGE_ME"                        # e.g. N5X9SZ4Q5B
+TEAM_ID="CHANGE_ME"                        # e.g. B6T8AU4P3G
 APP_GROUP="group.com.airdash.ios"          # must match TunnelKeychainService/SharedDataService
 
 # Bundle IDs actually baked into the IPA (what Xcode produced).
@@ -65,6 +65,15 @@ mkdir "$WORK_DIR"
 unzip -q "$IPA_PATH" -d "$WORK_DIR"
 cd "$WORK_DIR"
 
+# macOS re-tags files with Finder metadata (com.apple.FinderInfo) just by having
+# a Finder window open on this folder while it's being worked on. codesign
+# --strict rejects that xattr outright ("resource fork, Finder information, or
+# similar detritus not allowed"), and WidgetKit swallows the resulting signature
+# failure silently: the extension launches but produces an empty timeline, with
+# no crash log anywhere to point at the real cause. Stripped before every
+# signing pass and again right before zipping so this can never sneak back in.
+xattr -cr Payload
+
 APP_PATH="Payload/AirDash.app"
 TUNNEL_PATH="$APP_PATH/PlugIns/AirDashTunnel.appex"
 WIDGET_PATH="$APP_PATH/PlugIns/AirDashWidget.appex"
@@ -112,6 +121,8 @@ say "Signing AirDashWidget.appex with zsign"
   -e airdash-widget.entitlements \
   "$WIDGET_PATH"
 
+xattr -cr Payload
+
 say "Signing AirDash.app LAST with Apple's own codesign (no --deep, so it won't touch the extensions)"
 cp "../$APP_PROFILE" "$APP_PATH/embedded.mobileprovision"
 codesign -f -s "$CODESIGN_IDENTITY" --entitlements airdash.entitlements "$APP_PATH"
@@ -120,10 +131,12 @@ say "Verifying signatures"
 for target in "$APP_PATH" "$TUNNEL_PATH" "$WIDGET_PATH"; do
   echo "-- $target --"
   codesign -dv "$target" 2>&1 | grep Identifier
+  codesign --verify --strict -v "$target" || die "codesign --verify --strict failed on $target: do not install this IPA, it will fail (or silently show empty data) on-device too"
 done
-codesign --verify --deep --strict -v "$APP_PATH" || die "codesign --verify failed: do not install this IPA, it will fail on-device too"
+codesign --verify --deep --strict -v "$APP_PATH" || die "codesign --verify --deep --strict failed: do not install this IPA, it will fail on-device too"
 
 say "Packaging $OUTPUT_IPA"
+xattr -cr Payload
 find . -name ".DS_Store" -delete
 rm -f "../$OUTPUT_IPA"
 zip -qr "../$OUTPUT_IPA" Payload
