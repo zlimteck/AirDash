@@ -89,13 +89,9 @@ A pre-built unsigned IPA is available on the [Releases](https://github.com/zlimt
 
 > The widget requires a proper system installation to access the shared App Group. LiveContainer sandboxing prevents this. Native VPN connect/disconnect (full build only, not in the pre-built Lite IPA) doesn't work under LiveContainer either; a Packet Tunnel Provider extension can't run inside its app-in-app sandbox.
 
-### Full build via AltStore/SideStore
+### Full build: re-signing with your own Apple Developer account
 
-The **full** build (native VPN, Live Activity, widget) is also distributed as an [AltStore source](altstore-source.json), for anyone who already has their own paid Apple Developer account connected to AltServer/SideStore (the Personal VPN entitlement can't be granted to a free account, so this only fully works with a paid account):
-
-<a href="https://altstore.io/source/raw.githubusercontent.com/zlimteck/AirDash/main/altstore-source.json">
-  <img src="assets/altstore-badge.png" alt="Download on AltStore" height="50" />
-</a>
+The **full** build (native VPN, Live Activity, widget) needs a paid Apple Developer account, since the Personal VPN entitlement is never granted to a free account. It ships 3 separate bundles (app + 2 extensions), each with its own Bundle ID, so it needs a provisioning profile per component rather than a single one applied to the whole IPA. See the [Re-signing with zsign](https://github.com/zlimteck/AirDash/wiki/Re-signing-with-zsign) wiki page for the full step-by-step guide and a ready-to-edit script.
 
 ---
 
