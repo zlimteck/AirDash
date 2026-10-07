@@ -6,6 +6,10 @@ private struct ChangelogEntry {
 }
 
 private let changelog: [ChangelogEntry] = [
+    ChangelogEntry(version: "1.0.14", changes: [
+        "changelog.1_0_14.resign_tunnel_bundle_id",
+        "changelog.1_0_14.resign_app_group"
+    ]),
     ChangelogEntry(version: "1.0.13", changes: [
         "changelog.1_0_13.export_compliance"
     ]),
