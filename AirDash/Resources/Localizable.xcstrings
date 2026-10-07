@@ -5275,6 +5275,23 @@
           }
         }
       }
+    },
+    "changelog.1_0_15.widget_app_group": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fixed the widget staying empty after re-signing by resolving the shared App Group with public APIs only"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correction du widget qui restait vide après une re-signature : le groupe d'app partagé est maintenant résolu uniquement avec des API publiques"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

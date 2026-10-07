@@ -12,20 +12,56 @@ import Security
 /// at non-shared sandboxes: no crash, no entitlement error, UserDefaults and
 /// Keychain reads just return nothing.
 ///
-/// Reading the real value directly from the process's own code-signing
-/// entitlements removes the dependency on any particular re-signing tool's
-/// naming scheme. Falls back to the original literal if entitlement lookup
-/// ever fails, so a normally-signed build (Xcode, TestFlight) is unaffected.
+/// Deliberately uses only public API. An earlier version read the group
+/// straight from the process's own code-signing entitlements via
+/// `SecTaskCreateFromSelf`/`SecTaskCopyValueForEntitlement` — those are
+/// treated as non-public by Apple despite being declared in Security
+/// framework headers, and produced exactly the silent, crash-free failure
+/// this file exists to avoid when called from inside the Widget extension's
+/// sandbox. `FileManager.containerURL(forSecurityApplicationGroupIdentifier:)`
+/// does the same job with a fully public, documented API: it returns `nil`
+/// for a group identifier that isn't actually in this process's entitlements,
+/// so trying the plain name first and a Team-ID-suffixed variant next is
+/// enough to detect which one a re-signing tool actually used.
 enum AppGroupID {
     private static let fallback = "group.com.airdash.ios"
 
     static let current: String = {
-        guard let task = SecTaskCreateFromSelf(nil),
-              let groups = SecTaskCopyValueForEntitlement(
-                task, "com.apple.security.application-groups" as CFString, nil
-              ) as? [String],
-              let first = groups.first
-        else { return fallback }
-        return first
+        if FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: fallback) != nil {
+            return fallback
+        }
+        if let teamID = resolveTeamIDPrefix() {
+            let suffixed = "\(fallback).\(teamID)"
+            if FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: suffixed) != nil {
+                return suffixed
+            }
+        }
+        return fallback
     }()
+
+    /// Same public-API Keychain probe `TunnelKeychainService` uses to discover
+    /// `$(AppIdentifierPrefix)` at runtime: write a throwaway item with no
+    /// explicit access group (Security.framework fills in the default,
+    /// prefixed one), read its resolved `kSecAttrAccessGroup` back, and take
+    /// the team ID prefix before the first dot.
+    private static func resolveTeamIDPrefix() -> String? {
+        let probeAccount = "airdash-appgroup-teamid-probe"
+        let probeQuery: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: probeAccount,
+            kSecAttrAccessible: kSecAttrAccessibleAfterFirstUnlock,
+            kSecReturnAttributes: true
+        ]
+        var result: AnyObject?
+        var status = SecItemCopyMatching(probeQuery as CFDictionary, &result)
+        if status == errSecItemNotFound {
+            status = SecItemAdd(probeQuery as CFDictionary, &result)
+        }
+        guard status == errSecSuccess,
+              let attributes = result as? [CFString: Any],
+              let resolvedGroup = attributes[kSecAttrAccessGroup] as? String,
+              let dotIndex = resolvedGroup.firstIndex(of: ".")
+        else { return nil }
+        return String(resolvedGroup[..<dotIndex])
+    }
 }
