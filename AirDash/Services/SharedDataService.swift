@@ -32,7 +32,7 @@ struct SharedWidgetData: Codable {
 }
 
 enum SharedDataService {
-    private static let suiteName = "group.com.airdash.ios"
+    private static let suiteName = AppGroupID.current
     private static let key = "widgetData"
     private static let serverNamesKey = "serverNames"
 

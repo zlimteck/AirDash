@@ -19,8 +19,8 @@ settings:
   base:
     SWIFT_VERSION: "6.0"
     PRODUCT_BUNDLE_IDENTIFIER: com.airdash.ios
-    MARKETING_VERSION: "1.0.13"
-    CURRENT_PROJECT_VERSION: "13"
+    MARKETING_VERSION: "1.0.14"
+    CURRENT_PROJECT_VERSION: "14"
     INFOPLIST_FILE: AirDash/Supporting/Info.plist
     CODE_SIGN_STYLE: Automatic
     SWIFT_STRICT_CONCURRENCY: targeted
@@ -167,6 +167,8 @@ targets:
       - path: AirDashWidget
       - path: AirDash/Models/VPNActivityAttributes.swift
         group: AirDashWidget
+      - path: AirDash/Services/AppGroupID.swift
+        group: AirDashWidget
     dependencies:
       - package: FlagKit
         product: FlagKit
@@ -199,6 +201,7 @@ targets:
       - path: AirDashTunnel
       - path: AirDash/Models/AppError.swift
       - path: AirDash/Services/TunnelKeychainService.swift
+      - path: AirDash/Services/AppGroupID.swift
       - path: Vendor/wireguard-apple/Sources/Shared/Model/TunnelConfiguration+WgQuickConfig.swift
         group: AirDashTunnel
       - path: Vendor/wireguard-apple/Sources/Shared/Model/String+ArrayConversion.swift
