@@ -45,6 +45,18 @@ OUTPUT_IPA="AirDash-resigned.ipa"
 say() { printf '\n\033[1;34m==>\033[0m %s\n' "$1"; }
 die() { printf '\n\033[1;31mERROR:\033[0m %s\n' "$1" >&2; exit 1; }
 
+# iCloud Drive ("Desktop & Documents" sync) actively re-tags every file it
+# syncs with extended attributes in the background, far faster than any
+# xattr -cr cleanup in this script can outrun. If this folder is under
+# ~/Documents or ~/Desktop with that sync enabled, codesign --strict will
+# keep failing with "resource fork, Finder information, or similar detritus
+# not allowed" no matter how many times Payload is cleaned, because iCloud
+# re-adds it within milliseconds. Work outside both folders instead.
+case "$(pwd)" in
+  "$HOME/Documents"/*|"$HOME/Desktop"/*)
+    die "Working inside $(pwd), which is likely iCloud-synced (Desktop & Documents). Move this whole folder outside ~/Documents and ~/Desktop (e.g. to \$HOME directly) and re-run from there, or codesign --strict will keep failing on com.apple.FinderInfo." ;;
+esac
+
 [[ -f "$IPA_PATH" ]] || die "IPA not found: $IPA_PATH"
 [[ -x "$ZSIGN_BIN" ]] || die "zsign binary not found/executable at: $ZSIGN_BIN"
 [[ -f "$P12_PATH" ]] || die "p12 not found: $P12_PATH"
@@ -124,7 +136,9 @@ say "Signing AirDashWidget.appex with zsign"
 xattr -cr Payload
 
 say "Signing AirDash.app LAST with Apple's own codesign (no --deep, so it won't touch the extensions)"
+xattr -c "../$APP_PROFILE"
 cp "../$APP_PROFILE" "$APP_PATH/embedded.mobileprovision"
+xattr -cr Payload
 codesign -f -s "$CODESIGN_IDENTITY" --entitlements airdash.entitlements "$APP_PATH"
 
 say "Verifying signatures"
