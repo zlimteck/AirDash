@@ -167,6 +167,8 @@ targets:
       - path: AirDashWidget
       - path: AirDash/Models/VPNActivityAttributes.swift
         group: AirDashWidget
+      - path: AirDash/Services/AppGroupID.swift
+        group: AirDashWidget
     dependencies:
       - package: FlagKit
         product: FlagKit
@@ -199,6 +201,7 @@ targets:
       - path: AirDashTunnel
       - path: AirDash/Models/AppError.swift
       - path: AirDash/Services/TunnelKeychainService.swift
+      - path: AirDash/Services/AppGroupID.swift
       - path: Vendor/wireguard-apple/Sources/Shared/Model/TunnelConfiguration+WgQuickConfig.swift
         group: AirDashTunnel
       - path: Vendor/wireguard-apple/Sources/Shared/Model/String+ArrayConversion.swift

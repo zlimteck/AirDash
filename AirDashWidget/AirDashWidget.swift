@@ -54,7 +54,7 @@ struct ServerEntityQuery: EntityQuery {
         loadAll()
     }
     private func loadAll() -> [ServerAppEntity] {
-        guard let defaults = UserDefaults(suiteName: "group.com.airdash.ios"),
+        guard let defaults = UserDefaults(suiteName: AppGroupID.current),
               let data = defaults.data(forKey: "favoriteServersData"),
               let servers = try? JSONDecoder().decode([WidgetServerData].self, from: data)
         else { return [] }
@@ -83,7 +83,7 @@ struct AirDashEntry: TimelineEntry {
 // MARK: - Provider
 
 struct AirDashProvider: AppIntentTimelineProvider {
-    private let suiteName = "group.com.airdash.ios"
+    private let suiteName = AppGroupID.current
 
     func placeholder(in context: Context) -> AirDashEntry {
         AirDashEntry(date: .now, data: WidgetData(
@@ -159,7 +159,7 @@ struct AirDashStatusEntry: TimelineEntry {
 }
 
 struct AirDashStatusProvider: TimelineProvider {
-    private let suiteName = "group.com.airdash.ios"
+    private let suiteName = AppGroupID.current
 
     func placeholder(in context: Context) -> AirDashStatusEntry {
         AirDashStatusEntry(date: .now, data: WidgetData(

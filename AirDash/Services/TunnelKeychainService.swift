@@ -12,7 +12,7 @@ import Security
 enum TunnelKeychainService {
     private static let service = "com.airdash.ios.tunnel"
     private static let account = "wireguard.tunnelconfig"
-    private static let groupSuffix = "group.com.airdash.ios"
+    private static let groupSuffix = AppGroupID.current
 
     static func save(wgQuickConfigText: String) throws {
         guard let group = accessGroup() else {
