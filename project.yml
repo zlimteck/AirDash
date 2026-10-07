@@ -24,6 +24,7 @@ settings:
     INFOPLIST_FILE: AirDash/Supporting/Info.plist
     CODE_SIGN_STYLE: Automatic
     SWIFT_STRICT_CONCURRENCY: targeted
+    SWIFT_OBJC_BRIDGING_HEADER: AirDash/Supporting/SecurityBridging.h
     OTHER_SWIFT_FLAGS: ""
 
 targets:
@@ -251,7 +252,12 @@ aggregateTargets:
           # .zshrc/.bash_profile, so common Go install locations may be missing
           # from PATH even though they work fine in a normal terminal.
           export PATH="$PATH:/usr/local/go/bin:/opt/homebrew/bin:/usr/local/bin"
+          # The vendored Makefile has no GOOS for the iOS Simulator, so Go falls back
+          # to a plain darwin build whose runtime expects mach exception handlers that
+          # only exist for GOOS=ios: the simulator link then fails with undefined
+          # _darwin_arm_init_* symbols. Forcing GOOS=ios fixes it.
           make -C "$SRCROOT/Vendor/wireguard-apple/Sources/WireGuardKitGo" \
+            GOOS_iphonesimulator=ios \
             DESTDIR="$SRCROOT/Vendor/.build/wg-go/$PLATFORM_NAME"
         outputFiles:
           - $(SRCROOT)/Vendor/.build/wg-go/$(PLATFORM_NAME)/libwg-go.a
