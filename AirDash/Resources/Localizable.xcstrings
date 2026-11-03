@@ -5292,6 +5292,40 @@
           }
         }
       }
+    },
+    "changelog.1_0_16.connect_shortcuts": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Added Siri and Shortcuts actions to connect the VPN to a server: one that asks which server each time, and one that always connects to the server you set once in the Shortcuts app. Both can also use a chosen device and port"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajout d'actions Siri et Raccourcis pour connecter le VPN à un serveur : une qui demande le serveur à chaque fois, et une qui se connecte toujours au serveur choisi une fois dans l'app Raccourcis. Les deux acceptent aussi un appareil et un port au choix"
+          }
+        }
+      }
+    },
+    "changelog.1_0_16.disconnect_shortcut": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Added a Siri and Shortcuts action to disconnect the VPN"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajout d'une action Siri et Raccourcis pour déconnecter le VPN"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

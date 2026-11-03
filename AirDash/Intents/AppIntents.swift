@@ -236,12 +236,31 @@ struct AirDashShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: OpenServerIntent(),
             phrases: [
-                "Open \(\.$server) in \(.applicationName)",
-                "Connect to \(\.$server) with \(.applicationName)"
+                "Open \(\.$server) in \(.applicationName)"
             ],
             shortTitle: "Open Server",
             systemImageName: "server.rack"
         )
+        #if VPN_ENABLED
+        AppShortcut(
+            intent: ConnectToServerIntent(),
+            phrases: [
+                "Connect to \(\.$server) with \(.applicationName)",
+                "Connect to a server with \(.applicationName)"
+            ],
+            shortTitle: "Connect to Server",
+            systemImageName: "bolt.horizontal.fill"
+        )
+        AppShortcut(
+            intent: DisconnectVPNIntent(),
+            phrases: [
+                "Disconnect \(.applicationName)",
+                "Disconnect the VPN with \(.applicationName)"
+            ],
+            shortTitle: "Disconnect VPN",
+            systemImageName: "bolt.slash.fill"
+        )
+        #endif
         AppShortcut(
             intent: BestServerIntent(),
             phrases: [
